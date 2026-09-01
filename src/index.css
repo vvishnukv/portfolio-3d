@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  cursor: none !important;
+  background-color: #030712;
+  color: #f3f4f6;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+a, button {
+  cursor: none !important;
+}
+
+/* Horizontal scroll container for the projects section */
+.horizontal-scroll-section {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 2rem 10vw;
+  scrollbar-width: none;
+}
+
+.horizontal-scroll-section::-webkit-scrollbar {
+  display: none;
+}
+
+.project-slide {
+  min-width: 450px;
+  scroll-snap-align: center;
+}
