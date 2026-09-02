@@ -74,7 +74,7 @@ export default async function handler(req, res) {
 
     // 3. Generate content using 2.5-flash for fast serverless turnaround (well under Vercel timeout limits)
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3.6-flash',
       contents: prompt,
       config: {
         responseMimeType: 'application/json',
