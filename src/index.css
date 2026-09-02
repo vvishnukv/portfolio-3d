@@ -38,3 +38,31 @@ a, button {
   min-width: 450px;
   scroll-snap-align: center;
 }
+
+@keyframes smoothMarquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.nav-logo-wrapper {
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.smooth-marquee-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: smoothMarquee 8s linear infinite;
+}
+
+.smooth-marquee-text {
+  display: inline-block;
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: #ef4444;
+  padding-right: 20px;
+}
