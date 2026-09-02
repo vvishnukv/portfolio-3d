@@ -1,20 +1,36 @@
 import { GoogleGenAI } from '@google/genai';
 
 export default async function handler(req, res) {
-  // Only permit POST requests
+  // CORS & Method Check
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const { jobDescription } = req.body;
+    // 1. Safely handle body parsing in Vercel serverless environments
+    let body = req.body;
+    if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+      } catch (e) {
+        return res.status(400).json({ error: 'Invalid JSON body' });
+      }
+    }
 
-    if (!jobDescription) {
+    const { jobDescription } = body || {};
+
+    if (!jobDescription || !jobDescription.trim()) {
       return res.status(400).json({ error: 'Job description is required' });
     }
 
-    // Initialize using the server environment variable
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+    // 2. Check for API key
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      console.error('GEMINI_API_KEY environment variable is missing.');
+      return res.status(500).json({ error: 'GEMINI_API_KEY not configured on server' });
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
 
     const portfolioContext = `
       Candidate Name: Vishnu Kaushik Varma Vuddaraju
@@ -34,30 +50,31 @@ export default async function handler(req, res) {
     `;
 
     const prompt = `
-      You are an elite career strategist. Analyze the target Job Description below and cross-reference it with the candidate's complete portfolio background.
+      You are an elite career strategist. Cross-reference the target job description with the candidate portfolio. Return ONLY a valid JSON object.
       
-      Candidate Background:
+      Candidate Portfolio:
       ${portfolioContext}
 
       Target Job Description:
       ${jobDescription}
 
-      Return strictly a valid JSON object matching this structure:
+      Required JSON format:
       {
         "targetRole": "Extracted Job Title",
-        "matchScore": "Percentage match score e.g. 98.5%",
-        "summary": "Tailored 2-sentence professional executive summary directly matching the role",
-        "skills": ["Matched Skill 1", "Matched Skill 2", "Matched Skill 3", "Matched Skill 4"],
+        "matchScore": "95%",
+        "summary": "Tailored 2-sentence executive summary matching the role",
+        "skills": ["Skill 1", "Skill 2", "Skill 3", "Skill 4", "Skill 5"],
         "bullets": [
           "High-impact bullet point matching the JD with candidate's actual projects/experience",
-          "High-impact bullet point highlighting quantifiable impact and tech stack",
-          "High-impact bullet point focusing on system scale or quality assurance"
+          "High-impact bullet point highlighting metrics, scale, and technical stack",
+          "High-impact bullet point focusing on system architecture or quality assurance"
         ]
       }
     `;
 
+    // 3. Generate content using 2.5-flash for fast serverless turnaround (well under Vercel timeout limits)
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-pro',
+      model: 'gemini-2.5-flash',
       contents: prompt,
       config: {
         responseMimeType: 'application/json',
@@ -65,10 +82,16 @@ export default async function handler(req, res) {
       }
     });
 
-    const parsedData = JSON.parse(response.text);
+    const responseText = response.text;
+    const parsedData = JSON.parse(responseText);
+
     return res.status(200).json(parsedData);
   } catch (error) {
-    console.error('Gemini error:', error);
-    return res.status(500).json({ error: 'Failed to generate tailored resume' });
+    // Return the actual error message to make debugging immediate
+    console.error('Gemini Execution Error:', error);
+    return res.status(500).json({ 
+      error: 'Failed to generate tailored resume', 
+      details: error.message || error.toString() 
+    });
   }
 }
