@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react'
-import { motion } from 'framer-motion'
 import html2pdf from 'html2pdf.js'
 
 export default function AIResumePage({ theme, isDarkMode, playClickSound, setCurrentPage }) {
@@ -14,10 +13,10 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
     if (!element) return
 
     const opt = {
-      margin: 0.4,
+      margin: [0.3, 0.4, 0.3, 0.4],
       filename: 'Vishnu_Kaushik_Varma_Resume.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
+      image: { type: 'jpeg', quality: 0.99 },
+      html2canvas: { scale: 2.5, useCORS: true, letterRendering: true },
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     }
 
@@ -41,116 +40,169 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
       const data = await response.json()
       setTailoredResume(data)
     } catch (err) {
-      alert('Could not connect to Gemini backend server. Ensure /api/tailor-resume is running.')
+      alert('Could not connect to backend server. Ensure /api/tailor-resume is active.')
     } finally {
       setIsGenerating(false)
     }
   }
 
   return (
-    <div style={{ minHeight: 'calc(100vh - 70px)', padding: '10vh 8vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} style={{ width: '100%', maxWidth: '900px' }}>
+    <div style={{ minHeight: 'calc(100vh - 70px)', padding: '4vh 4vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      {/* Controls Bar */}
+      <div style={{ width: '100%', maxWidth: '820px', marginBottom: '1.2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <button
           onClick={() => { playClickSound(); setCurrentPage('portfolio'); }}
-          style={{ background: 'transparent', border: `1px solid ${theme.cardBorder}`, color: theme.textMain, padding: '0.5rem 1.2rem', borderRadius: '20px', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem', marginBottom: '2rem', transition: 'all 0.2s ease' }}
+          style={{ background: 'transparent', border: `1px solid ${theme.cardBorder}`, color: theme.textMain, padding: '0.45rem 1.1rem', borderRadius: '20px', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem' }}
         >
           ← Back to Portfolio
         </button>
+        {tailoredResume && (
+          <button
+            onClick={handleDownloadPDF}
+            style={{ background: '#ef4444', color: '#fff', border: 'none', padding: '0.55rem 1.8rem', borderRadius: '25px', fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer', boxShadow: '0 4px 15px rgba(239, 68, 68, 0.3)' }}
+          >
+            📥 Download 1-Page PDF
+          </button>
+        )}
+      </div>
 
-        <div style={{ background: theme.cardBg, border: '2px solid #38bdf8', padding: 'clamp(2rem, 4vw, 3.5rem)', borderRadius: '1.5rem', backdropFilter: 'blur(16px)', boxShadow: isDarkMode ? '0 0 35px rgba(56, 189, 248, 0.15)' : '0 15px 40px rgba(2, 132, 199, 0.1)' }}>
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <span style={{ color: '#38bdf8', fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px' }}>✨ Gemini 2.5 Pro Engine</span>
-            <h1 style={{ fontSize: 'clamp(2rem, 4vw, 2.8rem)', fontWeight: 900, color: theme.textMain, marginTop: '0.5rem' }}>Tailored 1-Page Resume</h1>
-            <p style={{ color: theme.textMuted, fontSize: '0.95rem', maxWidth: '650px', margin: '0.5rem auto 0 auto' }}>
-              Paste a target job description below. Gemini 2.5 Pro cross-references all your projects, tech stack, and experience to generate a matching 1-page resume.
-            </p>
-          </div>
+      {/* JD Prompt Input */}
+      <div style={{ width: '100%', maxWidth: '820px', background: theme.cardBg, border: '1px solid #38bdf8', padding: '1.5rem', borderRadius: '1rem', backdropFilter: 'blur(16px)', marginBottom: '2rem' }}>
+        <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: theme.textMain, marginBottom: '0.4rem' }}>Tailor to Target Job Description</h2>
+        <textarea
+          rows={3}
+          placeholder="Paste target Job Description here..."
+          value={jobDescription}
+          onChange={(e) => setJobDescription(e.target.value)}
+          style={{ width: '100%', padding: '0.8rem', borderRadius: '0.6rem', border: `1px solid ${theme.cardBorder}`, backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.04)' : 'rgba(15, 23, 42, 0.02)', color: theme.textMain, fontSize: '0.9rem', outline: 'none', resize: 'vertical', fontFamily: 'inherit', marginBottom: '0.8rem' }}
+        />
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ fontSize: '0.8rem', color: theme.textMuted }}>Strict 1-Page Template Alignment</span>
+          <button
+            onClick={handleGenerate}
+            disabled={isGenerating || !jobDescription.trim()}
+            style={{ background: isGenerating ? '#64748b' : '#38bdf8', color: '#030712', border: 'none', padding: '0.6rem 1.6rem', borderRadius: '25px', fontWeight: 700, fontSize: '0.85rem', cursor: isGenerating ? 'not-allowed' : 'pointer' }}
+          >
+            {isGenerating ? 'Analyzing & Tailoring...' : 'Generate Resume 🚀'}
+          </button>
+        </div>
+      </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-            <textarea
-              rows={5}
-              placeholder="Paste target job description here (e.g. Software Engineer with Python, Docker, Flutter, PostgreSQL)..."
-              value={jobDescription}
-              onChange={(e) => setJobDescription(e.target.value)}
-              style={{ width: '100%', padding: '1.2rem', borderRadius: '1rem', border: `1px solid ${theme.cardBorder}`, backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.04)' : 'rgba(15, 23, 42, 0.02)', color: theme.textMain, fontSize: '0.95rem', outline: 'none', resize: 'vertical', fontFamily: 'inherit' }}
-            />
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-              <span style={{ fontSize: '0.82rem', color: theme.textMuted }}>🔒 Powered by Gemini 2.5 Pro • Strict 1-Page Format</span>
-              <button
-                onClick={handleGenerate}
-                disabled={isGenerating || !jobDescription.trim()}
-                style={{ background: isGenerating ? '#64748b' : '#ef4444', color: '#fff', border: 'none', padding: '0.9rem 2.5rem', borderRadius: '30px', fontWeight: 700, fontSize: '0.95rem', cursor: isGenerating ? 'not-allowed' : 'pointer', boxShadow: '0 4px 20px rgba(239, 68, 68, 0.35)', transition: 'all 0.25s ease' }}
-              >
-                {isGenerating ? '🤖 Gemini Analyzing...' : 'Generate Tailored Resume 🚀'}
-              </button>
+      {/* EXACT RESUME TEMPLATE CLONE */}
+      {tailoredResume && (
+        <div
+          ref={resumePrintRef}
+          style={{
+            width: '100%',
+            maxWidth: '816px',
+            backgroundColor: '#ffffff',
+            color: '#000000',
+            padding: '32px 38px 24px 38px',
+            boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
+            fontFamily: "'Arial', 'Helvetica', sans-serif",
+            fontSize: '9.2pt',
+            lineHeight: 1.28,
+          }}
+        >
+          {/* EDUCATION */}
+          <div style={{ marginBottom: '14px' }}>
+            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '6px', letterSpacing: '0.5px' }}>
+              EDUCATION[cite: 2]
+            </div>
+            
+            <div style={{ marginBottom: '8px' }}>
+              <div style={{ fontWeight: 700 }}>Marist College[cite: 2]</div>
+              <div>Master of Science, Information Systems[cite: 2]</div>
+              <div>Jan 2025 - Dec 2026[cite: 2]</div>
+              <div>GPA: 3.845[cite: 2]</div>
+            </div>
+
+            <div>
+              <div style={{ fontWeight: 700 }}>Keshav Memorial Institute Of Technology[cite: 2]</div>
+              <div>Bachelor of Technology, CSM[cite: 2]</div>
+              <div>Aug 2020 - May 2024[cite: 2]</div>
+              <div>GPA: 3.5[cite: 2]</div>
             </div>
           </div>
 
-          {tailoredResume && (
-            <motion.div
-              ref={resumePrintRef}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              style={{
-                marginTop: '2.5rem',
-                padding: '2rem',
-                borderRadius: '1rem',
-                backgroundColor: isDarkMode ? '#0f172a' : '#ffffff',
-                color: isDarkMode ? '#f8fafc' : '#0f172a',
-                border: '1px solid #38bdf8'
-              }}
-            >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', borderBottom: `1px solid ${theme.cardBorder}`, paddingBottom: '0.8rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-                <div>
-                  <h3 style={{ fontSize: '1.25rem', color: theme.textMain, margin: 0, fontWeight: 800 }}>Vishnu Kaushik Varma Vuddaraju</h3>
-                  <p style={{ color: '#0284c7', fontSize: '0.85rem', margin: '0.2rem 0 0 0', fontWeight: 600 }}>Target: {tailoredResume.targetRole}</p>
-                </div>
-                <span style={{ backgroundColor: 'rgba(34, 197, 94, 0.15)', color: '#22c55e', padding: '0.3rem 0.9rem', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 700 }}>Match: {tailoredResume.matchScore} 🎯</span>
-              </div>
+          {/* SKILLS */}
+          <div style={{ marginBottom: '14px' }}>
+            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '6px', letterSpacing: '0.5px' }}>
+              SKILLS[cite: 2]
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+              <div><strong>Programming Languages:</strong> {tailoredResume.skills?.languages || 'Python, SQL, JavaScript, HTML'}[cite: 2]</div>
+              <div><strong>Frameworks & Libraries:</strong> {tailoredResume.skills?.frameworks || 'Pandas, NumPy'}[cite: 2]</div>
+              <div><strong>Tools & Software:</strong> {tailoredResume.skills?.tools || 'Ubuntu Linux, Docker, Containerization, Liferay, Brightspace, Sakai, Enterprise System Onboarding, Power Apps, Automated Workflows, Jira, TDX Tickets, Git, GitHub, Technical Documentation, Helpdesk/Walk-in Labs, flutter, dart'}[cite: 2]</div>
+              <div><strong>Cloud Platforms:</strong> {tailoredResume.skills?.cloud || 'Google Cloud Platform, Firebase'}[cite: 2]</div>
+              <div><strong>Soft Skills:</strong> {tailoredResume.skills?.softSkills || 'Faculty Workshops, Technical Consulting'}[cite: 2]</div>
+            </div>
+          </div>
 
-              <div style={{ marginBottom: '1.2rem' }}>
-                <h4 style={{ fontSize: '0.85rem', color: '#ef4444', textTransform: 'uppercase', marginBottom: '0.3rem', letterSpacing: '0.5px' }}>Tailored Summary</h4>
-                <p style={{ fontSize: '0.9rem', color: theme.textMuted, lineHeight: 1.6, margin: 0 }}>{tailoredResume.summary}</p>
-              </div>
-
-              <div style={{ marginBottom: '1.2rem' }}>
-                <h4 style={{ fontSize: '0.85rem', color: '#ef4444', textTransform: 'uppercase', marginBottom: '0.5rem', letterSpacing: '0.5px' }}>Matched Technical Skills</h4>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-                  {tailoredResume.skills.map((sk, sI) => (
-                    <span key={sI} style={{ fontSize: '0.78rem', padding: '0.25rem 0.7rem', borderRadius: '15px', backgroundColor: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8', fontWeight: 600 }}>{sk}</span>
+          {/* WORK EXPERIENCE */}
+          <div style={{ marginBottom: '14px' }}>
+            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '6px', letterSpacing: '0.5px' }}>
+              WORK EXPERIENCE[cite: 2]
+            </div>
+            {tailoredResume.experience?.map((exp, eIdx) => (
+              <div key={eIdx} style={{ marginBottom: '10px' }}>
+                <div style={{ fontWeight: 700 }}>{exp.header}[cite: 2]</div>
+                <div style={{ marginBottom: '3px' }}>{exp.period}[cite: 2]</div>
+                <ul style={{ margin: 0, paddingLeft: '18px' }}>
+                  {exp.bullets?.map((bullet, bIdx) => (
+                    <li key={bIdx} style={{ marginBottom: '3px' }}>{bullet}[cite: 2]</li>
                   ))}
-                </div>
-              </div>
-
-              <div style={{ marginBottom: '1.5rem' }}>
-                <h4 style={{ fontSize: '0.85rem', color: '#ef4444', textTransform: 'uppercase', marginBottom: '0.5rem', letterSpacing: '0.5px' }}>Targeted Experience Bullets</h4>
-                <ul style={{ color: theme.textMuted, fontSize: '0.9rem', lineHeight: 1.6, paddingLeft: '1.2rem', margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                  {tailoredResume.bullets.map((b, bI) => (<li key={bI}>{b}</li>))}
                 </ul>
               </div>
+            ))}
+          </div>
 
-              <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1.5rem' }}>
-                <button
-                  onClick={handleDownloadPDF}
-                  style={{
-                    background: '#38bdf8',
-                    color: '#030712',
-                    border: 'none',
-                    padding: '0.7rem 1.8rem',
-                    borderRadius: '25px',
-                    fontWeight: 700,
-                    fontSize: '0.85rem',
-                    cursor: 'pointer',
-                    boxShadow: '0 4px 15px rgba(56, 189, 248, 0.3)'
-                  }}
-                >
-                  📥 Download 1-Page PDF
-                </button>
+          {/* PROJECTS */}
+          <div style={{ marginBottom: '14px' }}>
+            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '6px', letterSpacing: '0.5px' }}>
+              PROJECTS[cite: 2]
+            </div>
+            {tailoredResume.projects?.map((proj, pIdx) => (
+              <div key={pIdx} style={{ marginBottom: '8px' }}>
+                <div style={{ fontWeight: 700 }}>{proj.title}[cite: 2]</div>
+                <ul style={{ margin: 0, paddingLeft: '18px' }}>
+                  {proj.bullets?.map((b, bIdx) => (
+                    <li key={bIdx} style={{ marginBottom: '2px' }}>
+                      {typeof b === 'string' ? (
+                        b
+                      ) : (
+                        <>
+                          <strong>{b.boldPrefix}</strong>
+                          {b.text}
+                        </>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </motion.div>
-          )}
+            ))}
+          </div>
+
+          {/* FOOTER / CONTACT IDENTIFIER */}
+          <div style={{ marginTop: '12px', borderTop: '1px solid #ddd', paddingTop: '6px', textAlign: 'center', fontSize: '8.8pt', color: '#111' }}>
+            <div style={{ fontWeight: 700, fontSize: '9.8pt', marginBottom: '1px' }}>
+              Vishnu Kaushik Varma[cite: 2]
+            </div>
+            <div>
+              Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781[cite: 2]
+            </div>
+            <div>
+              <a href="https://vishnukaushikvarma.vercel.app/" target="_blank" rel="noreferrer" style={{ color: '#000', textDecoration: 'none', fontWeight: 600 }}>
+                https://vishnukaushikvarma.vercel.app/
+              </a>
+              {' | '}
+              <a href="https://linkedin.com/in/vishnukaushikvarma" target="_blank" rel="noreferrer" style={{ color: '#000', textDecoration: 'none' }}>
+                linkedin.com/in/vishnukaushikvarma[cite: 2]
+              </a>
+            </div>
+          </div>
         </div>
-      </motion.div>
+      )}
     </div>
   )
 }
