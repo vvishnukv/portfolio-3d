@@ -48,7 +48,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
 
   return (
     <div style={{ minHeight: 'calc(100vh - 70px)', padding: '4vh 4vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {/* Controls Bar */}
+      {/* Navigation Controls */}
       <div style={{ width: '100%', maxWidth: '820px', marginBottom: '1.2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <button
           onClick={() => { playClickSound(); setCurrentPage('portfolio'); }}
@@ -66,7 +66,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
         )}
       </div>
 
-      {/* JD Prompt Input */}
+      {/* Input Field */}
       <div style={{ width: '100%', maxWidth: '820px', background: theme.cardBg, border: '1px solid #38bdf8', padding: '1.5rem', borderRadius: '1rem', backdropFilter: 'blur(16px)', marginBottom: '2rem' }}>
         <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: theme.textMain, marginBottom: '0.4rem' }}>Tailor to Target Job Description</h2>
         <textarea
@@ -88,7 +88,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
         </div>
       </div>
 
-      {/* EXACT RESUME TEMPLATE CLONE */}
+      {/* Resume Preview */}
       {tailoredResume && (
         <div
           ref={resumePrintRef}
@@ -107,21 +107,21 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
           {/* EDUCATION */}
           <div style={{ marginBottom: '14px' }}>
             <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '6px', letterSpacing: '0.5px' }}>
-              EDUCATION[cite: 2]
+              EDUCATION
             </div>
             
             <div style={{ marginBottom: '8px' }}>
-              <div style={{ fontWeight: 700 }}>Marist College[cite: 2]</div>
-              <div>Master of Science, Information Systems[cite: 2]</div>
-              <div>Jan 2025 - Dec 2026[cite: 2]</div>
-              <div>GPA: 3.845[cite: 2]</div>
+              <div style={{ fontWeight: 700 }}>Marist College</div>
+              <div>Master of Science, Information Systems</div>
+              <div>Jan 2025 - Dec 2026</div>
+              <div>GPA: 3.845</div>
             </div>
 
             <div>
-              <div style={{ fontWeight: 700 }}>Keshav Memorial Institute Of Technology[cite: 2]</div>
-              <div>Bachelor of Technology, CSM[cite: 2]</div>
-              <div>Aug 2020 - May 2024[cite: 2]</div>
-              <div>GPA: 3.5[cite: 2]</div>
+              <div style={{ fontWeight: 700 }}>Keshav Memorial Institute Of Technology</div>
+              <div>Bachelor of Technology, CSM</div>
+              <div>Aug 2020 - May 2024</div>
+              <div>GPA: 3.5</div>
             </div>
           </div>
 
@@ -148,15 +148,15 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
           {/* WORK EXPERIENCE */}
           <div style={{ marginBottom: '14px' }}>
             <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '6px', letterSpacing: '0.5px' }}>
-              WORK EXPERIENCE[cite: 2]
+              WORK EXPERIENCE
             </div>
             {tailoredResume.experience?.map((exp, eIdx) => (
               <div key={eIdx} style={{ marginBottom: '10px' }}>
-                <div style={{ fontWeight: 700 }}>{exp.header}[cite: 2]</div>
-                <div style={{ marginBottom: '3px' }}>{exp.period}[cite: 2]</div>
+                <div style={{ fontWeight: 700 }}>{exp.header}</div>
+                <div style={{ marginBottom: '3px' }}>{exp.period}</div>
                 <ul style={{ margin: 0, paddingLeft: '18px' }}>
                   {exp.bullets?.map((bullet, bIdx) => (
-                    <li key={bIdx} style={{ marginBottom: '3px' }}>{bullet}[cite: 2]</li>
+                    <li key={bIdx} style={{ marginBottom: '3px' }}>{bullet}</li>
                   ))}
                 </ul>
               </div>
@@ -166,11 +166,11 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
           {/* PROJECTS */}
           <div style={{ marginBottom: '14px' }}>
             <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '6px', letterSpacing: '0.5px' }}>
-              PROJECTS[cite: 2]
+              PROJECTS
             </div>
             {tailoredResume.projects?.map((proj, pIdx) => (
               <div key={pIdx} style={{ marginBottom: '8px' }}>
-                <div style={{ fontWeight: 700 }}>{proj.title}[cite: 2]</div>
+                <div style={{ fontWeight: 700 }}>{proj.title}</div>
                 <ul style={{ margin: 0, paddingLeft: '18px' }}>
                   {proj.bullets?.map((b, bIdx) => (
                     <li key={bIdx} style={{ marginBottom: '2px' }}>
@@ -189,13 +189,13 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
             ))}
           </div>
 
-          {/* FOOTER / CONTACT IDENTIFIER */}
+          {/* FOOTER */}
           <div style={{ marginTop: '12px', borderTop: '1px solid #ddd', paddingTop: '6px', textAlign: 'center', fontSize: '8.8pt', color: '#111' }}>
             <div style={{ fontWeight: 700, fontSize: '9.8pt', marginBottom: '1px' }}>
-              Vishnu Kaushik Varma[cite: 2]
+              Vishnu Kaushik Varma
             </div>
             <div>
-              Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781[cite: 2]
+              Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781
             </div>
             <div>
               <a href="https://vishnukaushikvarma.vercel.app/" target="_blank" rel="noreferrer" style={{ color: '#000', textDecoration: 'none', fontWeight: 600 }}>
@@ -203,7 +203,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
               </a>
               {' | '}
               <a href="https://linkedin.com/in/vishnukaushikvarma" target="_blank" rel="noreferrer" style={{ color: '#000', textDecoration: 'none' }}>
-                linkedin.com/in/vishnukaushikvarma[cite: 2]
+                linkedin.com/in/vishnukaushikvarma
               </a>
             </div>
           </div>
