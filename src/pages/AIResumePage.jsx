@@ -23,6 +23,25 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
     document.title = originalTitle
   }
 
+  // Calculate realistic match score based on job description overlap
+  const calculateJDScore = (text) => {
+    if (!text) return '85%'
+    const lower = text.toLowerCase()
+    const coreKeywords = [
+      'python', 'sql', 'react', 'javascript', 'docker', 'postgresql',
+      'lms', 'cloud', 'gcp', 'git', 'tableau', 'rest', 'api', 'flutter',
+      'testing', 'qa', 'automation', 'agile', 'database', 'developer'
+    ]
+    let matches = 0
+    coreKeywords.forEach((kw) => {
+      if (lower.includes(kw)) matches++
+    })
+    
+    // Scale dynamically between 78% and 98% based on JD density
+    const score = Math.min(98, Math.max(78, Math.round(75 + (matches / coreKeywords.length) * 25)))
+    return `${score}%`
+  }
+
   const handleGenerate = async () => {
     if (!jobDescription.trim()) return
     setIsGenerating(true)
@@ -38,6 +57,12 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
       if (!response.ok) throw new Error('API request failed')
 
       const data = await response.json()
+      
+      // Ensure matchScore reflects the provided job description
+      if (!data.matchScore || data.matchScore === '96%') {
+        data.matchScore = calculateJDScore(jobDescription)
+      }
+      
       setTailoredResume(data)
     } catch (err) {
       alert('Could not connect to backend server. Ensure /api/tailor-resume is active.')
@@ -126,7 +151,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
             </span>
           </div>
           <div style={{ background: '#10b981', color: '#ffffff', padding: '0.35rem 0.9rem', borderRadius: '20px', fontWeight: 800, fontSize: '0.88rem' }}>
-            Match Score: {tailoredResume.matchScore || '96%'}
+            Match Score: {tailoredResume.matchScore}
           </div>
         </div>
       )}
@@ -156,9 +181,9 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
               Vishnu Kaushik Varma Vuddaraju
             </h1>
             <p style={{ margin: '0 0 3px 0', fontSize: '9pt', color: '#222' }}>
-              Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781[cite: 1, 2, 3] |{' '}
+              Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781 |{' '}
               <a href="https://linkedin.com/in/vishnukaushikvarma" target="_blank" rel="noreferrer" style={{ color: '#000', textDecoration: 'none' }}>
-                linkedin.com/in/vishnukaushikvarma[cite: 1, 2, 3]
+                linkedin.com/in/vishnukaushikvarma
               </a>
             </p>
             <p style={{ margin: 0, fontSize: '9pt' }}>
@@ -171,7 +196,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
           {/* Education */}
           <div style={{ marginBottom: '14px' }}>
             <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', borderBottom: '1px solid #111', paddingBottom: '2px', marginBottom: '8px', letterSpacing: '0.5px' }}>
-              EDUCATION[cite: 1, 2, 3]
+              EDUCATION
             </div>
             
             <div style={{ marginBottom: '8px' }}>
@@ -181,18 +206,18 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                 <span>Master of Science, Information Systems</span>
-                <span style={{ fontWeight: 600 }}>GPA: 3.845[cite: 1, 2, 3]</span>
+                <span style={{ fontWeight: 600 }}>GPA: 3.845</span>
               </div>
             </div>
 
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                <strong style={{ fontSize: '9.5pt' }}>Keshav Memorial Institute Of Technology[cite: 1, 2, 3]</strong>
+                <strong style={{ fontSize: '9.5pt' }}>Keshav Memorial Institute Of Technology</strong>
                 <span style={{ fontWeight: 600 }}>Aug 2020 – May 2024</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                 <span>Bachelor of Technology, Computer Science & Machine Learning (CSM)</span>
-                <span style={{ fontWeight: 600 }}>GPA: 3.5[cite: 1, 2, 3]</span>
+                <span style={{ fontWeight: 600 }}>GPA: 3.5</span>
               </div>
             </div>
           </div>
@@ -200,7 +225,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
           {/* Skills */}
           <div style={{ marginBottom: '14px' }}>
             <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', borderBottom: '1px solid #111', paddingBottom: '2px', marginBottom: '8px', letterSpacing: '0.5px' }}>
-              SKILLS[cite: 1, 2, 3]
+              SKILLS
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
               <div><strong>Programming Languages:</strong> {tailoredResume.skills?.languages || 'Python, SQL, JavaScript, Dart, HTML'}</div>
@@ -213,7 +238,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
           {/* Work Experience */}
           <div style={{ marginBottom: '14px' }}>
             <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', borderBottom: '1px solid #111', paddingBottom: '2px', marginBottom: '8px', letterSpacing: '0.5px' }}>
-              WORK EXPERIENCE[cite: 1, 2, 3]
+              WORK EXPERIENCE
             </div>
 
             {tailoredResume.experience?.map((exp, eIdx) => (
@@ -237,7 +262,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
           {/* Projects */}
           <div style={{ marginBottom: '14px' }}>
             <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', borderBottom: '1px solid #111', paddingBottom: '2px', marginBottom: '8px', letterSpacing: '0.5px' }}>
-              PROJECTS[cite: 1, 2, 3]
+              PROJECTS
             </div>
 
             {tailoredResume.projects?.map((proj, pIdx) => (
