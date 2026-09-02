@@ -370,7 +370,7 @@ export default function App() {
           </h2>
           <div style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: 'clamp(1.5rem, 4vw, 3rem)', borderRadius: '1rem', backdropFilter: 'blur(12px)', maxWidth: '900px', boxShadow: theme.cardShadow }}>
             <p style={{ color: theme.textMuted, fontSize: 'clamp(1rem, 1.8vw, 1.15rem)', lineHeight: 1.8 }}>
-              I live in New York and am pursuing my M.S. in Information Systems at Marist University, with an expected graduation in December 2026. Currently, I work as an LMS QA tester and Web Developer at Marist University. Beyond enterprise platform administration, I build dynamic software applications, create robust Android and iOS mobile apps, engineer responsive websites, and seamlessly integrate machine learning solutions into high performance backend architectures.
+              I live in New York and am pursuing my M.S. in Information Systems at Marist University, with an expected graduation in December 2026. Currently, I work as an Web Developer and LMS QA tester at Marist University. Beyond enterprise platform administration, I build dynamic software applications, create robust Android and iOS mobile apps, engineer responsive websites, and seamlessly integrate machine learning solutions into high performance backend architectures.
             </p>
           </div>
         </section>
@@ -383,18 +383,18 @@ export default function App() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', maxWidth: '1000px' }}>
             
             <div className="interactive-card" style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)', marginBottom: '0.4rem', color: theme.textMain }}>LMS Quality Assurnace Tester and Web Developer - Digital Education</h3>
+              <h3 style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)', marginBottom: '0.4rem', color: theme.textMain }}>Web Developer and LMS Quality Assurnace Tester - Digital Education</h3>
               <h4 style={{ color: '#0284c7', fontSize: '1.05rem', marginBottom: '1.5rem' }}>Marist University • Apr 2025 – Present</h4>
               <ul style={{ color: theme.textMuted, lineHeight: 1.7, paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: 'clamp(0.9rem, 1.5vw, 1rem)' }}>
+                <li>Developed 150+ academic and departmental web pages in Liferay CMS with responsive design, SEO optimization, and WCAG 2.2 accessibility compliance.</li>
+                <li>Resolved 100+ complex Jira tickets, cutting ticket resolution time by 50% and boosting response rates by 30%.</li>
                 <li>Audited 5,000+ Brightspace courses for WCAG 2.2 compliance using Power Apps and Power Automate workflow, automating issue reporting to faculty.</li>
                 <li>Assisted faculty across every department with Brightspace LMS and accessibility through hybrid/live sessions and resolved 200+ support requests through the Team Dynamix ticketing system.</li>
                 <li>Conducted workshops on integrating LTI tools and new LMS features, collaborating with the Center for Teaching and Learning to enhance faculty teaching.</li>
                 <li>Spearheaded full institutional migration of 500+ courses from Sakai to Brightspace for 6,000+ end-users.</li>
                 <li>Engineered tracking pipeline with Power Apps and Excel to parse system errors, eliminating 10+ hours of manual follow-up weekly.</li>
-                <li>Resolved 100+ complex Jira tickets, cutting ticket resolution time by 50% and boosting response rates by 30%.</li>
                 <li>Co-led Bright Foxes outreach campaign delivering 15+ faculty support sessions and resolving 50+ system inquiries.</li>
                 <li>Documented Minutes of Meetings (MoMs) for Digital Education projects, ensuring clear communication of action items among technical and academic stakeholders.</li>
-                <li>Developed 150+ academic and departmental web pages in Liferay CMS with responsive design, SEO optimization, and WCAG 2.2 accessibility compliance.</li>
                 <li>Conducted functional, regression, and cross-browser QA testing to ensure LMS and CMS accessibility and quality compliance.</li>
                 <li>Tested Sakai tools rigorously, helping out with quality assurance testing and creating detailed tickets for the Sakai team to resolve bugs.</li>
               </ul>
@@ -424,53 +424,441 @@ export default function App() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', padding: '0 3vw' }}>
-            
-            <div className="interactive-card" style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: '2rem', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>Containerized Research Data Pipeline</h3>
-              <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                Engineered research workflow on GCP Ubuntu Linux VM using Docker for environment isolation. Compiled statistical summaries via Pandas and NumPy.
-              </p>
-              <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>DOCKER • GCP • PYTHON • PANDAS</span>
+
+            <div 
+              onClick={() => window.open('https://github.com/vvishnukv/Virtual-Assistant-ChatGPT', '_blank')}
+              className="interactive-card" 
+              style={{ 
+                background: theme.cardBg, 
+                border: `1px solid ${theme.cardBorder}`, 
+                padding: '2rem', 
+                borderRadius: '1rem', 
+                backdropFilter: 'blur(12px)', 
+                boxShadow: theme.cardShadow,
+                cursor: 'pointer',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <div>
+                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>AI-Powered Voice Music Assistant</h3>
+                <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                  Built a full-stack voice-activated virtual assistant leveraging Node.js, Express, and MongoDB Atlas to manage and query song directories. Processed speech-to-text voice prompts through OpenAI's API to intelligently parse requests and trigger local computer audio playback.
+                </p>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>NODE.JS • EXPRESS • MONGODB • OPENAI API • SPEECH-TO-TEXT</span>
+                </div>
+              </div>
+
+              <div style={{ textAlign: 'center', width: '100%' }}>
+                <a 
+                  href="https://github.com/vvishnukv/Virtual-Assistant-ChatGPT" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.5rem 1.5rem',
+                    borderRadius: '20px',
+                    border: `1px solid ${theme.cardBorder}`,
+                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
+                    color: theme.textMain,
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    textDecoration: 'none',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#ef4444';
+                    e.currentTarget.style.color = '#ffffff';
+                    e.currentTarget.style.borderColor = '#ef4444';
+                    e.currentTarget.textContent = 'GitHub ↗';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
+                    e.currentTarget.style.color = theme.textMain;
+                    e.currentTarget.style.borderColor = theme.cardBorder;
+                    e.currentTarget.textContent = 'View Code';
+                  }}
+                >
+                  View Code
+                </a>
+              </div>
             </div>
 
-            <div className="interactive-card" style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: '2rem', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>System Compliance Reporting Architecture</h3>
-              <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                Designed Power Apps reporting architecture to monitor learning environments and identify WCAG 2.1 compliance errors across 500+ active university courses.
-              </p>
-              <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>POWER APPS • AUTOMATION • WCAG 2.1</span>
+            <div 
+              onClick={() => window.open('https://github.com/vvishnukv/LinkNews', '_blank')}
+              className="interactive-card" 
+              style={{ 
+                background: theme.cardBg, 
+                border: `1px solid ${theme.cardBorder}`, 
+                padding: '2rem', 
+                borderRadius: '1rem', 
+                backdropFilter: 'blur(12px)', 
+                boxShadow: theme.cardShadow,
+                cursor: 'pointer',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <div>
+                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>LinkNews Mobile App (Flutter)</h3>
+                <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                  Developed a cross-platform news mobile application using Flutter and Dart. Integrated asynchronous JSON REST API data pipelines via HTTP, HTML parsing utilities, and Firebase Cloud Messaging (FCM) with local notifications for real-time user engagement.
+                </p>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>FLUTTER • DART • GETX • FIREBASE FCM • REST APIS</span>
+                </div>
+              </div>
+
+              <div style={{ textAlign: 'center', width: '100%' }}>
+                <a 
+                  href="https://github.com/vvishnukv/LinkNews" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.5rem 1.5rem',
+                    borderRadius: '20px',
+                    border: `1px solid ${theme.cardBorder}`,
+                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
+                    color: theme.textMain,
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    textDecoration: 'none',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#ef4444';
+                    e.currentTarget.style.color = '#ffffff';
+                    e.currentTarget.style.borderColor = '#ef4444';
+                    e.currentTarget.textContent = 'GitHub ↗';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
+                    e.currentTarget.style.color = theme.textMain;
+                    e.currentTarget.style.borderColor = theme.cardBorder;
+                    e.currentTarget.textContent = 'View Code';
+                  }}
+                >
+                  View Code
+                </a>
+              </div>
             </div>
 
-            <div className="interactive-card" style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: '2rem', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>AI-Powered Virtual Assistant (Copilot)</h3>
-              <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                Engineered conversational AI agent utilizing OpenAI API with context-aware prompt engineering, voice pipeline (TTS/STT), and modular backend REST APIs.
-              </p>
-              <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>OPENAI API • PYTHON • REST APIS</span>
+            <div 
+              onClick={() => window.open('https://github.com/vvishnukv/diary_app', '_blank')}
+              className="interactive-card" 
+              style={{ 
+                background: theme.cardBg, 
+                border: `1px solid ${theme.cardBorder}`, 
+                padding: '2rem', 
+                borderRadius: '1rem', 
+                backdropFilter: 'blur(12px)', 
+                boxShadow: theme.cardShadow,
+                cursor: 'pointer',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <div>
+                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>Personal Diary App</h3>
+                <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                  Built a full-featured personal diary mobile application using Flutter and Dart. Integrated Provider state management, SQLite/Shared Preferences for persistent local data storage, and dynamic light/dark theme switching.
+                </p>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>FLUTTER • DART • PROVIDER • SQLITE • SHARED PREFERENCES</span>
+                </div>
+              </div>
+
+              <div style={{ textAlign: 'center', width: '100%' }}>
+                <a 
+                  href="https://github.com/vvishnukv/diary_app" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.5rem 1.5rem',
+                    borderRadius: '20px',
+                    border: `1px solid ${theme.cardBorder}`,
+                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
+                    color: theme.textMain,
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    textDecoration: 'none',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#ef4444';
+                    e.currentTarget.style.color = '#ffffff';
+                    e.currentTarget.style.borderColor = '#ef4444';
+                    e.currentTarget.textContent = 'GitHub ↗';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
+                    e.currentTarget.style.color = theme.textMain;
+                    e.currentTarget.style.borderColor = theme.cardBorder;
+                    e.currentTarget.textContent = 'View Code';
+                  }}
+                >
+                  View Code
+                </a>
+              </div>
             </div>
 
-            <div className="interactive-card" style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: '2rem', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>LinkNews Mobile App (Flutter)</h3>
-              <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                Developed cross-platform app using Flutter and Dart. Integrated asynchronous JSON REST API pipelines and Firebase Cloud Messaging (FCM) notifications.
-              </p>
-              <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>FLUTTER • DART • FIREBASE FCM</span>
+            <div 
+              onClick={() => window.open('https://github.com/vvishnukv/flutter_sqlite_api_test', '_blank')}
+              className="interactive-card" 
+              style={{ 
+                background: theme.cardBg, 
+                border: `1px solid ${theme.cardBorder}`, 
+                padding: '2rem', 
+                borderRadius: '1rem', 
+                backdropFilter: 'blur(12px)', 
+                boxShadow: theme.cardShadow,
+                cursor: 'pointer',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <div>
+                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>Flutter SQLite & API Integration App</h3>
+                <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                  Developed a Flutter mobile utility to fetch remote data from JSONPlaceholder APIs, cache and manage records securely using local SQLite databases (`sqflite`), and render dynamic floating lists with stylized components.
+                </p>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>FLUTTER • DART • SQLITE • REST API • HTTP</span>
+                </div>
+              </div>
+
+              <div style={{ textAlign: 'center', width: '100%' }}>
+                <a 
+                  href="https://github.com/vvishnukv/flutter_sqlite_api_test" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.5rem 1.5rem',
+                    borderRadius: '20px',
+                    border: `1px solid ${theme.cardBorder}`,
+                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
+                    color: theme.textMain,
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    textDecoration: 'none',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#ef4444';
+                    e.currentTarget.style.color = '#ffffff';
+                    e.currentTarget.style.borderColor = '#ef4444';
+                    e.currentTarget.textContent = 'GitHub ↗';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
+                    e.currentTarget.style.color = theme.textMain;
+                    e.currentTarget.style.borderColor = theme.cardBorder;
+                    e.currentTarget.textContent = 'View Code';
+                  }}
+                >
+                  View Code
+                </a>
+              </div>
             </div>
 
-            <div className="interactive-card" style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: '2rem', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>Personal Diary App</h3>
-              <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                Built full CRUD mobile application with Provider state management, dynamic light/dark themes, and local storage data persistence via shared preferences.
-              </p>
-              <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>FLUTTER • PROVIDER • LOCAL STORAGE</span>
+            <div 
+              onClick={() => window.open('https://github.com/vvishnukv/research-computing-docker-pipeline', '_blank')}
+              className="interactive-card" 
+              style={{ 
+                background: theme.cardBg, 
+                border: `1px solid ${theme.cardBorder}`, 
+                padding: '2rem', 
+                borderRadius: '1rem', 
+                backdropFilter: 'blur(12px)', 
+                boxShadow: theme.cardShadow,
+                cursor: 'pointer',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <div>
+                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>Containerized Research Data Pipeline</h3>
+                <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                  Engineered an automated research workflow deployed on a GCP Ubuntu Linux virtual machine utilizing Docker for absolute environment isolation. Processed multi-subject research simulations and generated statistical aggregates via Pandas and NumPy.
+                </p>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>DOCKER • GCP • PYTHON • PANDAS • NUMPY</span>
+                </div>
+              </div>
+
+              <div style={{ textAlign: 'center', width: '100%' }}>
+                <a 
+                  href="https://github.com/vvishnukv/research-computing-docker-pipeline" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.5rem 1.5rem',
+                    borderRadius: '20px',
+                    border: `1px solid ${theme.cardBorder}`,
+                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
+                    color: theme.textMain,
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    textDecoration: 'none',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#ef4444';
+                    e.currentTarget.style.color = '#ffffff';
+                    e.currentTarget.style.borderColor = '#ef4444';
+                    e.currentTarget.textContent = 'GitHub ↗';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
+                    e.currentTarget.style.color = theme.textMain;
+                    e.currentTarget.style.borderColor = theme.cardBorder;
+                    e.currentTarget.textContent = 'View Code';
+                  }}
+                >
+                  View Code
+                </a>
+              </div>
             </div>
 
-            <div className="interactive-card" style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: '2rem', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>LMS Accessibility & Student Success Analysis</h3>
-              <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                Processed 10,000+ LMS records using Python and PostgreSQL inside Docker. Built interactive Tableau Public dashboards for academic leadership.
-              </p>
-              <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>PYTHON • POSTGRESQL • TABLEAU • DOCKER</span>
+            <div 
+              onClick={() => window.open('https://github.com/vvishnukv/lms-analysis-project', '_blank')}
+              className="interactive-card" 
+              style={{ 
+                background: theme.cardBg, 
+                border: `1px solid ${theme.cardBorder}`, 
+                padding: '2rem', 
+                borderRadius: '1rem', 
+                backdropFilter: 'blur(12px)', 
+                boxShadow: theme.cardShadow,
+                cursor: 'pointer',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.8rem' }}>
+                  <h3 style={{ fontSize: '1.3rem', color: theme.textMain, margin: 0 }}>LMS Accessibility & Student Success Analysis</h3>
+                  <a 
+                    href="https://github.com/vvishnukv/lms-analysis-project" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    onClick={(e) => e.stopPropagation()}
+                    style={{ color: '#0284c7', textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}
+                  >
+                    GitHub ↗
+                  </a>
+                </div>
+                <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                  Processed 10,000+ student LMS records using Python and PostgreSQL inside Docker to evaluate WCAG 2.1 accessibility compliance. Uncovered critical academic performance metrics and built interactive Tableau Public dashboards.
+                </p>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>PYTHON • POSTGRESQL • TABLEAU • DOCKER • PANDAS</span>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', width: '100%' }}>
+                {/* View Code Button */}
+                <a 
+                  href="https://github.com/vvishnukv/lms-analysis-project" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.5rem 1.2rem',
+                    borderRadius: '20px',
+                    border: `1px solid ${theme.cardBorder}`,
+                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
+                    color: theme.textMain,
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    textDecoration: 'none',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#ef4444';
+                    e.currentTarget.style.color = '#ffffff';
+                    e.currentTarget.style.borderColor = '#ef4444';
+                    e.currentTarget.textContent = 'GitHub ↗';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
+                    e.currentTarget.style.color = theme.textMain;
+                    e.currentTarget.style.borderColor = theme.cardBorder;
+                    e.currentTarget.textContent = 'View Code';
+                  }}
+                >
+                  View Code
+                </a>
+
+                {/* View Dashboard Button */}
+                <a 
+                  href="https://public.tableau.com/app/profile/vishnu.kaushik.varma.vuddaraju/viz/LMSAccessibilityStudentEngagementAnalysis/Dashboard1?publish=yes" 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.5rem 1.2rem',
+                    borderRadius: '20px',
+                    border: `1px solid ${theme.cardBorder}`,
+                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
+                    color: theme.textMain,
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    textDecoration: 'none',
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#38bdf8';
+                    e.currentTarget.style.color = '#ffffff';
+                    e.currentTarget.style.borderColor = '#38bdf8';
+                    e.currentTarget.textContent = 'Tableau ↗';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
+                    e.currentTarget.style.color = theme.textMain;
+                    e.currentTarget.style.borderColor = theme.cardBorder;
+                    e.currentTarget.textContent = 'View Dashboard';
+                  }}
+                >
+                  View Dashboard
+                </a>
+              </div>
             </div>
 
           </div>
