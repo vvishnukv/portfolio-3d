@@ -352,65 +352,135 @@ export default function App() {
 
         {/* SECTION 1: HOME / HERO */}
         <section id="home" style={{ minHeight: 'calc(100vh - 70px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 8vw' }}>
-          <h1 style={{ fontSize: 'clamp(2.8rem, 7vw, 4.5rem)', fontWeight: 900, lineHeight: 1.05, marginBottom: '1.2rem', color: theme.textMain }}>
-            Vishnu Kaushik Varma Vuddaraju
-          </h1>
-          <p style={{ color: '#0284c7', fontSize: 'clamp(1.1rem, 3vw, 1.5rem)', fontWeight: 600, marginBottom: '1.2rem' }}>
-            Software Engineer & IT Technical Specialist
-          </p>
-          <p style={{ color: theme.textMuted, fontSize: 'clamp(1rem, 2vw, 1.2rem)', maxWidth: '650px', lineHeight: 1.6 }}>
-            M.S. Information Systems at Marist College (GPA: 3.845). Specializing in scalable software engineering, institutional LMS platform administration, containerized cloud data pipelines, intelligent AI solutions, and full-lifecycle cross-platform mobile applications.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 style={{ fontSize: 'clamp(2.8rem, 7vw, 4.5rem)', fontWeight: 900, lineHeight: 1.05, marginBottom: '1.2rem', color: theme.textMain }}>
+              Vishnu Kaushik Varma Vuddaraju
+            </h1>
+            <p style={{ color: '#0284c7', fontSize: 'clamp(1.1rem, 3vw, 1.5rem)', fontWeight: 600, marginBottom: '1.2rem' }}>
+              Software Engineer & IT Technical Specialist
+            </p>
+            <p style={{ color: theme.textMuted, fontSize: 'clamp(1rem, 2vw, 1.2rem)', maxWidth: '650px', lineHeight: 1.6 }}>
+              M.S. Information Systems at Marist College (GPA: 3.845). Specializing in scalable software engineering, institutional LMS platform administration, containerized cloud data pipelines, intelligent AI solutions, and full-lifecycle cross-platform mobile applications.
+            </p>
+          </motion.div>
         </section>
 
         {/* SECTION 2: ABOUT */}
         <section id="about" style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '8vh 8vw' }}>
-          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, marginBottom: '2rem', color: '#0284c7' }}>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, marginBottom: '2rem', color: '#0284c7' }}
+          >
             About Me
-          </h2>
-          <div style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: 'clamp(1.5rem, 4vw, 3rem)', borderRadius: '1rem', backdropFilter: 'blur(12px)', maxWidth: '900px', boxShadow: theme.cardShadow }}>
-            <p style={{ color: theme.textMuted, fontSize: 'clamp(1rem, 1.8vw, 1.15rem)', lineHeight: 1.8 }}>
-              I live in New York and am pursuing my M.S. in Information Systems at Marist University, with an expected graduation in December 2026. Currently, I work as an Web Developer and LMS QA tester at Marist University. Beyond enterprise platform administration, I build dynamic software applications, create robust Android and iOS mobile apps, engineer responsive websites, and seamlessly integrate machine learning solutions into high performance backend architectures.
+          </motion.h2>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="interactive-card"
+            style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: 'clamp(1.5rem, 4vw, 3rem)', borderRadius: '1.2rem', backdropFilter: 'blur(12px)', maxWidth: '900px', boxShadow: theme.cardShadow, transition: 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-6px)';
+              e.currentTarget.style.borderColor = '#0284c7';
+              e.currentTarget.style.boxShadow = isDarkMode ? '0 20px 40px rgba(2, 132, 199, 0.15)' : '0 20px 40px rgba(2, 132, 199, 0.1)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.borderColor = theme.cardBorder;
+              e.currentTarget.style.boxShadow = theme.cardShadow;
+            }}
+          >
+            <p style={{ color: theme.textMuted, fontSize: 'clamp(1rem, 1.8vw, 1.15rem)', lineHeight: 1.8, margin: 0 }}>
+              I live in New York and am pursuing my M.S. in Information Systems at Marist University, with an expected graduation in December 2026. Currently, I work as a Web Developer and LMS QA tester at Marist University. Beyond enterprise platform administration, I build dynamic software applications, create robust Android and iOS mobile apps, engineer responsive websites, and seamlessly integrate machine learning solutions into high performance backend architectures.
             </p>
-          </div>
+          </motion.div>
         </section>
 
         {/* SECTION 3: EXPERIENCE */}
         <section id="experience" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '8vh 8vw' }}>
-          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, marginBottom: '3rem', color: '#ef4444' }}>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, marginBottom: '3rem', color: '#ef4444' }}
+          >
             Work Experience
-          </h2>
+          </motion.h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', maxWidth: '1000px' }}>
             
-            <div className="interactive-card" style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)', marginBottom: '0.4rem', color: theme.textMain }}>Web Developer and LMS Quality Assurnace Tester - Digital Education</h3>
-              <h4 style={{ color: '#0284c7', fontSize: '1.05rem', marginBottom: '1.5rem' }}>Marist University • Apr 2025 – Present</h4>
-              <ul style={{ color: theme.textMuted, lineHeight: 1.7, paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: 'clamp(0.9rem, 1.5vw, 1rem)' }}>
-                <li>Developed 150+ academic and departmental web pages in Liferay CMS with responsive design, SEO optimization, and WCAG 2.2 accessibility compliance.</li>
-                <li>Resolved 100+ complex Jira tickets, cutting ticket resolution time by 50% and boosting response rates by 30%.</li>
-                <li>Audited 5,000+ Brightspace courses for WCAG 2.2 compliance using Power Apps and Power Automate workflow, automating issue reporting to faculty.</li>
-                <li>Assisted faculty across every department with Brightspace LMS and accessibility through hybrid/live sessions and resolved 200+ support requests through the Team Dynamix ticketing system.</li>
-                <li>Conducted workshops on integrating LTI tools and new LMS features, collaborating with the Center for Teaching and Learning to enhance faculty teaching.</li>
-                <li>Spearheaded full institutional migration of 500+ courses from Sakai to Brightspace for 6,000+ end-users.</li>
-                <li>Engineered tracking pipeline with Power Apps and Excel to parse system errors, eliminating 10+ hours of manual follow-up weekly.</li>
-                <li>Co-led Bright Foxes outreach campaign delivering 15+ faculty support sessions and resolving 50+ system inquiries.</li>
-                <li>Documented Minutes of Meetings (MoMs) for Digital Education projects, ensuring clear communication of action items among technical and academic stakeholders.</li>
-                <li>Conducted functional, regression, and cross-browser QA testing to ensure LMS and CMS accessibility and quality compliance.</li>
-                <li>Tested Sakai tools rigorously, helping out with quality assurance testing and creating detailed tickets for the Sakai team to resolve bugs.</li>
-              </ul>
-            </div>
-
-            <div className="interactive-card" style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)', marginBottom: '0.4rem', color: theme.textMain }}>Forge Alumnus | Application Developer & Team Lead</h3>
-              <h4 style={{ color: '#0284c7', fontSize: '1.05rem', marginBottom: '1.5rem' }}>Hyderabad, India • Sep 2023 – Mar 2024</h4>
-              <ul style={{ color: theme.textMuted, lineHeight: 1.7, paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: 'clamp(0.9rem, 1.5vw, 1rem)' }}>
-                <li>Engineered and launched Realtor+, a full-scale real estate mobile platform for a USA (New Jersey) client in just 45 days, supporting 10,000+ active users, 100+ real estate agents, and 3 distinct user profiles across Android and iOS platforms.</li>
-                <li>Released major feature updates for the enterprise mobile application on the Apple App Store and Google Play Store, driving a 60% increase in total application downloads while managing Apple Analytics and Google Analytics.</li>
-                <li>Architected the Forge HRMS application for automated daily employee check-in and check-out tracking utilizing real-time GPS coordinates and location validation.</li>
-                <li>Delivered the fully functional Forge Inspira event platform in just 30 days for a 2024 conference, executing rigorous QA testing across 3 user profiles and QR-based event registration tracking.</li>
-                <li>Directed a 20-member technical development team, hosting 5+ onboarding sessions, authoring 15+ pages of Standard Operating Procedures, and serving as head of volunteers and technical hackathon instructor.</li>
-              </ul>
-            </div>
+            {[
+              {
+                title: "Web Developer and LMS Quality Assurance Tester - Digital Education",
+                company: "Marist University • Apr 2025 – Present",
+                color: "#0284c7",
+                bullets: [
+                  "Developed 150+ academic and departmental web pages in Liferay CMS with responsive design, SEO optimization, and WCAG 2.2 accessibility compliance.",
+                  "Resolved 100+ complex Jira tickets, cutting ticket resolution time by 50% and boosting response rates by 30%.",
+                  "Audited 5,000+ Brightspace courses for WCAG 2.2 compliance using Power Apps and Power Automate workflow, automating issue reporting to faculty.",
+                  "Assisted faculty across every department with Brightspace LMS and accessibility through hybrid/live sessions and resolved 200+ support requests through the Team Dynamix ticketing system.",
+                  "Conducted workshops on integrating LTI tools and new LMS features, collaborating with the Center for Teaching and Learning to enhance faculty teaching.",
+                  "Spearheaded full institutional migration of 500+ courses from Sakai to Brightspace for 6,000+ end-users.",
+                  "Engineered tracking pipeline with Power Apps and Excel to parse system errors, eliminating 10+ hours of manual follow-up weekly.",
+                  "Co-led Bright Foxes outreach campaign delivering 15+ faculty support sessions and resolving 50+ system inquiries.",
+                  "Documented Minutes of Meetings (MoMs) for Digital Education projects, ensuring clear communication of action items among technical and academic stakeholders.",
+                  "Conducted functional, regression, and cross-browser QA testing to ensure LMS and CMS accessibility and quality compliance.",
+                  "Tested Sakai tools rigorously, helping out with quality assurance testing and creating detailed tickets for the Sakai team to resolve bugs."
+                ]
+              },
+              {
+                title: "Forge Alumnus | Application Developer & Team Lead",
+                company: "Hyderabad, India • Sep 2023 – Mar 2024",
+                color: "#0284c7",
+                bullets: [
+                  "Engineered and launched Realtor+, a full-scale real estate mobile platform for a USA (New Jersey) client in just 45 days, supporting 10,000+ active users, 100+ real estate agents, and 3 distinct user profiles across Android and iOS platforms.",
+                  "Released major feature updates for the enterprise mobile application on the Apple App Store and Google Play Store, driving a 60% increase in total application downloads while managing Apple Analytics and Google Analytics.",
+                  "Architected the Forge HRMS application for automated daily employee check-in and check-out tracking utilizing real-time GPS coordinates and location validation.",
+                  "Delivered the fully functional Forge Inspira event platform in just 30 days for a 2024 conference, executing rigorous QA testing across 3 user profiles and QR-based event registration tracking.",
+                  "Directed a 20-member technical development team, hosting 5+ onboarding sessions, authoring 15+ pages of Standard Operating Procedures, and serving as head of volunteers and technical hackathon instructor."
+                ]
+              }
+            ].map((exp, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
+                className="interactive-card" 
+                style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: '1.2rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow, transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-6px) scale(1.005)';
+                  e.currentTarget.style.borderColor = '#ef4444';
+                  e.currentTarget.style.boxShadow = isDarkMode ? '0 20px 40px rgba(239, 68, 68, 0.12)' : '0 20px 40px rgba(239, 68, 68, 0.08)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.borderColor = theme.cardBorder;
+                  e.currentTarget.style.boxShadow = theme.cardShadow;
+                }}
+              >
+                <h3 style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)', marginBottom: '0.4rem', color: theme.textMain, fontWeight: 700 }}>
+                  {exp.title}
+                </h3>
+                <h4 style={{ color: exp.color, fontSize: '1.05rem', fontWeight: 600, marginBottom: '1.5rem' }}>
+                  {exp.company}
+                </h4>
+                <ul style={{ color: theme.textMuted, lineHeight: 1.7, paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: 'clamp(0.9rem, 1.5vw, 1rem)', margin: 0 }}>
+                  {exp.bullets.map((bullet, bIdx) => (
+                    <li key={bIdx}>{bullet}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
 
           </div>
         </section>
@@ -418,518 +488,463 @@ export default function App() {
         {/* SECTION 4: PROJECTS */}
         <section id="projects" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '8vh 5vw' }}>
           <div style={{ padding: '0 3vw', marginBottom: '2.5rem' }}>
-            <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, color: '#0284c7' }}>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, color: '#0284c7' }}
+            >
               Featured Projects
-            </h2>
+            </motion.h2>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', padding: '0 3vw' }}>
 
-            <div 
-              onClick={() => window.open('https://github.com/vvishnukv/Virtual-Assistant-ChatGPT', '_blank')}
-              className="interactive-card" 
-              style={{ 
-                background: theme.cardBg, 
-                border: `1px solid ${theme.cardBorder}`, 
-                padding: '2rem', 
-                borderRadius: '1rem', 
-                backdropFilter: 'blur(12px)', 
-                boxShadow: theme.cardShadow,
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
-              <div>
-                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>AI-Powered Voice Music Assistant</h3>
-                <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                  Built a full-stack voice-activated virtual assistant leveraging Node.js, Express, and MongoDB Atlas to manage and query song directories. Processed speech-to-text voice prompts through OpenAI's API to intelligently parse requests and trigger local computer audio playback.
-                </p>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>NODE.JS • EXPRESS • MONGODB • OPENAI API • SPEECH-TO-TEXT</span>
+            {[
+              {
+                title: "AI-Powered Voice Music Assistant",
+                desc: "Built a full-stack voice-activated virtual assistant leveraging Node.js, Express, and MongoDB Atlas to manage and query song directories. Processed speech-to-text voice prompts through OpenAI's API to intelligently parse requests and trigger local computer audio playback.",
+                tech: "NODE.JS • EXPRESS • MONGODB • OPENAI API • SPEECH-TO-TEXT",
+                github: "https://github.com/vvishnukv/Virtual-Assistant-ChatGPT"
+              },
+              {
+                title: "LinkNews Mobile App (Flutter)",
+                desc: "Developed a cross-platform news mobile application using Flutter and Dart. Integrated asynchronous JSON REST API data pipelines via HTTP, HTML parsing utilities, and Firebase Cloud Messaging (FCM) with local notifications for real-time user engagement.",
+                tech: "FLUTTER • DART • GETX • FIREBASE FCM • REST APIS",
+                github: "https://github.com/vvishnukv/LinkNews"
+              },
+              {
+                title: "Personal Diary App",
+                desc: "Built a full-featured personal diary mobile application using Flutter and Dart. Integrated Provider state management, SQLite/Shared Preferences for persistent local data storage, and dynamic light/dark theme switching.",
+                tech: "FLUTTER • DART • PROVIDER • SQLITE • SHARED PREFERENCES",
+                github: "https://github.com/vvishnukv/diary_app"
+              },
+              {
+                title: "Flutter SQLite & API Integration App",
+                desc: "Developed a Flutter mobile utility to fetch remote data from JSONPlaceholder APIs, cache and manage records securely using local SQLite databases (`sqflite`), and render dynamic floating lists with stylized components.",
+                tech: "FLUTTER • DART • SQLITE • REST API • HTTP",
+                github: "https://github.com/vvishnukv/flutter_sqlite_api_test"
+              },
+              {
+                title: "Containerized Research Data Pipeline",
+                desc: "Engineered an automated research workflow deployed on a GCP Ubuntu Linux virtual machine utilizing Docker for absolute environment isolation. Processed multi-subject research simulations and generated statistical aggregates via Pandas and NumPy.",
+                tech: "DOCKER • GCP • PYTHON • PANDAS • NUMPY",
+                github: "https://github.com/vvishnukv/research-computing-docker-pipeline"
+              },
+              {
+                title: "LMS Accessibility & Student Success Analysis",
+                desc: "Processed 10,000+ student LMS records using Python and PostgreSQL inside Docker to evaluate WCAG 2.1 accessibility compliance. Uncovered critical academic performance metrics and built interactive Tableau Public dashboards.",
+                tech: "PYTHON • POSTGRESQL • TABLEAU • DOCKER • PANDAS",
+                github: "https://github.com/vvishnukv/lms-analysis-project",
+                tableau: "https://public.tableau.com/app/profile/vishnu.kaushik.varma.vuddaraju/viz/LMSAccessibilityStudentEngagementAnalysis/Dashboard1?publish=yes"
+              }
+            ].map((project, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                onClick={() => window.open(project.github, '_blank')}
+                className="interactive-card" 
+                style={{ 
+                  background: theme.cardBg, 
+                  border: `1px solid ${theme.cardBorder}`, 
+                  padding: '2rem', 
+                  borderRadius: '1.2rem', 
+                  backdropFilter: 'blur(12px)', 
+                  boxShadow: theme.cardShadow,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px) scale(1.01)';
+                  e.currentTarget.style.borderColor = '#38bdf8';
+                  e.currentTarget.style.boxShadow = isDarkMode ? '0 20px 40px rgba(56, 189, 248, 0.15)' : '0 20px 40px rgba(2, 132, 199, 0.12)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.borderColor = theme.cardBorder;
+                  e.currentTarget.style.boxShadow = theme.cardShadow;
+                }}
+              >
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.8rem' }}>
+                    <h3 style={{ fontSize: '1.3rem', color: theme.textMain, margin: 0, fontWeight: 700 }}>
+                      {project.title}
+                    </h3>
+                    <a 
+                      href={project.github} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      onClick={(e) => e.stopPropagation()}
+                      style={{ color: '#0284c7', textDecoration: 'none', fontWeight: 600, fontSize: '0.85rem', transition: 'transform 0.2s' }}
+                      onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+                      onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                    >
+                      GitHub ↗
+                    </a>
+                  </div>
+
+                  <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                    {project.desc}
+                  </p>
+
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.5px' }}>
+                      {project.tech}
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              <div style={{ textAlign: 'center', width: '100%' }}>
-                <a 
-                  href="https://github.com/vvishnukv/Virtual-Assistant-ChatGPT" 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    display: 'inline-block',
-                    padding: '0.5rem 1.5rem',
-                    borderRadius: '20px',
-                    border: `1px solid ${theme.cardBorder}`,
-                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
-                    color: theme.textMain,
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#ef4444';
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.borderColor = '#ef4444';
-                    e.currentTarget.textContent = 'GitHub ↗';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
-                    e.currentTarget.style.color = theme.textMain;
-                    e.currentTarget.style.borderColor = theme.cardBorder;
-                    e.currentTarget.textContent = 'View Code';
-                  }}
-                >
-                  View Code
-                </a>
-              </div>
-            </div>
-
-            <div 
-              onClick={() => window.open('https://github.com/vvishnukv/LinkNews', '_blank')}
-              className="interactive-card" 
-              style={{ 
-                background: theme.cardBg, 
-                border: `1px solid ${theme.cardBorder}`, 
-                padding: '2rem', 
-                borderRadius: '1rem', 
-                backdropFilter: 'blur(12px)', 
-                boxShadow: theme.cardShadow,
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
-              <div>
-                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>LinkNews Mobile App (Flutter)</h3>
-                <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                  Developed a cross-platform news mobile application using Flutter and Dart. Integrated asynchronous JSON REST API data pipelines via HTTP, HTML parsing utilities, and Firebase Cloud Messaging (FCM) with local notifications for real-time user engagement.
-                </p>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>FLUTTER • DART • GETX • FIREBASE FCM • REST APIS</span>
-                </div>
-              </div>
-
-              <div style={{ textAlign: 'center', width: '100%' }}>
-                <a 
-                  href="https://github.com/vvishnukv/LinkNews" 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    display: 'inline-block',
-                    padding: '0.5rem 1.5rem',
-                    borderRadius: '20px',
-                    border: `1px solid ${theme.cardBorder}`,
-                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
-                    color: theme.textMain,
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#ef4444';
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.borderColor = '#ef4444';
-                    e.currentTarget.textContent = 'GitHub ↗';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
-                    e.currentTarget.style.color = theme.textMain;
-                    e.currentTarget.style.borderColor = theme.cardBorder;
-                    e.currentTarget.textContent = 'View Code';
-                  }}
-                >
-                  View Code
-                </a>
-              </div>
-            </div>
-
-            <div 
-              onClick={() => window.open('https://github.com/vvishnukv/diary_app', '_blank')}
-              className="interactive-card" 
-              style={{ 
-                background: theme.cardBg, 
-                border: `1px solid ${theme.cardBorder}`, 
-                padding: '2rem', 
-                borderRadius: '1rem', 
-                backdropFilter: 'blur(12px)', 
-                boxShadow: theme.cardShadow,
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
-              <div>
-                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>Personal Diary App</h3>
-                <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                  Built a full-featured personal diary mobile application using Flutter and Dart. Integrated Provider state management, SQLite/Shared Preferences for persistent local data storage, and dynamic light/dark theme switching.
-                </p>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>FLUTTER • DART • PROVIDER • SQLITE • SHARED PREFERENCES</span>
-                </div>
-              </div>
-
-              <div style={{ textAlign: 'center', width: '100%' }}>
-                <a 
-                  href="https://github.com/vvishnukv/diary_app" 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    display: 'inline-block',
-                    padding: '0.5rem 1.5rem',
-                    borderRadius: '20px',
-                    border: `1px solid ${theme.cardBorder}`,
-                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
-                    color: theme.textMain,
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#ef4444';
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.borderColor = '#ef4444';
-                    e.currentTarget.textContent = 'GitHub ↗';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
-                    e.currentTarget.style.color = theme.textMain;
-                    e.currentTarget.style.borderColor = theme.cardBorder;
-                    e.currentTarget.textContent = 'View Code';
-                  }}
-                >
-                  View Code
-                </a>
-              </div>
-            </div>
-
-            <div 
-              onClick={() => window.open('https://github.com/vvishnukv/flutter_sqlite_api_test', '_blank')}
-              className="interactive-card" 
-              style={{ 
-                background: theme.cardBg, 
-                border: `1px solid ${theme.cardBorder}`, 
-                padding: '2rem', 
-                borderRadius: '1rem', 
-                backdropFilter: 'blur(12px)', 
-                boxShadow: theme.cardShadow,
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
-              <div>
-                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>Flutter SQLite & API Integration App</h3>
-                <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                  Developed a Flutter mobile utility to fetch remote data from JSONPlaceholder APIs, cache and manage records securely using local SQLite databases (`sqflite`), and render dynamic floating lists with stylized components.
-                </p>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>FLUTTER • DART • SQLITE • REST API • HTTP</span>
-                </div>
-              </div>
-
-              <div style={{ textAlign: 'center', width: '100%' }}>
-                <a 
-                  href="https://github.com/vvishnukv/flutter_sqlite_api_test" 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    display: 'inline-block',
-                    padding: '0.5rem 1.5rem',
-                    borderRadius: '20px',
-                    border: `1px solid ${theme.cardBorder}`,
-                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
-                    color: theme.textMain,
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#ef4444';
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.borderColor = '#ef4444';
-                    e.currentTarget.textContent = 'GitHub ↗';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
-                    e.currentTarget.style.color = theme.textMain;
-                    e.currentTarget.style.borderColor = theme.cardBorder;
-                    e.currentTarget.textContent = 'View Code';
-                  }}
-                >
-                  View Code
-                </a>
-              </div>
-            </div>
-
-            <div 
-              onClick={() => window.open('https://github.com/vvishnukv/research-computing-docker-pipeline', '_blank')}
-              className="interactive-card" 
-              style={{ 
-                background: theme.cardBg, 
-                border: `1px solid ${theme.cardBorder}`, 
-                padding: '2rem', 
-                borderRadius: '1rem', 
-                backdropFilter: 'blur(12px)', 
-                boxShadow: theme.cardShadow,
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
-              <div>
-                <h3 style={{ fontSize: '1.3rem', marginBottom: '0.8rem', color: theme.textMain }}>Containerized Research Data Pipeline</h3>
-                <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                  Engineered an automated research workflow deployed on a GCP Ubuntu Linux virtual machine utilizing Docker for absolute environment isolation. Processed multi-subject research simulations and generated statistical aggregates via Pandas and NumPy.
-                </p>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>DOCKER • GCP • PYTHON • PANDAS • NUMPY</span>
-                </div>
-              </div>
-
-              <div style={{ textAlign: 'center', width: '100%' }}>
-                <a 
-                  href="https://github.com/vvishnukv/research-computing-docker-pipeline" 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    display: 'inline-block',
-                    padding: '0.5rem 1.5rem',
-                    borderRadius: '20px',
-                    border: `1px solid ${theme.cardBorder}`,
-                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
-                    color: theme.textMain,
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#ef4444';
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.borderColor = '#ef4444';
-                    e.currentTarget.textContent = 'GitHub ↗';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
-                    e.currentTarget.style.color = theme.textMain;
-                    e.currentTarget.style.borderColor = theme.cardBorder;
-                    e.currentTarget.textContent = 'View Code';
-                  }}
-                >
-                  View Code
-                </a>
-              </div>
-            </div>
-
-            <div 
-              onClick={() => window.open('https://github.com/vvishnukv/lms-analysis-project', '_blank')}
-              className="interactive-card" 
-              style={{ 
-                background: theme.cardBg, 
-                border: `1px solid ${theme.cardBorder}`, 
-                padding: '2rem', 
-                borderRadius: '1rem', 
-                backdropFilter: 'blur(12px)', 
-                boxShadow: theme.cardShadow,
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-            >
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.8rem' }}>
-                  <h3 style={{ fontSize: '1.3rem', color: theme.textMain, margin: 0 }}>LMS Accessibility & Student Success Analysis</h3>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', width: '100%', marginTop: 'auto' }}>
+                  {/* View Code Button */}
                   <a 
-                    href="https://github.com/vvishnukv/lms-analysis-project" 
+                    href={project.github} 
                     target="_blank" 
                     rel="noreferrer" 
                     onClick={(e) => e.stopPropagation()}
-                    style={{ color: '#0284c7', textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' }}
+                    style={{
+                      display: 'inline-block',
+                      padding: '0.5rem 1.4rem',
+                      borderRadius: '25px',
+                      border: `1px solid ${theme.cardBorder}`,
+                      backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
+                      color: theme.textMain,
+                      fontSize: '0.85rem',
+                      fontWeight: 600,
+                      textDecoration: 'none',
+                      transition: 'all 0.25s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#ef4444';
+                      e.currentTarget.style.color = '#ffffff';
+                      e.currentTarget.style.borderColor = '#ef4444';
+                      e.currentTarget.style.transform = 'scale(1.05)';
+                      e.currentTarget.textContent = 'GitHub ↗';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
+                      e.currentTarget.style.color = theme.textMain;
+                      e.currentTarget.style.borderColor = theme.cardBorder;
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.textContent = 'View Code';
+                    }}
                   >
-                    GitHub ↗
+                    View Code
                   </a>
-                </div>
-                <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                  Processed 10,000+ student LMS records using Python and PostgreSQL inside Docker to evaluate WCAG 2.1 accessibility compliance. Uncovered critical academic performance metrics and built interactive Tableau Public dashboards.
-                </p>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700 }}>PYTHON • POSTGRESQL • TABLEAU • DOCKER • PANDAS</span>
-                </div>
-              </div>
 
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', width: '100%' }}>
-                {/* View Code Button */}
-                <a 
-                  href="https://github.com/vvishnukv/lms-analysis-project" 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    display: 'inline-block',
-                    padding: '0.5rem 1.2rem',
-                    borderRadius: '20px',
-                    border: `1px solid ${theme.cardBorder}`,
-                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
-                    color: theme.textMain,
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#ef4444';
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.borderColor = '#ef4444';
-                    e.currentTarget.textContent = 'GitHub ↗';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
-                    e.currentTarget.style.color = theme.textMain;
-                    e.currentTarget.style.borderColor = theme.cardBorder;
-                    e.currentTarget.textContent = 'View Code';
-                  }}
-                >
-                  View Code
-                </a>
-
-                {/* View Dashboard Button */}
-                <a 
-                  href="https://public.tableau.com/app/profile/vishnu.kaushik.varma.vuddaraju/viz/LMSAccessibilityStudentEngagementAnalysis/Dashboard1?publish=yes" 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    display: 'inline-block',
-                    padding: '0.5rem 1.2rem',
-                    borderRadius: '20px',
-                    border: `1px solid ${theme.cardBorder}`,
-                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
-                    color: theme.textMain,
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#38bdf8';
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.borderColor = '#38bdf8';
-                    e.currentTarget.textContent = 'Tableau ↗';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
-                    e.currentTarget.style.color = theme.textMain;
-                    e.currentTarget.style.borderColor = theme.cardBorder;
-                    e.currentTarget.textContent = 'View Dashboard';
-                  }}
-                >
-                  View Dashboard
-                </a>
-              </div>
-            </div>
+                  {/* Optional Tableau Dashboard Button */}
+                  {project.tableau && (
+                    <a 
+                      href={project.tableau} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      onClick={(e) => e.stopPropagation()}
+                      style={{
+                        display: 'inline-block',
+                        padding: '0.5rem 1.4rem',
+                        borderRadius: '25px',
+                        border: `1px solid ${theme.cardBorder}`,
+                        backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
+                        color: theme.textMain,
+                        fontSize: '0.85rem',
+                        fontWeight: 600,
+                        textDecoration: 'none',
+                        transition: 'all 0.25s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#38bdf8';
+                        e.currentTarget.style.color = '#ffffff';
+                        e.currentTarget.style.borderColor = '#38bdf8';
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                        e.currentTarget.textContent = 'Tableau ↗';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)';
+                        e.currentTarget.style.color = theme.textMain;
+                        e.currentTarget.style.borderColor = theme.cardBorder;
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.textContent = 'View Dashboard';
+                      }}
+                    >
+                      View Dashboard
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
 
           </div>
         </section>
 
         {/* SECTION 5: SKILLS */}
         <section id="skills" style={{ minHeight: '70vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '8vh 8vw' }}>
-          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, marginBottom: '2.5rem', color: '#0284c7' }}>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, marginBottom: '2.5rem', color: '#0284c7' }}
+          >
             Technical Skills
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2rem' }}>
+          </motion.h2>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
             
-            <div style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: '2rem', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ color: '#ef4444', fontSize: '1.2rem', marginBottom: '1rem' }}>Programming Languages</h3>
-              <p style={{ color: theme.textMuted, lineHeight: 1.6 }}>Python, SQL, JavaScript, HTML, Dart</p>
-            </div>
-
-            <div style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: '2rem', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ color: '#ef4444', fontSize: '1.2rem', marginBottom: '1rem' }}>Frameworks & Libraries</h3>
-              <p style={{ color: theme.textMuted, lineHeight: 1.6 }}>Pandas, NumPy, Flutter</p>
-            </div>
-
-            <div style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: '2rem', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ color: '#ef4444', fontSize: '1.2rem', marginBottom: '1rem' }}>Tools & Software</h3>
-              <p style={{ color: theme.textMuted, lineHeight: 1.6 }}>Ubuntu Linux, Docker, Containerization, Liferay, Brightspace, Sakai, Power Apps, Jira, TDX, Git, GitHub, Tableau</p>
-            </div>
-
-            <div style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: '2rem', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ color: '#ef4444', fontSize: '1.2rem', marginBottom: '1rem' }}>Cloud & Soft Skills</h3>
-              <p style={{ color: theme.textMuted, lineHeight: 1.6 }}>Google Cloud Platform, Firebase, Faculty Workshops, Technical Consulting</p>
-            </div>
+            {[
+              { 
+                title: 'Programming Languages', 
+                skills: ['Python', 'SQL', 'JavaScript', 'Dart', 'HTML'] 
+              },
+              { 
+                title: 'Frameworks & Libraries', 
+                skills: ['Flutter', 'Node.js', 'Express', 'Pandas', 'NumPy', 'Provider', 'GetX', 'REST APIs'] 
+              },
+              { 
+                title: 'Databases & Cloud', 
+                skills: ['PostgreSQL', 'MongoDB Atlas', 'SQLite', 'Google Cloud Platform (GCP)', 'Firebase', 'Firebase FCM'] 
+              },
+              { 
+                title: 'Tools, AI & Platforms', 
+                skills: ['Docker', 'Tableau', 'OpenAI API', 'Speech-to-Text', 'Power Apps', 'Liferay CMS', 'Brightspace', 'Sakai', 'Git', 'GitHub', 'Jira'] 
+              }
+            ].map((category, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="interactive-card" 
+                style={{ 
+                  background: theme.cardBg, 
+                  border: `1px solid ${theme.cardBorder}`, 
+                  padding: '2.2rem', 
+                  borderRadius: '1.2rem', 
+                  backdropFilter: 'blur(12px)', 
+                  boxShadow: theme.cardShadow,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px) scale(1.01)';
+                  e.currentTarget.style.borderColor = '#38bdf8';
+                  e.currentTarget.style.boxShadow = isDarkMode ? '0 20px 40px rgba(56, 189, 248, 0.15)' : '0 20px 40px rgba(2, 132, 199, 0.12)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.borderColor = theme.cardBorder;
+                  e.currentTarget.style.boxShadow = theme.cardShadow;
+                }}
+              >
+                <div>
+                  <h3 style={{ color: '#ef4444', fontSize: '1.25rem', marginBottom: '1.2rem', fontWeight: 700 }}>
+                    {category.title}
+                  </h3>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
+                    {category.skills.map((skill, sIdx) => (
+                      <span 
+                        key={sIdx}
+                        style={{
+                          display: 'inline-block',
+                          padding: '0.4rem 0.9rem',
+                          borderRadius: '20px',
+                          fontSize: '0.85rem',
+                          fontWeight: 600,
+                          backgroundColor: isDarkMode ? 'rgba(56, 189, 248, 0.1)' : 'rgba(2, 132, 199, 0.08)',
+                          color: isDarkMode ? '#38bdf8' : '#0284c7',
+                          border: `1px solid ${isDarkMode ? 'rgba(56, 189, 248, 0.2)' : 'rgba(2, 132, 199, 0.2)'}`,
+                          transition: 'all 0.25s ease',
+                          cursor: 'pointer'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = '#ef4444';
+                          e.currentTarget.style.color = '#ffffff';
+                          e.currentTarget.style.borderColor = '#ef4444';
+                          e.currentTarget.style.transform = 'translateY(-3px) scale(1.08)';
+                          e.currentTarget.style.boxShadow = '0 4px 12px rgba(239, 68, 68, 0.3)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(56, 189, 248, 0.1)' : 'rgba(2, 132, 199, 0.08)';
+                          e.currentTarget.style.color = isDarkMode ? '#38bdf8' : '#0284c7';
+                          e.currentTarget.style.borderColor = isDarkMode ? 'rgba(56, 189, 248, 0.2)' : 'rgba(2, 132, 199, 0.2)';
+                          e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                          e.currentTarget.style.boxShadow = 'none';
+                        }}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
 
           </div>
         </section>
 
         {/* SECTION 6: EDUCATION */}
         <section id="education" style={{ minHeight: '70vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '8vh 8vw' }}>
-          <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, marginBottom: '2.5rem', color: '#ef4444' }}>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, marginBottom: '2.5rem', color: '#ef4444' }}
+          >
             Education
-          </h2>
+          </motion.h2>
+
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '900px' }}>
             
-            <div style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: '2.2rem', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ fontSize: '1.3rem', color: theme.textMain, marginBottom: '0.4rem' }}>Marist College</h3>
-              <h4 style={{ color: '#0284c7', fontSize: '1rem', marginBottom: '1rem' }}>Master of Science, Information Systems • Jan 2025 – Dec 2026 (GPA: 3.845)</h4>
-            </div>
-
-            <div style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: '2.2rem', borderRadius: '1rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow }}>
-              <h3 style={{ fontSize: '1.3rem', color: theme.textMain, marginBottom: '0.4rem' }}>Keshav Memorial Institute Of Technology</h3>
-              <h4 style={{ color: '#0284c7', fontSize: '1rem', marginBottom: '1rem' }}>Bachelor of Technology, CSM • Aug 2020 – May 2024 (GPA: 3.5)</h4>
-            </div>
+            {[
+              {
+                institution: "Marist College",
+                degree: "Master of Science, Information Systems",
+                duration: "Jan 2025 – Dec 2026",
+                gpa: "GPA: 3.845"
+              },
+              {
+                institution: "Keshav Memorial Institute Of Technology",
+                degree: "Bachelor of Technology, Computer Science & Machine Learning (CSM)",
+                duration: "Aug 2020 – May 2024",
+                gpa: "GPA: 3.5"
+              }
+            ].map((edu, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
+                className="interactive-card" 
+                style={{ 
+                  background: theme.cardBg, 
+                  border: `1px solid ${theme.cardBorder}`, 
+                  padding: '2.2rem', 
+                  borderRadius: '1.2rem', 
+                  backdropFilter: 'blur(12px)', 
+                  boxShadow: theme.cardShadow,
+                  transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-6px) scale(1.01)';
+                  e.currentTarget.style.borderColor = '#ef4444';
+                  e.currentTarget.style.boxShadow = isDarkMode ? '0 20px 40px rgba(239, 68, 68, 0.12)' : '0 20px 40px rgba(239, 68, 68, 0.08)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.borderColor = theme.cardBorder;
+                  e.currentTarget.style.boxShadow = theme.cardShadow;
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.4rem' }}>
+                  <h3 style={{ fontSize: '1.4rem', color: theme.textMain, fontWeight: 700, margin: 0 }}>
+                    {edu.institution}
+                  </h3>
+                  <span style={{ 
+                    fontSize: '0.85rem', 
+                    fontWeight: 700, 
+                    color: '#ef4444', 
+                    backgroundColor: isDarkMode ? 'rgba(239, 68, 68, 0.1)' : 'rgba(239, 68, 68, 0.08)',
+                    padding: '0.3rem 0.8rem',
+                    borderRadius: '20px',
+                    border: '1px solid rgba(239, 68, 68, 0.2)'
+                  }}>
+                    {edu.gpa}
+                  </span>
+                </div>
+                <h4 style={{ color: '#0284c7', fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.4rem' }}>
+                  {edu.degree}
+                </h4>
+                <p style={{ color: theme.textMuted, fontSize: '0.9rem', margin: 0 }}>
+                  {edu.duration}
+                </p>
+              </motion.div>
+            ))}
 
           </div>
         </section>
 
         {/* SECTION 7: CONTACT */}
         <section id="contact" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: '0 8vw' }}>
-          <h2 style={{ fontSize: 'clamp(2.8rem, 7vw, 4rem)', fontWeight: 900, marginBottom: '1rem', color: theme.textMain }}>
-            Let's Connect
-          </h2>
-          <p style={{ color: theme.textMuted, fontSize: 'clamp(1rem, 2vw, 1.2rem)', marginBottom: '3rem', maxWidth: '600px' }}>
-            Poughkeepsie, New York • (551) 297-5781 • vishnukaushikvarma@gmail.com
-          </p>
-          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <a href="mailto:vishnukaushikvarma@gmail.com" style={{ background: '#ef4444', color: '#fff', padding: '1rem 2.5rem', borderRadius: '50px', textDecoration: 'none', fontWeight: 700, fontSize: '1rem' }}>
-              Email Me
-            </a>
-            <a href="https://linkedin.com/in/vishnukaushikvarma" target="_blank" rel="noreferrer" style={{ background: 'transparent', border: '2px solid #0284c7', color: '#0284c7', padding: '1rem 2.5rem', borderRadius: '50px', textDecoration: 'none', fontWeight: 700, fontSize: '1rem' }}>
-              LinkedIn
-            </a>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}
+          >
+            <h2 style={{ fontSize: 'clamp(2.8rem, 7vw, 4rem)', fontWeight: 900, marginBottom: '1rem', color: theme.textMain }}>
+              Let's Connect
+            </h2>
+            <p style={{ color: theme.textMuted, fontSize: 'clamp(1rem, 2vw, 1.2rem)', marginBottom: '3rem', maxWidth: '600px' }}>
+              Poughkeepsie, New York • (551) 297-5781 • vishnukaushikvarma@gmail.com
+            </p>
+            <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <a 
+                href="mailto:vishnukaushikvarma@gmail.com" 
+                style={{ 
+                  background: '#ef4444', 
+                  color: '#fff', 
+                  padding: '1rem 2.8rem', 
+                  borderRadius: '50px', 
+                  textDecoration: 'none', 
+                  fontWeight: 700, 
+                  fontSize: '1rem',
+                  boxShadow: '0 4px 20px rgba(239, 68, 68, 0.35)',
+                  transition: 'all 0.25s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(239, 68, 68, 0.5)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(239, 68, 68, 0.35)';
+                }}
+              >
+                Email Me
+              </a>
+              <a 
+                href="https://linkedin.com/in/vishnukaushikvarma" 
+                target="_blank" 
+                rel="noreferrer" 
+                style={{ 
+                  background: 'transparent', 
+                  border: '2px solid #0284c7', 
+                  color: '#0284c7', 
+                  padding: '1rem 2.8rem', 
+                  borderRadius: '50px', 
+                  textDecoration: 'none', 
+                  fontWeight: 700, 
+                  fontSize: '1rem',
+                  transition: 'all 0.25s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#0284c7';
+                  e.currentTarget.style.color = '#ffffff';
+                  e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(2, 132, 199, 0.35)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#0284c7';
+                  e.currentTarget.style.transform = 'translateY(-3px) scale(1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                LinkedIn ↗
+              </a>
+            </div>
+          </motion.div>
         </section>
 
       </div>
