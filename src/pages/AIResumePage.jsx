@@ -48,7 +48,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
 
   return (
     <div style={{ minHeight: 'calc(100vh - 70px)', padding: '4vh 4vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {/* Navigation Controls */}
+      {/* Top Bar Navigation */}
       <div style={{ width: '100%', maxWidth: '820px', marginBottom: '1.2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <button
           onClick={() => { playClickSound(); setCurrentPage('portfolio'); }}
@@ -66,7 +66,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
         )}
       </div>
 
-      {/* Target Role Input Box */}
+      {/* Target Job Description Input Box */}
       <div style={{ width: '100%', maxWidth: '820px', background: theme.cardBg, border: '1px solid #38bdf8', padding: '1.4rem', borderRadius: '1rem', backdropFilter: 'blur(16px)', marginBottom: '2rem' }}>
         <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: theme.textMain, marginBottom: '0.4rem' }}>Target Job Description</h2>
         <textarea
@@ -77,18 +77,33 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
           style={{ width: '100%', padding: '0.8rem', borderRadius: '0.6rem', border: `1px solid ${theme.cardBorder}`, backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.04)' : 'rgba(15, 23, 42, 0.02)', color: theme.textMain, fontSize: '0.9rem', outline: 'none', resize: 'vertical', fontFamily: 'inherit', marginBottom: '0.8rem' }}
         />
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ fontSize: '0.8rem', color: theme.textMuted }}>Direct Portfolio Alignment</span>
+          <span style={{ fontSize: '0.8rem', color: theme.textMuted }}>Direct Live Portfolio Alignment</span>
           <button
             onClick={handleGenerate}
             disabled={isGenerating || !jobDescription.trim()}
             style={{ background: isGenerating ? '#64748b' : '#38bdf8', color: '#030712', border: 'none', padding: '0.6rem 1.6rem', borderRadius: '25px', fontWeight: 700, fontSize: '0.85rem', cursor: isGenerating ? 'not-allowed' : 'pointer' }}
           >
-            {isGenerating ? 'Generating...' : 'Generate Resume 🚀'}
+            {isGenerating ? 'Tailoring Resume...' : 'Generate Resume 🚀'}
           </button>
         </div>
       </div>
 
-      {/* RESUME TEMPLATE CLONE (USING LIVE PORTFOLIO INFO) */}
+      {/* MATCH SCORE BADGE (Web Page UI Only) */}
+      {tailoredResume && (
+        <div style={{ width: '100%', maxWidth: '816px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: isDarkMode ? 'rgba(56, 189, 248, 0.1)' : '#e0f2fe', border: '1px solid #38bdf8', borderRadius: '10px', padding: '0.75rem 1.2rem', marginBottom: '1.2rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '1.1rem' }}>🎯</span>
+            <span style={{ fontWeight: 700, color: theme.textMain, fontSize: '0.95rem' }}>
+              Target Role: <span style={{ color: '#38bdf8' }}>{tailoredResume.targetRole || 'Software Engineer'}</span>
+            </span>
+          </div>
+          <div style={{ background: '#10b981', color: '#ffffff', padding: '0.35rem 0.9rem', borderRadius: '20px', fontWeight: 800, fontSize: '0.88rem' }}>
+            Match Score: {tailoredResume.matchScore || '96%'}
+          </div>
+        </div>
+      )}
+
+      {/* PRINTABLE RESUME TEMPLATE CONTAINER */}
       {tailoredResume && (
         <div
           ref={resumePrintRef}
@@ -101,36 +116,64 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
             boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
             fontFamily: "'Calibri', 'Arial', sans-serif",
             fontSize: '9.2pt',
-            lineHeight: 1.25,
+            lineHeight: 1.28,
             letterSpacing: '0.01em',
             boxSizing: 'border-box'
           }}
         >
+          {/* HEADER ON TOP */}
+          <div style={{ textAlign: 'center', marginBottom: '14px', borderBottom: '1px solid #111', paddingBottom: '10px' }}>
+            <h1 style={{ fontSize: '18pt', fontWeight: 700, letterSpacing: '0.5px', margin: '0 0 4px 0', color: '#000' }}>
+              Vishnu Kaushik Varma Vuddaraju
+            </h1>
+            <p style={{ margin: '0 0 3px 0', fontSize: '9pt', color: '#222' }}>
+              Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781 |{' '}
+              <a href="https://linkedin.com/in/vishnukaushikvarma" target="_blank" rel="noreferrer" style={{ color: '#000', textDecoration: 'none' }}>
+                linkedin.com/in/vishnukaushikvarma[cite: 1, 2, 3]
+              </a>
+            </p>
+            <p style={{ margin: 0, fontSize: '9pt' }}>
+              <a href="https://vishnukaushikvarma.vercel.app/" target="_blank" rel="noreferrer" style={{ color: '#000', textDecoration: 'none', fontWeight: 600 }}>
+                https://vishnukaushikvarma.vercel.app/
+              </a>
+            </p>
+          </div>
+
           {/* EDUCATION SECTION */}
-          <div style={{ marginBottom: '16px' }}>
-            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '8px' }}>
-              EDUCATION
+          <div style={{ marginBottom: '14px' }}>
+            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', borderBottom: '1px solid #111', paddingBottom: '2px', marginBottom: '8px', letterSpacing: '0.5px' }}>
+              EDUCATION[cite: 1, 2, 3]
             </div>
             
-            <div style={{ marginBottom: '10px' }}>
-              <div>Marist University</div>
-              <div>Master of Science, Information Systems</div>
-              <div>Jan 2025 – Dec 2026</div>
-              <div>GPA: 3.845</div>
+            {/* Degree 1 */}
+            <div style={{ marginBottom: '8px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                <strong style={{ fontSize: '9.5pt' }}>Marist University</strong>
+                <span style={{ fontWeight: 600 }}>Jan 2025 – Dec 2026</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                <span>Master of Science, Information Systems</span>
+                <span style={{ fontWeight: 600 }}>GPA: 3.845[cite: 1, 2, 3]</span>
+              </div>
             </div>
 
+            {/* Degree 2 */}
             <div>
-              <div>Keshav Memorial Institute Of Technology</div>
-              <div>Bachelor of Technology, Computer Science & Machine Learning (CSM)</div>
-              <div>Aug 2020 – May 2024</div>
-              <div>GPA: 3.5</div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                <strong style={{ fontSize: '9.5pt' }}>Keshav Memorial Institute Of Technology[cite: 1, 2, 3]</strong>
+                <span style={{ fontWeight: 600 }}>Aug 2020 – May 2024</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                <span>Bachelor of Technology, Computer Science & Machine Learning (CSM)</span>
+                <span style={{ fontWeight: 600 }}>GPA: 3.5[cite: 1, 2, 3]</span>
+              </div>
             </div>
           </div>
 
           {/* SKILLS SECTION */}
-          <div style={{ marginBottom: '16px' }}>
-            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '8px' }}>
-              SKILLS
+          <div style={{ marginBottom: '14px' }}>
+            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', borderBottom: '1px solid #111', paddingBottom: '2px', marginBottom: '8px', letterSpacing: '0.5px' }}>
+              SKILLS[cite: 1, 2, 3]
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
               <div><strong>Programming Languages:</strong> {tailoredResume.skills?.languages || 'Python, SQL, JavaScript, Dart, HTML'}</div>
@@ -141,18 +184,20 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
           </div>
 
           {/* WORK EXPERIENCE SECTION */}
-          <div style={{ marginBottom: '16px' }}>
-            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '8px' }}>
-              WORK EXPERIENCE
+          <div style={{ marginBottom: '14px' }}>
+            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', borderBottom: '1px solid #111', paddingBottom: '2px', marginBottom: '8px', letterSpacing: '0.5px' }}>
+              WORK EXPERIENCE[cite: 1, 2, 3]
             </div>
 
             {tailoredResume.experience?.map((exp, eIdx) => (
-              <div key={eIdx} style={{ marginBottom: '14px' }}>
-                <div>{exp.header}</div>
-                <div style={{ marginBottom: '5px' }}>{exp.period}</div>
-                <div style={{ paddingLeft: '2px' }}>
+              <div key={eIdx} style={{ marginBottom: '12px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', fontWeight: 700 }}>
+                  <span>{exp.header}</span>
+                  <span>{exp.period}</span>
+                </div>
+                <div style={{ paddingLeft: '2px', marginTop: '4px' }}>
                   {exp.bullets?.map((bullet, bIdx) => (
-                    <div key={bIdx} style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '6px' }}>
+                    <div key={bIdx} style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '4px' }}>
                       <span style={{ marginRight: '6px', fontSize: '9pt' }}>•</span>
                       <span>{bullet}</span>
                     </div>
@@ -163,17 +208,17 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
           </div>
 
           {/* PROJECTS SECTION */}
-          <div style={{ marginBottom: '20px' }}>
-            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '8px' }}>
-              PROJECTS
+          <div style={{ marginBottom: '14px' }}>
+            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', borderBottom: '1px solid #111', paddingBottom: '2px', marginBottom: '8px', letterSpacing: '0.5px' }}>
+              PROJECTS[cite: 1, 2, 3]
             </div>
 
             {tailoredResume.projects?.map((proj, pIdx) => (
-              <div key={pIdx} style={{ marginBottom: '12px' }}>
-                <div style={{ marginBottom: '4px' }}>{proj.title}</div>
+              <div key={pIdx} style={{ marginBottom: '10px' }}>
+                <div style={{ fontWeight: 700, marginBottom: '3px' }}>{proj.title}</div>
                 <div style={{ paddingLeft: '2px' }}>
                   {proj.bullets?.map((b, bIdx) => (
-                    <div key={bIdx} style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '5px' }}>
+                    <div key={bIdx} style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '3px' }}>
                       <span style={{ marginRight: '6px', fontSize: '9pt' }}>•</span>
                       <span>{b}</span>
                     </div>
@@ -181,24 +226,6 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* FOOTER */}
-          <div style={{ textAlign: 'left', marginTop: '16px', fontSize: '9pt' }}>
-            <div style={{ fontWeight: 700, fontSize: '10pt', marginBottom: '2px' }}>
-              Vishnu Kaushik Varma Vuddaraju
-            </div>
-            <div>
-              Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781 |{' '}
-              <a href="https://linkedin.com/in/vishnukaushikvarma" target="_blank" rel="noreferrer" style={{ color: '#000', textDecoration: 'none' }}>
-                linkedin.com/in/vishnukaushikvarma
-              </a>
-            </div>
-            <div style={{ marginTop: '2px' }}>
-              <a href="https://vishnukaushikvarma.vercel.app/" target="_blank" rel="noreferrer" style={{ color: '#000', textDecoration: 'none' }}>
-                https://vishnukaushikvarma.vercel.app/
-              </a>
-            </div>
           </div>
         </div>
       )}
