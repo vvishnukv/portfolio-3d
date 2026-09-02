@@ -364,7 +364,7 @@ export default function App() {
               Software Engineer & IT Technical Specialist
             </p>
             <p style={{ color: theme.textMuted, fontSize: 'clamp(1rem, 2vw, 1.2rem)', maxWidth: '650px', lineHeight: 1.6 }}>
-              M.S. Information Systems at Marist College (GPA: 3.845). Specializing in scalable software engineering, institutional LMS platform administration, containerized cloud data pipelines, intelligent AI solutions, and full-lifecycle cross-platform mobile applications.
+              M.S. Information Systems at Marist University (GPA: 3.845). Specializing in scalable software engineering, institutional LMS platform administration, containerized cloud data pipelines, intelligent AI solutions, and full-lifecycle cross-platform mobile applications.
             </p>
           </motion.div>
         </section>
@@ -503,13 +503,26 @@ export default function App() {
 
             {[
               {
+                title: "LMS Accessibility & Student Success Analysis",
+                desc: "Processed 10,000+ student LMS records using Python and PostgreSQL inside Docker to evaluate WCAG 2.1 accessibility compliance. Uncovered critical academic performance metrics and built interactive Tableau Public dashboards.",
+                tech: "PYTHON • POSTGRESQL • TABLEAU • DOCKER • PANDAS",
+                github: "https://github.com/vvishnukv/lms-analysis-project",
+                tableau: "https://public.tableau.com/app/profile/vishnu.kaushik.varma.vuddaraju/viz/LMSAccessibilityStudentEngagementAnalysis/Dashboard1?publish=yes"
+              },
+              {
+                title: "Containerized Research Data Pipeline",
+                desc: "Engineered an automated research workflow deployed on a GCP Ubuntu Linux virtual machine utilizing Docker for absolute environment isolation. Processed multi-subject research simulations and generated statistical aggregates via Pandas and NumPy.",
+                tech: "DOCKER • GCP • PYTHON • PANDAS • NUMPY",
+                github: "https://github.com/vvishnukv/research-computing-docker-pipeline"
+              },
+              {
                 title: "AI-Powered Voice Music Assistant",
                 desc: "Built a full-stack voice-activated virtual assistant leveraging Node.js, Express, and MongoDB Atlas to manage and query song directories. Processed speech-to-text voice prompts through OpenAI's API to intelligently parse requests and trigger local computer audio playback.",
                 tech: "NODE.JS • EXPRESS • MONGODB • OPENAI API • SPEECH-TO-TEXT",
                 github: "https://github.com/vvishnukv/Virtual-Assistant-ChatGPT"
               },
               {
-                title: "LinkNews Mobile App (Flutter)",
+                title: "LinkNews Mobile App ",
                 desc: "Developed a cross-platform news mobile application using Flutter and Dart. Integrated asynchronous JSON REST API data pipelines via HTTP, HTML parsing utilities, and Firebase Cloud Messaging (FCM) with local notifications for real-time user engagement.",
                 tech: "FLUTTER • DART • GETX • FIREBASE FCM • REST APIS",
                 github: "https://github.com/vvishnukv/LinkNews"
@@ -525,19 +538,6 @@ export default function App() {
                 desc: "Developed a Flutter mobile utility to fetch remote data from JSONPlaceholder APIs, cache and manage records securely using local SQLite databases (`sqflite`), and render dynamic floating lists with stylized components.",
                 tech: "FLUTTER • DART • SQLITE • REST API • HTTP",
                 github: "https://github.com/vvishnukv/flutter_sqlite_api_test"
-              },
-              {
-                title: "Containerized Research Data Pipeline",
-                desc: "Engineered an automated research workflow deployed on a GCP Ubuntu Linux virtual machine utilizing Docker for absolute environment isolation. Processed multi-subject research simulations and generated statistical aggregates via Pandas and NumPy.",
-                tech: "DOCKER • GCP • PYTHON • PANDAS • NUMPY",
-                github: "https://github.com/vvishnukv/research-computing-docker-pipeline"
-              },
-              {
-                title: "LMS Accessibility & Student Success Analysis",
-                desc: "Processed 10,000+ student LMS records using Python and PostgreSQL inside Docker to evaluate WCAG 2.1 accessibility compliance. Uncovered critical academic performance metrics and built interactive Tableau Public dashboards.",
-                tech: "PYTHON • POSTGRESQL • TABLEAU • DOCKER • PANDAS",
-                github: "https://github.com/vvishnukv/lms-analysis-project",
-                tableau: "https://public.tableau.com/app/profile/vishnu.kaushik.varma.vuddaraju/viz/LMSAccessibilityStudentEngagementAnalysis/Dashboard1?publish=yes"
               }
             ].map((project, idx) => (
               <motion.div 
@@ -806,7 +806,7 @@ export default function App() {
             
             {[
               {
-                institution: "Marist College",
+                institution: "Marist University",
                 degree: "Master of Science, Information Systems",
                 duration: "Jan 2025 – Dec 2026",
                 gpa: "GPA: 3.845"
