@@ -128,14 +128,20 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
           {/* SKILLS */}
           <div style={{ marginBottom: '14px' }}>
             <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '6px', letterSpacing: '0.5px' }}>
-              SKILLS[cite: 2]
+              SKILLS
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-              <div><strong>Programming Languages:</strong> {tailoredResume.skills?.languages || 'Python, SQL, JavaScript, HTML'}[cite: 2]</div>
-              <div><strong>Frameworks & Libraries:</strong> {tailoredResume.skills?.frameworks || 'Pandas, NumPy'}[cite: 2]</div>
-              <div><strong>Tools & Software:</strong> {tailoredResume.skills?.tools || 'Ubuntu Linux, Docker, Containerization, Liferay, Brightspace, Sakai, Enterprise System Onboarding, Power Apps, Automated Workflows, Jira, TDX Tickets, Git, GitHub, Technical Documentation, Helpdesk/Walk-in Labs, flutter, dart'}[cite: 2]</div>
-              <div><strong>Cloud Platforms:</strong> {tailoredResume.skills?.cloud || 'Google Cloud Platform, Firebase'}[cite: 2]</div>
-              <div><strong>Soft Skills:</strong> {tailoredResume.skills?.softSkills || 'Faculty Workshops, Technical Consulting'}[cite: 2]</div>
+              {Array.isArray(tailoredResume.skills) ? (
+                <div><strong>Technical Skills:</strong> {tailoredResume.skills.join(', ')}</div>
+              ) : (
+                <>
+                  <div><strong>Programming Languages:</strong> {tailoredResume.skills?.languages || 'Python, SQL, JavaScript, HTML'}</div>
+                  <div><strong>Frameworks & Libraries:</strong> {tailoredResume.skills?.frameworks || 'Pandas, NumPy'}</div>
+                  <div><strong>Tools & Software:</strong> {tailoredResume.skills?.tools || 'Ubuntu Linux, Docker, Containerization, Liferay, Brightspace, Sakai, Enterprise System Onboarding, Power Apps, Automated Workflows, Jira, TDX Tickets, Git, GitHub, Technical Documentation, Helpdesk/Walk-in Labs, flutter, dart'}</div>
+                  <div><strong>Cloud Platforms:</strong> {tailoredResume.skills?.cloud || 'Google Cloud Platform, Firebase'}</div>
+                  <div><strong>Soft Skills:</strong> {tailoredResume.skills?.softSkills || 'Faculty Workshops, Technical Consulting'}</div>
+                </>
+              )}
             </div>
           </div>
 
