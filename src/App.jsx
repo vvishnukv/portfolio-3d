@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import { Canvas } from '@react-three/fiber'
 import './index.css'
 
@@ -137,6 +138,8 @@ export default function App() {
           />
         </div>
       )}
+      {/* Vercel Web Analytics Component */}
+      <Analytics />
     </div>
   )
 }
