@@ -27,25 +27,57 @@ export default async function handler(req, res) {
 
     const ai = new GoogleGenAI({ apiKey });
 
-    const prompt = `
-      You are an elite career strategist. Cross-reference the candidate's exact background against the target Job Description.
-      Tailor bullet points and select the 3-4 most relevant projects to match the job description while retaining authentic metrics.
+    const livePortfolioContext = `
+      Candidate Full Name: Vishnu Kaushik Varma Vuddaraju
+      Title: Software Engineer & IT Technical Specialist
+      Contact: Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781 | linkedin.com/in/vishnukaushikvarma | https://vishnukaushikvarma.vercel.app/
 
-      Candidate Background:
-      - Name: Vishnu Kaushik Varma
-      - Education:
-        Marist College, Master of Science, Information Systems, Jan 2025 - Dec 2026, GPA: 3.845
-        Keshav Memorial Institute Of Technology, Bachelor of Technology, CSM, Aug 2020 - May 2024, GPA: 3.5
-      - Work Experience:
-        * Marist University | IT Technical Specialist & LMS Administrator (Apr 2025 - Present)
-        * Forge Alumnus | Application Developer & Team Lead | hyderabad, india (Sep 2023 - Mar 2024)
-      - Projects Pool:
-        1. Containerized Research Data Pipeline
-        2. System Compliance Reporting Architecture
-        3. AI-Powered Virtual Assistant (Copilot)
-        4. LinkNews (Flutter + Firebase)
-        5. Personal Diary Application | Flutter, Dart, Provider (State Management), Local Storage
-        6. LMS Accessibility & Student Success Analysis | Python, PostgreSQL, Tableau, Docker
+      Education:
+      - Marist University | Master of Science, Information Systems | Jan 2025 – Dec 2026 | GPA: 3.845
+      - Keshav Memorial Institute Of Technology | Bachelor of Technology, Computer Science & Machine Learning (CSM) | Aug 2020 – May 2024 | GPA: 3.5
+
+      Work Experience:
+      - Marist University | Web Developer and LMS Quality Assurance Tester - Digital Education | Apr 2025 – Present
+        * Developed 150+ academic and departmental web pages in Liferay CMS with responsive design, SEO optimization, and WCAG 2.2 accessibility compliance.
+        * Resolved 100+ complex Jira tickets, cutting ticket resolution time by 50% and boosting response rates by 30%.
+        * Audited 5,000+ Brightspace courses for WCAG 2.2 compliance using Power Apps and Power Automate workflow, automating issue reporting to faculty.
+        * Assisted faculty across every department with Brightspace LMS and accessibility through hybrid/live sessions and resolved 200+ support requests through Team Dynamix.
+        * Conducted workshops on integrating LTI tools and new LMS features, collaborating with the Center for Teaching and Learning to enhance faculty teaching.
+        * Spearheaded full institutional migration of 500+ courses from Sakai to Brightspace for 6,000+ end-users.
+        * Engineered tracking pipeline with Power Apps and Excel to parse system errors, eliminating 10+ hours of manual follow-up weekly.
+        * Co-led Bright Foxes outreach campaign delivering 15+ faculty support sessions and resolving 50+ system inquiries.
+        * Documented Minutes of Meetings (MoMs) for Digital Education projects, ensuring clear communication of action items among technical and academic stakeholders.
+        * Conducted functional, regression, and cross-browser QA testing to ensure LMS and CMS accessibility and quality compliance.
+        * Tested Sakai tools rigorously, helping out with quality assurance testing and creating detailed tickets for the Sakai team to resolve bugs.
+
+      - Forge Alumnus | Application Developer & Team Lead | Hyderabad, India | Sep 2023 – Mar 2024
+        * Engineered and launched Realtor+, a full-scale real estate mobile platform for a USA (New Jersey) client in just 45 days, supporting 10,000+ active users, 100+ real estate agents, and 3 distinct user profiles across Android and iOS platforms.
+        * Released major feature updates for the enterprise mobile application on the Apple App Store and Google Play Store, driving a 60% increase in total application downloads while managing Apple Analytics and Google Analytics.
+        * Architected the Forge HRMS application for automated daily employee check-in and check-out tracking utilizing real-time GPS coordinates and location validation.
+        * Delivered the fully functional Forge Inspira event platform in just 30 days for a 2024 conference, executing rigorous QA testing across 3 user profiles and QR-based event registration tracking.
+        * Directed a 20-member technical development team, hosting 5+ onboarding sessions, authoring 15+ pages of Standard Operating Procedures, and serving as head of volunteers and technical hackathon instructor.
+
+      Featured Projects Pool:
+      1. LMS Accessibility & Student Success Analysis: Processed 10,000+ student LMS records using Python and PostgreSQL inside Docker to evaluate WCAG 2.1 accessibility compliance. Uncovered critical academic performance metrics and built interactive Tableau Public dashboards. (Python, PostgreSQL, Tableau, Docker, Pandas)
+      2. Containerized Research Data Pipeline: Engineered an automated research workflow deployed on a GCP Ubuntu Linux virtual machine utilizing Docker for absolute environment isolation. Processed multi-subject research simulations and generated statistical aggregates via Pandas and NumPy. (Docker, GCP, Python, Pandas, NumPy)
+      3. AI-Powered Voice Music Assistant: Built a full-stack voice-activated virtual assistant leveraging Node.js, Express, and MongoDB Atlas to manage and query song directories. Processed speech-to-text voice prompts through OpenAI's API to intelligently parse requests and trigger local computer audio playback. (Node.js, Express, MongoDB Atlas, OpenAI API, Speech-to-Text)
+      4. LinkNews Mobile App: Developed a cross-platform news mobile application using Flutter and Dart. Integrated asynchronous JSON REST API data pipelines via HTTP, HTML parsing utilities, and Firebase Cloud Messaging (FCM) with local notifications for real-time user engagement. (Flutter, Dart, GetX, Firebase FCM, REST APIs)
+      5. Personal Diary App: Built a full-featured personal diary mobile application using Flutter and Dart. Integrated Provider state management, SQLite/Shared Preferences for persistent local data storage, and dynamic light/dark theme switching. (Flutter, Dart, Provider, SQLite, Shared Preferences)
+      6. Flutter SQLite & API Integration App: Developed a Flutter mobile utility to fetch remote data from JSONPlaceholder APIs, cache and manage records securely using local SQLite databases (sqflite), and render dynamic floating lists with stylized components. (Flutter, Dart, SQLite, REST API, HTTP)
+
+      Master Technical Skills:
+      - Programming Languages: Python, SQL, JavaScript, Dart, HTML
+      - Frameworks & Libraries: Flutter, Node.js, Express, Pandas, NumPy, Provider, GetX, REST APIs
+      - Databases & Cloud: PostgreSQL, MongoDB Atlas, SQLite, Google Cloud Platform (GCP), Firebase, Firebase FCM
+      - Tools, AI & Platforms: Docker, Tableau, OpenAI API, Speech-to-Text, Power Apps, Liferay CMS, Brightspace, Sakai, Git, GitHub, Jira
+    `;
+
+    const prompt = `
+      You are an elite career strategist. Analyze the Target Job Description below against the candidate's verified live portfolio background.
+      Curate and tailor the most impactful bullets and select the 3-4 most relevant projects for the target role. Do not invent fake facts or companies; use the verified portfolio background provided.
+
+      Verified Candidate Portfolio:
+      ${livePortfolioContext}
 
       Target Job Description:
       ${jobDescription}
@@ -53,42 +85,53 @@ export default async function handler(req, res) {
       Return strictly a valid JSON object matching this schema:
       {
         "targetRole": "Extracted Job Title",
-        "matchScore": "96%",
         "skills": {
-          "languages": "Python, SQL, JavaScript, HTML",
-          "frameworks": "Pandas, NumPy",
-          "tools": "Ubuntu Linux, Docker, Containerization, Liferay, Brightspace, Sakai, Enterprise System Onboarding, Power Apps, Automated Workflows, Jira, TDX Tickets, Git, GitHub, Technical Documentation, Helpdesk/Walk-in Labs, flutter, dart",
-          "cloud": "Google Cloud Platform, Firebase",
-          "softSkills": "Faculty Workshops, Technical Consulting"
+          "languages": "Python, SQL, JavaScript, Dart, HTML",
+          "frameworks": "Flutter, Node.js, Express, Pandas, NumPy, Provider, GetX, REST APIs",
+          "databasesCloud": "PostgreSQL, MongoDB Atlas, SQLite, Google Cloud Platform (GCP), Firebase, Firebase FCM",
+          "toolsPlatforms": "Docker, Tableau, OpenAI API, Speech-to-Text, Power Apps, Liferay CMS, Brightspace, Sakai, Git, GitHub, Jira"
         },
         "experience": [
           {
-            "header": "Marist University | IT Technical Specialist & LMS Administrator",
-            "period": "Apr 2025 - Present",
+            "header": "Marist University | Web Developer and LMS Quality Assurance Tester - Digital Education",
+            "period": "Apr 2025 – Present",
             "bullets": [
-              "Spearheaded the full institutional migration of 500+ courses from Sakai to Brightspace, managing large-scale data conversion while preserving content structure and system compliance for over 6,000 end-users.",
-              "Engineered a tracking pipeline utilizing Power Apps and Excel to parse system errors, auto-log issues, and trigger scheduled email reporting to 200+ faculty members, eliminating 10+ hours of manual follow-up per week.",
-              "Developed 180+ web pages and 2 primary role-based portals in Liferay, utilizing HTML and JavaScript to administer custom tool visibility and secure access by user classification.",
-              "Managed and resolved 100+ complex Jira tickets, optimizing technical workflows to reduce average ticket resolution time by 50% and improve overall team response rates by 30%.",
-              "Co-led the Bright Foxes outreach campaign, delivering 15+ dedicated faculty support sessions and resolving 50+ complex system inquiries.",
-              "Authored 4 comprehensive approval documents per term and built 5+ prototype environments for incoming academic tools, achieving 100% QA testing pass rates before production integration."
+              "Selected high-impact tailored bullet point 1...",
+              "Selected high-impact tailored bullet point 2...",
+              "Selected high-impact tailored bullet point 3...",
+              "Selected high-impact tailored bullet point 4..."
             ]
           },
           {
-            "header": "Forge Alumnus | Application Developer & Team Lead | hyderabad, india",
-            "period": "Sep 2023 - Mar 2024",
+            "header": "Forge Alumnus | Application Developer & Team Lead | Hyderabad, India",
+            "period": "Sep 2023 – Mar 2024",
             "bullets": [
-              "Programmed and deployed 2 proprietary enterprise web applications featuring custom QR-based check-in integrations, accelerating digital onboarding processes and boosting operational efficiency by 50% for 100+ daily users.",
-              "Directed a 20-member technical development team, facilitating 5+ onboarding sessions and authoring 15+ pages of Standard Operating Procedures to standardize coding practices and ensure reproducible workflows."
+              "Selected high-impact tailored bullet point 1...",
+              "Selected high-impact tailored bullet point 2...",
+              "Selected high-impact tailored bullet point 3..."
             ]
           }
         ],
         "projects": [
           {
-            "title": "Project Title Matching the Candidate Pool",
+            "title": "Selected Project 1 Name | Key Stack",
             "bullets": [
-              { "boldPrefix": "End-to-End Data Pipeline: ", "text": "rest of the bullet point..." },
-              { "boldPrefix": "Statistical Analysis & SQL: ", "text": "rest of the bullet point..." }
+              "Detailed bullet point highlighting technical architecture and metrics",
+              "Detailed bullet point highlighting tools, outcome, and engineering impact"
+            ]
+          },
+          {
+            "title": "Selected Project 2 Name | Key Stack",
+            "bullets": [
+              "Detailed bullet point highlighting technical architecture and metrics",
+              "Detailed bullet point highlighting tools, outcome, and engineering impact"
+            ]
+          },
+          {
+            "title": "Selected Project 3 Name | Key Stack",
+            "bullets": [
+              "Detailed bullet point highlighting technical architecture and metrics",
+              "Detailed bullet point highlighting tools, outcome, and engineering impact"
             ]
           }
         ]
@@ -100,13 +143,13 @@ export default async function handler(req, res) {
       contents: prompt,
       config: {
         responseMimeType: 'application/json',
-        temperature: 0.2
+        temperature: 0.15
       }
     });
 
     return res.status(200).json(JSON.parse(response.text));
   } catch (error) {
-    console.error('Gemini Execution Error:', error);
-    return res.status(500).json({ error: 'Failed to generate tailored resume', details: error.message });
+    console.error('Gemini error:', error);
+    return res.status(500).json({ error: 'Failed to tailor resume', details: error.message });
   }
 }

@@ -13,7 +13,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
     if (!element) return
 
     const opt = {
-      margin: [0.3, 0.4, 0.3, 0.4],
+      margin: [0.35, 0.45, 0.35, 0.45],
       filename: 'Vishnu_Kaushik_Varma_Resume.pdf',
       image: { type: 'jpeg', quality: 0.99 },
       html2canvas: { scale: 2.5, useCORS: true, letterRendering: true },
@@ -35,7 +35,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
         body: JSON.stringify({ jobDescription })
       })
 
-      if (!response.ok) throw new Error('API call failed')
+      if (!response.ok) throw new Error('API request failed')
 
       const data = await response.json()
       setTailoredResume(data)
@@ -66,9 +66,9 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
         )}
       </div>
 
-      {/* Input Field */}
-      <div style={{ width: '100%', maxWidth: '820px', background: theme.cardBg, border: '1px solid #38bdf8', padding: '1.5rem', borderRadius: '1rem', backdropFilter: 'blur(16px)', marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: theme.textMain, marginBottom: '0.4rem' }}>Tailor to Target Job Description</h2>
+      {/* Target Role Input Box */}
+      <div style={{ width: '100%', maxWidth: '820px', background: theme.cardBg, border: '1px solid #38bdf8', padding: '1.4rem', borderRadius: '1rem', backdropFilter: 'blur(16px)', marginBottom: '2rem' }}>
+        <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: theme.textMain, marginBottom: '0.4rem' }}>Target Job Description</h2>
         <textarea
           rows={3}
           placeholder="Paste target Job Description here..."
@@ -77,18 +77,18 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
           style={{ width: '100%', padding: '0.8rem', borderRadius: '0.6rem', border: `1px solid ${theme.cardBorder}`, backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.04)' : 'rgba(15, 23, 42, 0.02)', color: theme.textMain, fontSize: '0.9rem', outline: 'none', resize: 'vertical', fontFamily: 'inherit', marginBottom: '0.8rem' }}
         />
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ fontSize: '0.8rem', color: theme.textMuted }}>Strict 1-Page Template Alignment</span>
+          <span style={{ fontSize: '0.8rem', color: theme.textMuted }}>Direct Portfolio Alignment</span>
           <button
             onClick={handleGenerate}
             disabled={isGenerating || !jobDescription.trim()}
             style={{ background: isGenerating ? '#64748b' : '#38bdf8', color: '#030712', border: 'none', padding: '0.6rem 1.6rem', borderRadius: '25px', fontWeight: 700, fontSize: '0.85rem', cursor: isGenerating ? 'not-allowed' : 'pointer' }}
           >
-            {isGenerating ? 'Analyzing & Tailoring...' : 'Generate Resume 🚀'}
+            {isGenerating ? 'Generating...' : 'Generate Resume 🚀'}
           </button>
         </div>
       </div>
 
-      {/* Resume Preview */}
+      {/* RESUME TEMPLATE CLONE (USING LIVE PORTFOLIO INFO) */}
       {tailoredResume && (
         <div
           ref={resumePrintRef}
@@ -97,113 +97,106 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
             maxWidth: '816px',
             backgroundColor: '#ffffff',
             color: '#000000',
-            padding: '32px 38px 24px 38px',
+            padding: '36px 44px 30px 44px',
             boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
-            fontFamily: "'Arial', 'Helvetica', sans-serif",
+            fontFamily: "'Calibri', 'Arial', sans-serif",
             fontSize: '9.2pt',
-            lineHeight: 1.28,
+            lineHeight: 1.25,
+            letterSpacing: '0.01em',
+            boxSizing: 'border-box'
           }}
         >
-          {/* EDUCATION */}
-          <div style={{ marginBottom: '14px' }}>
-            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '6px', letterSpacing: '0.5px' }}>
+          {/* EDUCATION SECTION */}
+          <div style={{ marginBottom: '16px' }}>
+            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '8px' }}>
               EDUCATION
             </div>
             
-            <div style={{ marginBottom: '8px' }}>
-              <div style={{ fontWeight: 700 }}>Marist College</div>
+            <div style={{ marginBottom: '10px' }}>
+              <div>Marist University</div>
               <div>Master of Science, Information Systems</div>
-              <div>Jan 2025 - Dec 2026</div>
+              <div>Jan 2025 – Dec 2026</div>
               <div>GPA: 3.845</div>
             </div>
 
             <div>
-              <div style={{ fontWeight: 700 }}>Keshav Memorial Institute Of Technology</div>
-              <div>Bachelor of Technology, CSM</div>
-              <div>Aug 2020 - May 2024</div>
+              <div>Keshav Memorial Institute Of Technology</div>
+              <div>Bachelor of Technology, Computer Science & Machine Learning (CSM)</div>
+              <div>Aug 2020 – May 2024</div>
               <div>GPA: 3.5</div>
             </div>
           </div>
 
-          {/* SKILLS */}
-          <div style={{ marginBottom: '14px' }}>
-            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '6px', letterSpacing: '0.5px' }}>
+          {/* SKILLS SECTION */}
+          <div style={{ marginBottom: '16px' }}>
+            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '8px' }}>
               SKILLS
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-              {Array.isArray(tailoredResume.skills) ? (
-                <div><strong>Technical Skills:</strong> {tailoredResume.skills.join(', ')}</div>
-              ) : (
-                <>
-                  <div><strong>Programming Languages:</strong> {tailoredResume.skills?.languages || 'Python, SQL, JavaScript, HTML'}</div>
-                  <div><strong>Frameworks & Libraries:</strong> {tailoredResume.skills?.frameworks || 'Pandas, NumPy'}</div>
-                  <div><strong>Tools & Software:</strong> {tailoredResume.skills?.tools || 'Ubuntu Linux, Docker, Containerization, Liferay, Brightspace, Sakai, Enterprise System Onboarding, Power Apps, Automated Workflows, Jira, TDX Tickets, Git, GitHub, Technical Documentation, Helpdesk/Walk-in Labs, flutter, dart'}</div>
-                  <div><strong>Cloud Platforms:</strong> {tailoredResume.skills?.cloud || 'Google Cloud Platform, Firebase'}</div>
-                  <div><strong>Soft Skills:</strong> {tailoredResume.skills?.softSkills || 'Faculty Workshops, Technical Consulting'}</div>
-                </>
-              )}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+              <div><strong>Programming Languages:</strong> {tailoredResume.skills?.languages || 'Python, SQL, JavaScript, Dart, HTML'}</div>
+              <div><strong>Frameworks & Libraries:</strong> {tailoredResume.skills?.frameworks || 'Flutter, Node.js, Express, Pandas, NumPy, Provider, GetX, REST APIs'}</div>
+              <div><strong>Databases & Cloud:</strong> {tailoredResume.skills?.databasesCloud || 'PostgreSQL, MongoDB Atlas, SQLite, Google Cloud Platform (GCP), Firebase, Firebase FCM'}</div>
+              <div><strong>Tools, AI & Platforms:</strong> {tailoredResume.skills?.toolsPlatforms || 'Docker, Tableau, OpenAI API, Speech-to-Text, Power Apps, Liferay CMS, Brightspace, Sakai, Git, GitHub, Jira'}</div>
             </div>
           </div>
 
-          {/* WORK EXPERIENCE */}
-          <div style={{ marginBottom: '14px' }}>
-            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '6px', letterSpacing: '0.5px' }}>
+          {/* WORK EXPERIENCE SECTION */}
+          <div style={{ marginBottom: '16px' }}>
+            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '8px' }}>
               WORK EXPERIENCE
             </div>
+
             {tailoredResume.experience?.map((exp, eIdx) => (
-              <div key={eIdx} style={{ marginBottom: '10px' }}>
-                <div style={{ fontWeight: 700 }}>{exp.header}</div>
-                <div style={{ marginBottom: '3px' }}>{exp.period}</div>
-                <ul style={{ margin: 0, paddingLeft: '18px' }}>
+              <div key={eIdx} style={{ marginBottom: '14px' }}>
+                <div>{exp.header}</div>
+                <div style={{ marginBottom: '5px' }}>{exp.period}</div>
+                <div style={{ paddingLeft: '2px' }}>
                   {exp.bullets?.map((bullet, bIdx) => (
-                    <li key={bIdx} style={{ marginBottom: '3px' }}>{bullet}</li>
+                    <div key={bIdx} style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '6px' }}>
+                      <span style={{ marginRight: '6px', fontSize: '9pt' }}>•</span>
+                      <span>{bullet}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* PROJECTS */}
-          <div style={{ marginBottom: '14px' }}>
-            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '6px', letterSpacing: '0.5px' }}>
+          {/* PROJECTS SECTION */}
+          <div style={{ marginBottom: '20px' }}>
+            <div style={{ fontWeight: 700, fontSize: '10pt', color: '#000000', marginBottom: '8px' }}>
               PROJECTS
             </div>
+
             {tailoredResume.projects?.map((proj, pIdx) => (
-              <div key={pIdx} style={{ marginBottom: '8px' }}>
-                <div style={{ fontWeight: 700 }}>{proj.title}</div>
-                <ul style={{ margin: 0, paddingLeft: '18px' }}>
+              <div key={pIdx} style={{ marginBottom: '12px' }}>
+                <div style={{ marginBottom: '4px' }}>{proj.title}</div>
+                <div style={{ paddingLeft: '2px' }}>
                   {proj.bullets?.map((b, bIdx) => (
-                    <li key={bIdx} style={{ marginBottom: '2px' }}>
-                      {typeof b === 'string' ? (
-                        b
-                      ) : (
-                        <>
-                          <strong>{b.boldPrefix}</strong>
-                          {b.text}
-                        </>
-                      )}
-                    </li>
+                    <div key={bIdx} style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '5px' }}>
+                      <span style={{ marginRight: '6px', fontSize: '9pt' }}>•</span>
+                      <span>{b}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </div>
 
           {/* FOOTER */}
-          <div style={{ marginTop: '12px', borderTop: '1px solid #ddd', paddingTop: '6px', textAlign: 'center', fontSize: '8.8pt', color: '#111' }}>
-            <div style={{ fontWeight: 700, fontSize: '9.8pt', marginBottom: '1px' }}>
-              Vishnu Kaushik Varma
+          <div style={{ textAlign: 'left', marginTop: '16px', fontSize: '9pt' }}>
+            <div style={{ fontWeight: 700, fontSize: '10pt', marginBottom: '2px' }}>
+              Vishnu Kaushik Varma Vuddaraju
             </div>
             <div>
-              Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781
-            </div>
-            <div>
-              <a href="https://vishnukaushikvarma.vercel.app/" target="_blank" rel="noreferrer" style={{ color: '#000', textDecoration: 'none', fontWeight: 600 }}>
-                https://vishnukaushikvarma.vercel.app/
-              </a>
-              {' | '}
+              Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781 |{' '}
               <a href="https://linkedin.com/in/vishnukaushikvarma" target="_blank" rel="noreferrer" style={{ color: '#000', textDecoration: 'none' }}>
                 linkedin.com/in/vishnukaushikvarma
+              </a>
+            </div>
+            <div style={{ marginTop: '2px' }}>
+              <a href="https://vishnukaushikvarma.vercel.app/" target="_blank" rel="noreferrer" style={{ color: '#000', textDecoration: 'none' }}>
+                https://vishnukaushikvarma.vercel.app/
               </a>
             </div>
           </div>
