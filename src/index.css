@@ -66,3 +66,36 @@ a, button {
   color: #ef4444;
   padding-right: 20px;
 }
+
+@keyframes shineAnimation {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+.project-search-container {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-search-container:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+}
+
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent
+  );
+  animation: shineAnimation 3s infinite;
+}
