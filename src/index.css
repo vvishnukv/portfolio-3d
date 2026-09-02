@@ -16,28 +16,43 @@ body {
   overflow-x: hidden;
 }
 
-a, button {
+a,
+button,
+input,
+textarea {
   cursor: none !important;
 }
 
-/* Horizontal scroll container for the projects section */
-.horizontal-scroll-section {
-  display: flex;
-  gap: 2rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 2rem 10vw;
-  scrollbar-width: none;
+/* =========================================
+   NAVIGATION BAR & RESPONSIVE BEHAVIOR
+   ========================================= */
+
+.desktop-nav-links {
+  display: flex !important;
+  align-items: center;
 }
 
-.horizontal-scroll-section::-webkit-scrollbar {
-  display: none;
+.mobile-controls {
+  display: none !important;
 }
 
-.project-slide {
-  min-width: 450px;
-  scroll-snap-align: center;
+.mobile-dropdown-menu {
+  display: none !important;
 }
+
+@media (max-width: 950px) {
+  .desktop-nav-links {
+    display: none !important;
+  }
+
+  .mobile-controls {
+    display: flex !important;
+  }
+}
+
+/* =========================================
+   MARQUEE LOGO ANIMATION
+   ========================================= */
 
 @keyframes smoothMarquee {
   0% { transform: translateX(0%); }
@@ -66,6 +81,10 @@ a, button {
   color: #ef4444;
   padding-right: 20px;
 }
+
+/* =========================================
+   PROJECT SEARCH BAR & SHINE ANIMATION
+   ========================================= */
 
 @keyframes shineAnimation {
   0% { transform: translateX(-100%); }
@@ -98,4 +117,26 @@ a, button {
     transparent
   );
   animation: shineAnimation 3s infinite;
+}
+
+/* =========================================
+   HORIZONTAL PROJECTS SCROLL (IF USED)
+   ========================================= */
+
+.horizontal-scroll-section {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 2rem 10vw;
+  scrollbar-width: none;
+}
+
+.horizontal-scroll-section::-webkit-scrollbar {
+  display: none;
+}
+
+.project-slide {
+  min-width: 450px;
+  scroll-snap-align: center;
 }
