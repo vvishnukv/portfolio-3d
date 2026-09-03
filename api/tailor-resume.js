@@ -20,6 +20,11 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Job description is required' });
     }
 
+    // Sanitize the job description to prevent broken template strings or JSON syntax errors
+    const sanitizedJD = jobDescription
+      .replace(/["\\]/g, ' ') // Replace raw quotes and backslashes with spaces
+      .replace(/[\r\n]+/g, ' '); // Normalize newlines into spaces
+
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       return res.status(500).json({ error: 'GEMINI_API_KEY not configured on server' });
@@ -72,7 +77,7 @@ export default async function handler(req, res) {
       ${livePortfolioContext}
 
       Target Job Description:
-      ${jobDescription}
+      ${sanitizedJD}
 
       Return strictly a valid JSON object matching this schema (do not include markdown codeblock formatting like \`\`\`json):
       {
@@ -149,7 +154,7 @@ export default async function handler(req, res) {
           config: {
             responseMimeType: 'application/json',
             temperature: 0.1,
-            maxOutputTokens: 2048 // Prevents token cutoff and ensures matchScore is always returned
+            maxOutputTokens: 2048
           }
         });
         
@@ -161,8 +166,10 @@ export default async function handler(req, res) {
         const errString = err.toString().toLowerCase();
         
         const isRetryable = 
+          err.status === 404 ||
           err.status === 429 || 
           err.status === 503 || 
+          errString.includes('not_found') ||
           errString.includes('quota') || 
           errString.includes('resource_exhausted') || 
           errString.includes('rate limit') ||
@@ -170,7 +177,7 @@ export default async function handler(req, res) {
           errString.includes('high demand');
 
         if (isRetryable) {
-          continue; // Try next model in sequence
+          continue; 
         } else {
           throw err; 
         }
