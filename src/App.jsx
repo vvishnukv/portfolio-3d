@@ -4,6 +4,7 @@ import { Canvas } from '@react-three/fiber'
 import './index.css'
 
 import SpidermanCursor from './components/SpidermanCursor'
+import SpidermanEasterEgg from './components/SpidermanEasterEgg'
 import HyperComplexBackground from './components/HyperComplexBackground'
 import Navbar from './components/Navbar'
 
@@ -81,6 +82,7 @@ export default function App() {
       `}</style>
 
       <SpidermanCursor />
+      <SpidermanEasterEgg />
 
       <Navbar
         theme={theme}

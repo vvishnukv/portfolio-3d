@@ -43,7 +43,7 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
           <span style={{ fontSize: '1rem', marginRight: '8px' }}>⚡</span>
           <input
             type="text"
-            placeholder="Search projects (e.g., Docker, Python)..."
+            placeholder="Search projects or type 'SPIDER'..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
