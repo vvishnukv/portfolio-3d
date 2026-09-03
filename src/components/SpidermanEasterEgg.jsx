@@ -12,6 +12,8 @@ export default function SpidermanEasterEgg() {
   ]
 
   useEffect(() => {
+    let timer = null
+
     const handleKeyDown = (e) => {
       const key = e.key.length === 1 ? e.key.toLowerCase() : e.key
       
@@ -27,8 +29,9 @@ export default function SpidermanEasterEgg() {
 
         if (isKonamiMatch || isSpiderMatch) {
           setUnlocked(true)
-          const timer = setTimeout(() => setUnlocked(false), 7000)
-          return () => clearTimeout(timer)
+          if (timer) clearTimeout(timer)
+          timer = setTimeout(() => setUnlocked(false), 7000)
+          return []
         }
 
         return nextKeys
@@ -36,7 +39,10 @@ export default function SpidermanEasterEgg() {
     }
 
     window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      if (timer) clearTimeout(timer)
+    }
   }, [])
 
   return (
