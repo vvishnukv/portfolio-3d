@@ -28,53 +28,45 @@ export default async function handler(req, res) {
     const ai = new GoogleGenAI({ apiKey });
 
     const livePortfolioContext = `
-      Candidate Full Name: Vishnu Kaushik Varma Vuddaraju
+      Candidate Full Name: Vishnu Kaushik Varma Vuddaraju[cite: 1]
       Title: Software Engineer & IT Technical Specialist
-      Contact: Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781 | linkedin.com/in/vishnukaushikvarma | https://vishnukaushikvarma.vercel.app/
+      Contact: Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781 | linkedin.com/in/vishnukaushikvarma | https://vishnukaushikvarma.vercel.app/[cite: 1]
 
       Education:
-      - Marist University | Master of Science, Information Systems | Jan 2025 – Dec 2026 | GPA: 3.845
-      - Keshav Memorial Institute Of Technology | Bachelor of Technology, Computer Science & Machine Learning (CSM) | Aug 2020 – May 2024 | GPA: 3.5
+      - Marist University | Master of Science, Information Systems | Jan 2025 – Dec 2026 | GPA: 3.845[cite: 1]
+      - Keshav Memorial Institute Of Technology | Bachelor of Technology, Computer Science & Machine Learning (CSM) | Aug 2020 – May 2024 | GPA: 3.5[cite: 1]
 
       Work Experience:
-      - Marist University | Web Developer and LMS Quality Assurance Tester - Digital Education | Apr 2025 – Present
+      - Marist University | Web Developer and LMS Quality Assurance Tester - Digital Education | Apr 2025 – Present[cite: 1]
         * Developed 150+ academic and departmental web pages in Liferay CMS with responsive design, SEO optimization, and WCAG 2.2 accessibility compliance.
         * Resolved 100+ complex Jira tickets, cutting ticket resolution time by 50% and boosting response rates by 30%.
-        * Audited 5,000+ Brightspace courses for WCAG 2.2 compliance using Power Apps and Power Automate workflow, automating issue reporting to faculty.
-        * Assisted faculty across every department with Brightspace LMS and accessibility through hybrid/live sessions and resolved 200+ support requests through Team Dynamix.
-        * Conducted workshops on integrating LTI tools and new LMS features, collaborating with the Center for Teaching and Learning to enhance faculty teaching.
-        * Spearheaded full institutional migration of 500+ courses from Sakai to Brightspace for 6,000+ end-users.
-        * Engineered tracking pipeline with Power Apps and Excel to parse system errors, eliminating 10+ hours of manual follow-up weekly.
-        * Co-led Bright Foxes outreach campaign delivering 15+ faculty support sessions and resolving 50+ system inquiries.
-        * Documented Minutes of Meetings (MoMs) for Digital Education projects, ensuring clear communication of action items among technical and academic stakeholders.
-        * Conducted functional, regression, and cross-browser QA testing to ensure LMS and CMS accessibility and quality compliance.
-        * Tested Sakai tools rigorously, helping out with quality assurance testing and creating detailed tickets for the Sakai team to resolve bugs.
+        * Audited 5,000+ course modules using automated Power Apps workflows to parse system errors, log defect reports, and verify compliance across academic departments[cite: 1].
+        * Documented detailed Minutes of Meetings (MoMs) and test procedures to effectively facilitate requirement discussions between technical engineers and non-technical stakeholders[cite: 1].
 
-      - Forge Alumnus | Application Developer & Team Lead | Hyderabad, India | Sep 2023 – Mar 2024
-        * Engineered and launched Realtor+, a full-scale real estate mobile platform for a USA (New Jersey) client in just 45 days, supporting 10,000+ active users, 100+ real estate agents, and 3 distinct user profiles across Android and iOS platforms.
-        * Released major feature updates for the enterprise mobile application on the Apple App Store and Google Play Store, driving a 60% increase in total application downloads while managing Apple Analytics and Google Analytics.
-        * Architected the Forge HRMS application for automated daily employee check-in and check-out tracking utilizing real-time GPS coordinates and location validation.
-        * Delivered the fully functional Forge Inspira event platform in just 30 days for a 2024 conference, executing rigorous QA testing across 3 user profiles and QR-based event registration tracking.
-        * Directed a 20-member technical development team, hosting 5+ onboarding sessions, authoring 15+ pages of Standard Operating Procedures, and serving as head of volunteers and technical hackathon instructor.
+      - Forge Alumnus | Application Developer & Team Lead | Hyderabad, India | Sep 2023 – Mar 2024[cite: 1]
+        * Executed rigorous functional QA testing across 3 distinct user profiles for real-time mobile and web platforms to ensure zero post-launch critical defects[cite: 1].
+        * Authored 15+ pages of Standard Operating Procedures (SOPs) and technical documentation to standardize bug logging, requirements tracing, and QA workflows[cite: 1].
+        * Directed a 20-member technical development team in an Agile environment, conducting onboarding sessions and bug verification discussions to accelerate application releases[cite: 1].
 
       Featured Projects Pool:
-      1. LMS Accessibility & Student Success Analysis: Processed 10,000+ student LMS records using Python and PostgreSQL inside Docker to evaluate WCAG 2.1 accessibility compliance. Uncovered critical academic performance metrics and built interactive Tableau Public dashboards. (Python, PostgreSQL, Tableau, Docker, Pandas)
-      2. Containerized Research Data Pipeline: Engineered an automated research workflow deployed on a GCP Ubuntu Linux virtual machine utilizing Docker for absolute environment isolation. Processed multi-subject research simulations and generated statistical aggregates via Pandas and NumPy. (Docker, GCP, Python, Pandas, NumPy)
-      3. AI-Powered Voice Music Assistant: Built a full-stack voice-activated virtual assistant leveraging Node.js, Express, and MongoDB Atlas to manage and query song directories. Processed speech-to-text voice prompts through OpenAI's API to intelligently parse requests and trigger local computer audio playback. (Node.js, Express, MongoDB Atlas, OpenAI API, Speech-to-Text)
-      4. LinkNews Mobile App: Developed a cross-platform news mobile application using Flutter and Dart. Integrated asynchronous JSON REST API data pipelines via HTTP, HTML parsing utilities, and Firebase Cloud Messaging (FCM) with local notifications for real-time user engagement. (Flutter, Dart, GetX, Firebase FCM, REST APIs)
-      5. Personal Diary App: Built a full-featured personal diary mobile application using Flutter and Dart. Integrated Provider state management, SQLite/Shared Preferences for persistent local data storage, and dynamic light/dark theme switching. (Flutter, Dart, Provider, SQLite, Shared Preferences)
-      6. Flutter SQLite & API Integration App: Developed a Flutter mobile utility to fetch remote data from JSONPlaceholder APIs, cache and manage records securely using local SQLite databases (sqflite), and render dynamic floating lists with stylized components. (Flutter, Dart, SQLite, REST API, HTTP)
+      1. LMS Accessibility & Student Success Analysis: Queried and processed 10,000+ student LMS records using PostgreSQL and Python inside Docker to evaluate data integrity and compliance criteria. Created interactive Tableau dashboards to visually communicate functional evaluation metrics and audit findings to stakeholders. (Python, PostgreSQL, Tableau, Docker, Pandas)[cite: 1]
+      2. Flutter SQLite & API Integration App: Executed functional test scenarios on REST API integrations by fetching remote JSON endpoints and validating dynamic data parsing against local SQLite records. Identified edge-case data errors and UI rendering defects across asynchronous HTTP data pipelines to improve app stability and response handling. (SQLite, REST API, Dart, HTTP)[cite: 1]
+      3. LinkNews Mobile App: Tested asynchronous JSON REST API data pipelines and HTML parsing utilities to guarantee reliable real-time content display. Validated push notification triggers and payload deliveries through end-to-end manual testing using Firebase Cloud Messaging (FCM). (Flutter, REST APIs, Firebase FCM, Dart)[cite: 1]
 
       Master Technical Skills:
-      - Programming Languages: Python, SQL, JavaScript, Dart, HTML
-      - Frameworks & Libraries: Flutter, Node.js, Express, Pandas, NumPy, Provider, GetX, REST APIs
-      - Databases & Cloud: PostgreSQL, MongoDB Atlas, SQLite, Google Cloud Platform (GCP), Firebase, Firebase FCM
-      - Tools, AI & Platforms: Docker, Tableau, OpenAI API, Speech-to-Text, Power Apps, Liferay CMS, Brightspace, Sakai, Git, GitHub, Jira
+      - Programming Languages: SQL, Python, JavaScript, Dart, HTML[cite: 1]
+      - Frameworks & Libraries: REST APIs, Node.js, Express, Pandas, NumPy, Flutter, GetX[cite: 1]
+      - Databases & Cloud: PostgreSQL, SQLite, MongoDB Atlas, Google Cloud Platform (GCP), Firebase[cite: 1]
+      - Tools, AI & Platforms: Jira, Brightspace, Sakai, Liferay CMS, Power Apps, Docker, Tableau, Git, GitHub[cite: 1]
     `;
 
     const prompt = `
-      You are an elite career strategist. Analyze the Target Job Description below against the candidate's verified live portfolio background.
-      Curate and tailor the most impactful bullets and select the 3-4 most relevant projects for the target role. Do not invent fake facts or companies; use the verified portfolio background provided.
+      You are a strict, veteran technical recruiter acting as a hard gatekeeper. Your job is to evaluate the candidate's actual qualifications against the Target Job Description below with ruthless honesty.
+
+      SCORING RUBRIC (Strict Evaluation):
+      1. Seniority & Experience Penalty: If the job description explicitly requires years of experience (e.g., 5+ years, 10+ years) or niche domain knowledge (e.g., healthcare claims, Medicare, specialized government systems like Momentum) that the candidate's timeline does not meet, you MUST heavily penalize the match score (bringing it down to 30%-50% or lower). Do not rely solely on keyword matches.
+      2. Unrelated Field Penalty: If the job is completely unrelated (e.g., electrician, medical doctor), score it 10% to 20%.
+      3. Strong Software/QA Match: Only give scores in the 80%+ range if the role matches a junior-to-mid software engineer, web developer, or general QA tester role where their actual background and graduation year (2024/2026) align.
 
       Verified Candidate Portfolio:
       ${livePortfolioContext}
@@ -82,33 +74,34 @@ export default async function handler(req, res) {
       Target Job Description:
       ${jobDescription}
 
-      Return strictly a valid JSON object matching this schema:
+      Return strictly a valid JSON object matching this schema (do not include markdown codeblock formatting like \`\`\`json):
       {
         "targetRole": "Extracted Job Title",
+        "matchScore": "XX%",
         "skills": {
-          "languages": "Python, SQL, JavaScript, Dart, HTML",
-          "frameworks": "Flutter, Node.js, Express, Pandas, NumPy, Provider, GetX, REST APIs",
-          "databasesCloud": "PostgreSQL, MongoDB Atlas, SQLite, Google Cloud Platform (GCP), Firebase, Firebase FCM",
-          "toolsPlatforms": "Docker, Tableau, OpenAI API, Speech-to-Text, Power Apps, Liferay CMS, Brightspace, Sakai, Git, GitHub, Jira"
+          "languages": "SQL, Python, JavaScript, Dart, HTML",
+          "frameworks": "REST APIs, Node.js, Express, Pandas, NumPy, Flutter, GetX",
+          "databasesCloud": "PostgreSQL, SQLite, MongoDB Atlas, Google Cloud Platform (GCP), Firebase",
+          "toolsPlatforms": "Jira, Brightspace, Sakai, Liferay CMS, Power Apps, Docker, Tableau, Git, GitHub"
         },
         "experience": [
           {
             "header": "Marist University | Web Developer and LMS Quality Assurance Tester - Digital Education",
             "period": "Apr 2025 – Present",
             "bullets": [
-              "Selected high-impact tailored bullet point 1...",
-              "Selected high-impact tailored bullet point 2...",
-              "Selected high-impact tailored bullet point 3...",
-              "Selected high-impact tailored bullet point 4..."
+              "Recruiter-optimized bullet 1...",
+              "Recruiter-optimized bullet 2...",
+              "Recruiter-optimized bullet 3...",
+              "Recruiter-optimized bullet 4..."
             ]
           },
           {
             "header": "Forge Alumnus | Application Developer & Team Lead | Hyderabad, India",
             "period": "Sep 2023 – Mar 2024",
             "bullets": [
-              "Selected high-impact tailored bullet point 1...",
-              "Selected high-impact tailored bullet point 2...",
-              "Selected high-impact tailored bullet point 3..."
+              "Recruiter-optimized bullet 1...",
+              "Recruiter-optimized bullet 2...",
+              "Recruiter-optimized bullet 3..."
             ]
           }
         ],
@@ -116,40 +109,106 @@ export default async function handler(req, res) {
           {
             "title": "Selected Project 1 Name | Key Stack",
             "bullets": [
-              "Detailed bullet point highlighting technical architecture and metrics",
-              "Detailed bullet point highlighting tools, outcome, and engineering impact"
+              "Tailored bullet point matching requirements",
+              "Tailored outcome bullet point matching requirements"
             ]
           },
           {
             "title": "Selected Project 2 Name | Key Stack",
             "bullets": [
-              "Detailed bullet point highlighting technical architecture and metrics",
-              "Detailed bullet point highlighting tools, outcome, and engineering impact"
+              "Tailored bullet point matching requirements",
+              "Tailored outcome bullet point matching requirements"
             ]
           },
           {
             "title": "Selected Project 3 Name | Key Stack",
             "bullets": [
-              "Detailed bullet point highlighting technical architecture and metrics",
-              "Detailed bullet point highlighting tools, outcome, and engineering impact"
+              "Tailored bullet point matching requirements",
+              "Tailored outcome bullet point matching requirements"
             ]
           }
         ]
       }
     `;
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
-      contents: prompt,
-      config: {
-        responseMimeType: 'application/json',
-        temperature: 0.15
-      }
-    });
+    // Stable failover model sequence
+    const modelsToTry = [
+      'gemini-2.0-flash',
+      'gemini-1.5-flash',
+      'gemini-1.5-pro'
+    ];
 
-    return res.status(200).json(JSON.parse(response.text));
+    let responseText = null;
+    let lastError = null;
+
+    for (const modelName of modelsToTry) {
+      try {
+        const response = await ai.models.generateContent({
+          model: modelName,
+          contents: prompt,
+          config: {
+            responseMimeType: 'application/json',
+            temperature: 0.1,
+            maxOutputTokens: 2048 // Prevents token cutoff and ensures matchScore is always returned
+          }
+        });
+        
+        responseText = response.text;
+        break; 
+      } catch (err) {
+        console.warn(`Model ${modelName} failed. Trying next fallback...`);
+        lastError = err;
+        const errString = err.toString().toLowerCase();
+        
+        const isRetryable = 
+          err.status === 429 || 
+          err.status === 503 || 
+          errString.includes('quota') || 
+          errString.includes('resource_exhausted') || 
+          errString.includes('rate limit') ||
+          errString.includes('unavailable') ||
+          errString.includes('high demand');
+
+        if (isRetryable) {
+          continue; // Try next model in sequence
+        } else {
+          throw err; 
+        }
+      }
+    }
+
+    if (!responseText) {
+      throw lastError || new Error('All models unavailable.');
+    }
+
+    const resultText = responseText.trim();
+    const cleanJson = resultText.replace(/^```json\s*/, '').replace(/^```\s*/, '').replace(/\s*```$/, '');
+
+    return res.status(200).json(JSON.parse(cleanJson));
   } catch (error) {
-    console.error('Gemini error:', error);
-    return res.status(500).json({ error: 'Failed to tailor resume', details: error.message });
+    console.error('Gemini server error:', error);
+
+    const errString = error.toString().toLowerCase();
+    const isUnavailable = error.status === 503 || errString.includes('unavailable') || errString.includes('high demand');
+    const isQuotaError = error.status === 429 || errString.includes('quota') || errString.includes('resource_exhausted') || errString.includes('rate limit');
+
+    if (isUnavailable) {
+      return res.status(503).json({
+        error: 'Service Temporarily Unavailable',
+        details: 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.'
+      });
+    }
+
+    if (isQuotaError) {
+      return res.status(429).json({ 
+        error: 'API Quota Exceeded', 
+        details: 'API rate limits or quotas have been reached. Please try again later.' 
+      });
+    }
+
+    return res.status(500).json({ 
+      error: 'Failed to tailor resume', 
+      details: error.message 
+    });
   }
 }
