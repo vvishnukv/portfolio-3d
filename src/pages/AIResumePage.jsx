@@ -145,8 +145,15 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
               Target Role: <span style={{ color: '#38bdf8' }}>{tailoredResume.targetRole || 'Software Engineer'}</span>
             </span>
           </div>
-          <div style={{ background: '#10b981', color: '#ffffff', padding: '0.35rem 0.9rem', borderRadius: '20px', fontWeight: 800, fontSize: '0.88rem' }}>
-            Match Score: {tailoredResume.matchScore}
+          <div style={{ background: (tailoredResume.matchScore || tailoredResume.match_score) ? '#10b981' : '#ef4444', color: '#ffffff', padding: '0.35rem 0.9rem', borderRadius: '20px', fontWeight: 800, fontSize: '0.88rem' }}>
+            Match Score: {(() => {
+              const score = tailoredResume.matchScore || tailoredResume.match_score;
+              if (!score) {
+                console.error("Match Score Error: Could not retrieve matchScore from Gemini response payload.", tailoredResume);
+                return "Error (Check Console)";
+              }
+              return score;
+            })()}
           </div>
         </div>
       )}
