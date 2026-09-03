@@ -58,11 +58,6 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
 
       const data = await response.json()
       
-      // Ensure matchScore reflects the provided job description
-      if (!data.matchScore || data.matchScore === '96%') {
-        data.matchScore = calculateJDScore(jobDescription)
-      }
-      
       setTailoredResume(data)
     } catch (err) {
       alert('Could not connect to backend server. Ensure /api/tailor-resume is active.')
