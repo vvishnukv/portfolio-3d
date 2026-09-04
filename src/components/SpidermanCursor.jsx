@@ -137,11 +137,11 @@ export default function SpidermanCursor() {
               y1={w.y1}
               x2={w.x2}
               y2={w.y2}
-              stroke="rgba(255, 255, 255, 0.85)"
+              stroke="rgba(0, 212, 170, 0.7)"
               strokeWidth="3.5"
               strokeLinecap="round"
               strokeDasharray="4 4"
-              style={{ filter: 'drop-shadow(0 0 4px rgba(56, 189, 248, 0.6))' }}
+              style={{ filter: 'drop-shadow(0 0 4px rgba(0, 212, 170, 0.6))' }}
             />
           ))}
         </AnimatePresence>
@@ -158,11 +158,11 @@ export default function SpidermanCursor() {
               y1={cursorY.get() + 20}
               x2={grapplePoint.x}
               y2={grapplePoint.y}
-              stroke="#38bdf8"
+              stroke="#00d4aa"
               strokeWidth="5"
               strokeLinecap="round"
               strokeDasharray="6 3"
-              style={{ filter: 'drop-shadow(0 0 8px #38bdf8)' }}
+              style={{ filter: 'drop-shadow(0 0 10px rgba(0, 212, 170, 0.8))' }}
             />
           )}
         </AnimatePresence>
@@ -186,7 +186,7 @@ export default function SpidermanCursor() {
               position: 'fixed',
               width: '6px',
               height: '6px',
-              backgroundColor: Math.random() > 0.5 ? '#ef4444' : '#38bdf8',
+              backgroundColor: Math.random() > 0.5 ? '#00d4aa' : '#0066ff',
               borderRadius: '50%',
               pointerEvents: 'none',
               zIndex: 10000,
@@ -210,7 +210,7 @@ export default function SpidermanCursor() {
               left: '-10px',
               width: '60px',
               height: '60px',
-              border: '2px solid #ef4444',
+              border: '2px solid #00d4aa',
               borderRadius: '50%',
               pointerEvents: 'none',
             }}
@@ -237,16 +237,22 @@ export default function SpidermanCursor() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            filter: 'drop-shadow(0 0 10px rgba(239, 68, 68, 0.7))',
+            filter: 'drop-shadow(0 0 12px rgba(0, 212, 170, 0.85))',
           }}
         >
-          {/* Vector Spider Icon */}
-          <svg viewBox="0 0 24 24" width="38" height="38" fill="#ef4444">
-            <path d="M3 3L10 10M21 3L14 10M3 21L10 14M21 21L14 14M2 11H9M15 11H22M2 13H9M15 13H22" stroke="#ef4444" strokeWidth="2.2" strokeLinecap="round" />
-            <ellipse cx="12" cy="12" rx="4" ry="5" fill="#ef4444" />
-            <circle cx="12" cy="7" r="2.5" fill="#111" />
-            <circle cx="11" cy="6.5" r="0.6" fill="#38bdf8" />
-            <circle cx="13" cy="6.5" r="0.6" fill="#38bdf8" />
+          {/* Vector Spider Icon — gradient cyan/blue */}
+          <svg viewBox="0 0 24 24" width="38" height="38">
+            <defs>
+              <linearGradient id="spiderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#00d4aa" />
+                <stop offset="100%" stopColor="#0066ff" />
+              </linearGradient>
+            </defs>
+            <path d="M3 3L10 10M21 3L14 10M3 21L10 14M21 21L14 14M2 11H9M15 11H22M2 13H9M15 13H22" stroke="url(#spiderGrad)" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+            <ellipse cx="12" cy="12" rx="4" ry="5" fill="url(#spiderGrad)" />
+            <circle cx="12" cy="7" r="2.5" fill="#0a0e17" />
+            <circle cx="11" cy="6.5" r="0.6" fill="#00d4aa" />
+            <circle cx="13" cy="6.5" r="0.6" fill="#00d4aa" />
           </svg>
         </motion.div>
 
@@ -263,9 +269,9 @@ export default function SpidermanCursor() {
                 top: grapplePoint.y - 12,
                 width: '24px',
                 height: '24px',
-                border: '2px solid #38bdf8',
+                border: '2px solid #00d4aa',
                 borderRadius: '50%',
-                boxShadow: '0 0 10px #38bdf8',
+                boxShadow: '0 0 12px #00d4aa',
                 pointerEvents: 'none',
               }}
             />

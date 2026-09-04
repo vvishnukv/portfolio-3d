@@ -25,24 +25,65 @@ export default function Navbar({
       alignItems: 'center',
       padding: '0 4vw',
       backgroundColor: theme.navBg,
-      backdropFilter: 'blur(12px)',
+      backdropFilter: 'blur(20px)',
       borderBottom: `1px solid ${theme.cardBorder}`,
       zIndex: 1000,
-      boxShadow: isDarkMode ? 'none' : '0 4px 20px rgba(0, 0, 0, 0.03)'
+      boxShadow: isDarkMode ? 'none' : '0 4px 20px rgba(0, 0, 0, 0.03)',
     }}>
-      {/* 1. Brand / Marquee Name */}
-      <div style={{ overflow: 'hidden', whiteSpace: 'nowrap', width: '180px', flexShrink: 0 }}>
-        <div style={{ display: 'inline-block', whiteSpace: 'nowrap', animation: 'smoothMarquee 8s linear infinite' }}>
-          <span style={{ display: 'inline-block', fontWeight: 900, fontSize: '0.9rem', letterSpacing: '1px', color: '#ef4444', paddingRight: '20px' }}>
-            Vishnu Kaushik Varma &bull;
-          </span>
-          <span style={{ display: 'inline-block', fontWeight: 900, fontSize: '0.9rem', letterSpacing: '1px', color: '#ef4444', paddingRight: '20px' }}>
-            Vishnu Kaushik Varma &bull;
-          </span>
-        </div>
+      {/* Brand / Logo — Clean wordmark */}
+      <div style={{ flexShrink: 0 }}>
+        <a
+          href="#home"
+          onClick={() => { playClickSound(); setCurrentPage('portfolio'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          style={{
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.6rem',
+          }}
+        >
+          {/* Avatar initials */}
+          <div style={{
+            width: '36px',
+            height: '36px',
+            borderRadius: '10px',
+            background: `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '0.85rem',
+            fontWeight: 800,
+            color: '#fff',
+            boxShadow: `0 0 16px ${theme.accent1}50`,
+          }}>
+            VK
+          </div>
+
+          {/* Name */}
+          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
+            <span style={{
+              fontWeight: 800,
+              fontSize: '0.9rem',
+              color: theme.textMain,
+              letterSpacing: '-0.01em',
+              whiteSpace: 'nowrap',
+            }}>
+              Vishnu Kaushik
+            </span>
+            <span style={{
+              fontWeight: 500,
+              fontSize: '0.65rem',
+              color: theme.textMuted,
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+            }}>
+              Portfolio
+            </span>
+          </div>
+        </a>
       </div>
 
-      {/* 2. Desktop Navigation & Action Buttons */}
+      {/* Desktop Navigation & Action Buttons */}
       <div className="desktop-nav-links" style={{ alignItems: 'center', gap: '1.2rem', flexShrink: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
           {navSections.map((section) => {
@@ -53,56 +94,91 @@ export default function Navbar({
                 href={`#${section}`}
                 onClick={() => { playClickSound(); setCurrentPage('portfolio'); }}
                 style={{
-                  color: isActive ? '#ef4444' : theme.textMain,
+                  color: isActive ? theme.accent1 : theme.textMuted,
                   textDecoration: 'none',
                   fontWeight: isActive ? 700 : 600,
                   fontSize: '0.85rem',
                   padding: '4px 2px',
-                  borderBottom: isActive ? '2px solid #ef4444' : '2px solid transparent',
-                  transition: 'color 0.2s, border-color 0.2s',
-                  display: 'inline-block'
+                  position: 'relative',
+                  transition: 'color 0.2s',
+                  display: 'inline-block',
+                  letterSpacing: '0.01em',
                 }}
+                onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = theme.textMain }}
+                onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.color = theme.textMuted }}
               >
                 {section.charAt(0).toUpperCase() + section.slice(1)}
+                {isActive && (
+                  <div style={{
+                    position: 'absolute',
+                    bottom: '-2px',
+                    left: 0,
+                    right: 0,
+                    height: '2px',
+                    background: `linear-gradient(90deg, ${theme.accent1}, ${theme.accent2})`,
+                    borderRadius: '999px',
+                    boxShadow: `0 0 8px ${theme.accent1}`,
+                  }} />
+                )}
               </a>
             )
           })}
         </div>
 
-        {/* Buttons Group (Row) */}
+        {/* Buttons Group */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
           <button
             onClick={() => setIsDarkMode(!isDarkMode)}
             style={{
-              background: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(15, 23, 42, 0.06)',
+              background: theme.cardBg,
               border: `1px solid ${theme.cardBorder}`,
               color: theme.textMain,
-              padding: '0.45rem 0.9rem',
-              borderRadius: '20px',
+              padding: '0.45rem 1rem',
+              borderRadius: '999px',
               cursor: 'pointer',
               fontWeight: 600,
               fontSize: '0.8rem',
               whiteSpace: 'nowrap',
               display: 'flex',
               alignItems: 'center',
-              gap: '4px'
+              gap: '6px',
+              backdropFilter: 'blur(8px)',
+              transition: 'all 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = theme.cardBorderFocus
+              e.currentTarget.style.boxShadow = `0 0 12px ${theme.accent1}30`
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = theme.cardBorder
+              e.currentTarget.style.boxShadow = 'none'
             }}
           >
-            {isDarkMode ? '☀️ Light' : '🌙 Dark'}
+            {isDarkMode ? '☀️' : '🌙'}
           </button>
 
           <button
             onClick={() => { playClickSound(); setCurrentPage('ai-resume'); }}
             style={{
-              background: currentPage === 'ai-resume' ? '#38bdf8' : 'rgba(56, 189, 248, 0.15)',
-              border: '1px solid #38bdf8',
-              color: currentPage === 'ai-resume' ? '#030712' : '#38bdf8',
-              padding: '0.45rem 1rem',
-              borderRadius: '20px',
+              background: `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`,
+              border: 'none',
+              color: '#fff',
+              padding: '0.45rem 1.1rem',
+              borderRadius: '999px',
               cursor: 'pointer',
               fontWeight: 700,
               fontSize: '0.8rem',
-              whiteSpace: 'nowrap'
+              whiteSpace: 'nowrap',
+              boxShadow: `0 4px 16px ${theme.accent1}40`,
+              transition: 'all 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-1px)'
+              e.currentTarget.style.boxShadow = `0 6px 24px ${theme.accent1}60`
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = `0 4px 16px ${theme.accent1}40`
             }}
           >
             ✨ AI Resume
@@ -110,19 +186,20 @@ export default function Navbar({
         </div>
       </div>
 
-      {/* 3. Mobile Hamburger & Theme Controls */}
+      {/* Mobile Hamburger & Theme Controls */}
       <div className="mobile-controls" style={{ alignItems: 'center', gap: '0.6rem' }}>
         <button
           onClick={() => setIsDarkMode(!isDarkMode)}
           style={{
-            background: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(15, 23, 42, 0.06)',
+            background: theme.cardBg,
             border: `1px solid ${theme.cardBorder}`,
             color: theme.textMain,
             padding: '0.4rem 0.7rem',
-            borderRadius: '20px',
+            borderRadius: '10px',
             cursor: 'pointer',
             fontSize: '0.75rem',
             fontWeight: 600,
+            backdropFilter: 'blur(8px)',
           }}
         >
           {isDarkMode ? '☀️' : '🌙'}
@@ -131,22 +208,33 @@ export default function Navbar({
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           style={{
-            background: 'transparent',
+            background: theme.cardBg,
             border: `1px solid ${theme.cardBorder}`,
             color: theme.textMain,
             padding: '0.4rem 0.7rem',
-            borderRadius: '8px',
+            borderRadius: '10px',
             cursor: 'pointer',
             fontSize: '1rem',
             fontWeight: 700,
+            backdropFilter: 'blur(8px)',
           }}
         >
           {mobileMenuOpen ? '✕' : '☰'}
         </button>
       </div>
 
-      {/* 4. Mobile Dropdown Menu Drawer */}
-      <div className="mobile-dropdown-menu">
+      {/* Mobile Dropdown Menu */}
+      <div className="mobile-dropdown-menu" style={{ backdropFilter: 'blur(24px)' }}>
+        {/* Gradient top border */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '3px',
+          background: `linear-gradient(90deg, ${theme.accent1}, ${theme.accent2})`,
+        }} />
+
         {navSections.map((section) => {
           const isActive = activeSection === section && currentPage === 'portfolio'
           return (
@@ -159,10 +247,11 @@ export default function Navbar({
                 setCurrentPage('portfolio')
               }}
               style={{
-                color: isActive ? '#ef4444' : theme.textMain,
+                color: isActive ? theme.accent1 : theme.textMain,
                 textDecoration: 'none',
                 fontWeight: isActive ? 700 : 600,
                 fontSize: '1.1rem',
+                position: 'relative',
               }}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
@@ -176,14 +265,14 @@ export default function Navbar({
             setCurrentPage('ai-resume')
           }}
           style={{
-            background: '#38bdf8',
-            color: '#030712',
+            background: `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`,
+            color: '#fff',
             border: 'none',
             padding: '0.8rem',
             borderRadius: '12px',
             fontWeight: 700,
             cursor: 'pointer',
-            marginTop: '0.5rem'
+            marginTop: '0.5rem',
           }}
         >
           ✨ AI Resume

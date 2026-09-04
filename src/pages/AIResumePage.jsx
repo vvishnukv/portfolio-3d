@@ -67,7 +67,22 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
   }
 
   return (
-    <div style={{ minHeight: 'calc(100vh - 70px)', padding: '5vh 4vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={{ minHeight: 'calc(100vh - 70px)', padding: '5vh 4vw', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+      {/* Page header */}
+      <div className="no-print" style={{ width: '100%', maxWidth: '840px', textAlign: 'center', marginBottom: '2rem' }}>
+        <h1 className="gradient-text" style={{
+          fontSize: 'clamp(2.2rem, 5vw, 3.2rem)',
+          fontWeight: 800,
+          marginBottom: '0.7rem',
+          letterSpacing: '-0.01em',
+        }}>
+          AI Resume Tailor
+        </h1>
+        <p style={{ color: theme.textMuted, fontSize: '1rem', maxWidth: '600px', margin: '0 auto' }}>
+          Paste a job description and let our AI tailor your resume to maximize ATS compatibility and recruiter match.
+        </p>
+      </div>
+
       
       {/* Native Print Styles: Hides UI controls & makes the resume pure searchable vector text */}
       <style>{`
@@ -98,14 +113,43 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
       <div className="no-print" style={{ width: '100%', maxWidth: '840px', marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <button
           onClick={() => { playClickSound(); setCurrentPage('portfolio'); }}
-          style={{ background: 'transparent', border: `1px solid ${theme.cardBorder}`, color: theme.textMain, padding: '0.5rem 1.2rem', borderRadius: '20px', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem' }}
+          style={{
+            background: theme.cardBg,
+            border: `1px solid ${theme.cardBorder}`,
+            color: theme.textMain,
+            padding: '0.5rem 1.2rem',
+            borderRadius: '999px',
+            cursor: 'pointer',
+            fontWeight: 600,
+            fontSize: '0.85rem',
+            backdropFilter: 'blur(8px)',
+            transition: 'all 0.2s ease',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = theme.cardBorderFocus
+            e.currentTarget.style.boxShadow = `0 0 12px ${theme.accent1}30`
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = theme.cardBorder
+            e.currentTarget.style.boxShadow = 'none'
+          }}
         >
           ← Back to Portfolio
         </button>
         {tailoredResume && (
           <button
             onClick={handleDownloadPDF}
-            style={{ background: '#ef4444', color: '#fff', border: 'none', padding: '0.6rem 1.8rem', borderRadius: '25px', fontWeight: 700, fontSize: '0.85rem', cursor: 'pointer', boxShadow: '0 4px 15px rgba(239, 68, 68, 0.3)' }}
+            style={{
+              background: `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`,
+              color: '#fff',
+              border: 'none',
+              padding: '0.6rem 1.8rem',
+              borderRadius: '999px',
+              fontWeight: 700,
+              fontSize: '0.85rem',
+              cursor: 'pointer',
+              boxShadow: `0 4px 16px ${theme.accent1}40`,
+            }}
           >
             Download PDF
           </button>
@@ -113,8 +157,23 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
       </div>
 
       {/* Target Job Description Input Box */}
-      <div className="no-print" style={{ width: '100%', maxWidth: '840px', background: theme.cardBg, border: '1px solid #38bdf8', padding: '2.2rem', borderRadius: '1.2rem', backdropFilter: 'blur(16px)', marginBottom: '3rem' }}>
-        <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: theme.textMain, marginBottom: '1.4rem', letterSpacing: '0.3px' }}>
+      <div className="no-print glass-card" style={{ width: '100%', maxWidth: '840px', padding: '2.2rem', marginBottom: '3rem', position: 'relative', overflow: 'hidden' }}>
+        {/* Top gradient strip */}
+        <div style={{
+          position: 'absolute',
+          top: 0, left: 0, right: 0,
+          height: '3px',
+          background: `linear-gradient(90deg, ${theme.accent1}, ${theme.accent2})`,
+        }} />
+
+        <h2 style={{
+          fontSize: '1.3rem',
+          fontWeight: 800,
+          color: theme.textMain,
+          marginBottom: '1.4rem',
+          letterSpacing: '0.3px',
+          fontFamily: 'var(--font-display)',
+        }}>
           Target Job Description
         </h2>
         <textarea
@@ -122,30 +181,81 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
           placeholder="Paste target Job Description here..."
           value={jobDescription}
           onChange={(e) => setJobDescription(e.target.value)}
-          style={{ width: '100%', minHeight: '140px', padding: '1.2rem', borderRadius: '0.8rem', border: `1px solid ${theme.cardBorder}`, backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.04)' : 'rgba(15, 23, 42, 0.02)', color: theme.textMain, fontSize: '0.92rem', lineHeight: 1.5, outline: 'none', resize: 'vertical', fontFamily: 'inherit', marginBottom: '1.6rem', boxSizing: 'border-box' }}
+          style={{
+            width: '100%',
+            minHeight: '140px',
+            padding: '1.2rem',
+            borderRadius: '0.8rem',
+            border: `1px solid ${theme.cardBorder}`,
+            backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.04)' : 'rgba(15, 23, 42, 0.02)',
+            color: theme.textMain,
+            fontSize: '0.92rem',
+            lineHeight: 1.5,
+            outline: 'none',
+            resize: 'vertical',
+            fontFamily: 'var(--font-mono)',
+            marginBottom: '1.6rem',
+            boxSizing: 'border-box',
+            transition: 'all 0.2s ease',
+          }}
+          onFocus={(e) => (e.currentTarget.style.borderColor = theme.cardBorderFocus)}
+          onBlur={(e) => (e.currentTarget.style.borderColor = theme.cardBorder)}
         />
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span style={{ fontSize: '0.82rem', color: theme.textMuted }}>Direct Live Portfolio Alignment</span>
           <button
             onClick={handleGenerate}
             disabled={isGenerating || !jobDescription.trim()}
-            style={{ background: isGenerating ? '#64748b' : '#38bdf8', color: '#030712', border: 'none', padding: '0.7rem 1.8rem', borderRadius: '25px', fontWeight: 700, fontSize: '0.88rem', cursor: isGenerating ? 'not-allowed' : 'pointer', transition: 'all 0.2s ease' }}
+            style={{
+              background: isGenerating ? '#64748b' : `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`,
+              color: '#fff',
+              border: 'none',
+              padding: '0.7rem 1.8rem',
+              borderRadius: '999px',
+              fontWeight: 700,
+              fontSize: '0.88rem',
+              cursor: isGenerating ? 'not-allowed' : 'pointer',
+              transition: 'all 0.2s ease',
+              boxShadow: isGenerating ? 'none' : `0 4px 16px ${theme.accent1}40`,
+            }}
           >
-            {isGenerating ? 'Tailoring Resume...' : 'Generate Resume'}
+            {isGenerating ? 'Tailoring Resume...' : '⚡ Generate Resume'}
           </button>
         </div>
       </div>
 
       {/* Match Score Badge (Web Page UI Only) */}
       {tailoredResume && (
-        <div className="no-print" style={{ width: '100%', maxWidth: '816px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: isDarkMode ? 'rgba(56, 189, 248, 0.1)' : '#e0f2fe', border: '1px solid #38bdf8', borderRadius: '10px', padding: '0.85rem 1.4rem', marginBottom: '2rem' }}>
+        <div className="no-print" style={{
+          width: '100%',
+          maxWidth: '816px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          background: theme.cardBg,
+          border: `1px solid ${theme.cardBorder}`,
+          borderRadius: '999px',
+          padding: '0.85rem 1.4rem',
+          marginBottom: '2rem',
+          backdropFilter: 'blur(16px)',
+          flexWrap: 'wrap',
+          gap: '0.8rem',
+        }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span style={{ fontSize: '1.1rem' }}>🎯</span>
             <span style={{ fontWeight: 700, color: theme.textMain, fontSize: '0.95rem' }}>
-              Target Role: <span style={{ color: '#38bdf8' }}>{tailoredResume.targetRole || 'Software Engineer'}</span>
+              Target Role: <span style={{ color: theme.accent1 }}>{tailoredResume.targetRole || 'Software Engineer'}</span>
             </span>
           </div>
-          <div style={{ background: (tailoredResume.matchScore || tailoredResume.match_score) ? '#10b981' : '#ef4444', color: '#ffffff', padding: '0.35rem 0.9rem', borderRadius: '20px', fontWeight: 800, fontSize: '0.88rem' }}>
+          <div style={{
+            background: (tailoredResume.matchScore || tailoredResume.match_score) ? `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})` : theme.accent3,
+            color: '#ffffff',
+            padding: '0.35rem 1rem',
+            borderRadius: '999px',
+            fontWeight: 800,
+            fontSize: '0.88rem',
+            boxShadow: `0 0 16px ${theme.accent1}40`,
+          }}>
             Match Score: {(() => {
               const score = tailoredResume.matchScore || tailoredResume.match_score;
               if (!score) {

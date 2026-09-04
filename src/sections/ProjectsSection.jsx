@@ -10,16 +10,53 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
   )
 
   return (
-    <section id="projects" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '8vh 5vw' }}>
-      <div style={{ padding: '0 3vw', marginBottom: '2.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1.5rem' }}>
+    <section
+      id="projects"
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '8vh 5vw',
+      }}
+    >
+      <div
+        style={{
+          padding: '0 3vw',
+          marginBottom: '2.5rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+          flexWrap: 'wrap',
+          gap: '1.5rem',
+        }}
+      >
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, color: '#0284c7', margin: 0 }}
+          className="gradient-text"
+          style={{
+            fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+            fontWeight: 800,
+            margin: 0,
+            letterSpacing: '-0.01em',
+          }}
         >
-          Featured Projects {searchQuery && <span style={{ fontSize: '1.2rem', color: theme.textMuted }}>(Filtered by "{searchQuery}")</span>}
+          Featured Projects{' '}
+          {searchQuery && (
+            <span
+              style={{
+                fontSize: '1.2rem',
+                color: theme.textMuted,
+                fontWeight: 500,
+                fontStyle: 'italic',
+              }}
+            >
+              (Filtered by "{searchQuery}")
+            </span>
+          )}
         </motion.h2>
 
         <motion.div
@@ -32,12 +69,12 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
             position: 'relative',
             display: 'flex',
             alignItems: 'center',
-            borderRadius: '30px',
-            border: '2px solid #38bdf8',
-            backgroundColor: theme.cardBg,
+            borderRadius: '999px',
+            border: `1.5px solid ${theme.cardBorderFocus}`,
+            background: theme.cardBg,
             padding: '0.5rem 1.2rem',
-            backdropFilter: 'blur(12px)',
-            boxShadow: isDarkMode ? '0 0 20px rgba(56, 189, 248, 0.2)' : '0 8px 25px rgba(2, 132, 199, 0.12)'
+            backdropFilter: 'blur(16px)',
+            boxShadow: `0 0 20px ${theme.accent1}30`,
           }}
         >
           <span style={{ fontSize: '1rem', marginRight: '8px' }}>⚡</span>
@@ -51,27 +88,29 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
               border: 'none',
               color: theme.textMain,
               fontSize: '0.95rem',
-              fontWeight: 600,
+              fontWeight: 500,
               outline: 'none',
               width: '260px',
+              fontFamily: 'var(--font-display)',
             }}
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
               style={{
-                background: '#ef4444',
+                background: theme.accent3,
                 border: 'none',
                 color: '#fff',
                 borderRadius: '50%',
-                width: '20px',
-                height: '20px',
+                width: '22px',
+                height: '22px',
                 cursor: 'pointer',
                 fontSize: '0.75rem',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginLeft: '8px'
+                marginLeft: '8px',
+                fontWeight: 700,
               }}
             >
               ✕
@@ -80,9 +119,25 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
         </motion.div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', padding: '0 3vw' }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '2rem',
+          padding: '0 3vw',
+        }}
+      >
         {filteredProjects.length === 0 ? (
-          <p style={{ color: theme.textMuted, gridColumn: '1 / -1', textAlign: 'center', fontSize: '1.2rem' }}>No projects found matching "{searchQuery}"</p>
+          <p
+            style={{
+              color: theme.textMuted,
+              gridColumn: '1 / -1',
+              textAlign: 'center',
+              fontSize: '1.2rem',
+            }}
+          >
+            No projects found matching "{searchQuery}"
+          </p>
         ) : (
           filteredProjects.map((project, idx) => (
             <motion.div
@@ -91,35 +146,59 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="glass-card"
               onClick={() => window.open(project.github, '_blank')}
-              className="interactive-card"
               style={{
-                background: theme.cardBg,
-                border: `1px solid ${theme.cardBorder}`,
                 padding: '2rem',
-                borderRadius: '1.2rem',
-                backdropFilter: 'blur(12px)',
-                boxShadow: theme.cardShadow,
                 cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease'
+                position: 'relative',
+                overflow: 'hidden',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-8px) scale(1.01)'
-                e.currentTarget.style.borderColor = '#38bdf8'
-                e.currentTarget.style.boxShadow = isDarkMode ? '0 20px 40px rgba(56, 189, 248, 0.15)' : '0 20px 40px rgba(2, 132, 199, 0.12)'
+                e.currentTarget.style.transform = 'translateY(-6px) scale(1.01)'
+                e.currentTarget.style.borderColor = theme.cardBorderFocus
+                e.currentTarget.style.boxShadow = `${theme.cardGlow}, 0 12px 40px rgba(0,0,0,0.4)`
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0) scale(1)'
                 e.currentTarget.style.borderColor = theme.cardBorder
-                e.currentTarget.style.boxShadow = theme.cardShadow
+                e.currentTarget.style.boxShadow = 'var(--shadow-card)'
               }}
             >
+              {/* Top gradient strip */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: '3px',
+                  background: `linear-gradient(90deg, ${theme.accent1}, ${theme.accent2}, ${theme.accent3})`,
+                }}
+              />
+
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.8rem' }}>
-                  <h3 style={{ fontSize: '1.3rem', color: theme.textMain, margin: 0, fontWeight: 700 }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    marginBottom: '0.8rem',
+                    marginTop: '0.5rem',
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontSize: '1.3rem',
+                      color: theme.textMain,
+                      margin: 0,
+                      fontWeight: 700,
+                      lineHeight: 1.3,
+                    }}
+                  >
                     {project.title}
                   </h3>
                   <a
@@ -127,26 +206,70 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                     target="_blank"
                     rel="noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    style={{ color: '#0284c7', textDecoration: 'none', fontWeight: 600, fontSize: '0.85rem', transition: 'transform 0.2s' }}
-                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                    style={{
+                      color: theme.accent1,
+                      textDecoration: 'none',
+                      fontWeight: 600,
+                      fontSize: '0.85rem',
+                      transition: 'transform 0.2s',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                   >
                     GitHub ↗
                   </a>
                 </div>
 
-                <p style={{ color: theme.textMuted, fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                <p
+                  style={{
+                    color: theme.textMuted,
+                    fontSize: '0.95rem',
+                    lineHeight: 1.6,
+                    marginBottom: '1.5rem',
+                  }}
+                >
                   {project.desc}
                 </p>
 
                 <div style={{ marginBottom: '1.5rem' }}>
-                  <span style={{ color: '#ef4444', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.5px' }}>
-                    {project.tech}
-                  </span>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      gap: '0.4rem',
+                    }}
+                  >
+                    {project.tech.split('•').map((t, i) => (
+                      <span
+                        key={i}
+                        style={{
+                          fontSize: '0.7rem',
+                          fontWeight: 700,
+                          letterSpacing: '0.04em',
+                          padding: '0.25rem 0.65rem',
+                          borderRadius: '999px',
+                          background: `linear-gradient(135deg, ${theme.accent1}18, ${theme.accent2}18)`,
+                          color: theme.accent1,
+                          border: `1px solid ${theme.accent1}30`,
+                        }}
+                      >
+                        {t.trim()}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', width: '100%', marginTop: 'auto' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  gap: '0.8rem',
+                  width: '100%',
+                  marginTop: 'auto',
+                  flexWrap: 'wrap',
+                }}
+              >
                 <a
                   href={project.github}
                   target="_blank"
@@ -154,29 +277,27 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                   onClick={(e) => e.stopPropagation()}
                   style={{
                     display: 'inline-block',
-                    padding: '0.5rem 1.4rem',
-                    borderRadius: '25px',
+                    padding: '0.55rem 1.4rem',
+                    borderRadius: '999px',
                     border: `1px solid ${theme.cardBorder}`,
-                    backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
+                    background: `linear-gradient(135deg, ${theme.accent1}15, ${theme.accent2}15)`,
                     color: theme.textMain,
                     fontSize: '0.85rem',
                     fontWeight: 600,
                     textDecoration: 'none',
-                    transition: 'all 0.25s ease'
+                    transition: 'all 0.25s ease',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#ef4444'
-                    e.currentTarget.style.color = '#ffffff'
-                    e.currentTarget.style.borderColor = '#ef4444'
+                    e.currentTarget.style.background = `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`
+                    e.currentTarget.style.color = '#fff'
+                    e.currentTarget.style.borderColor = 'transparent'
                     e.currentTarget.style.transform = 'scale(1.05)'
-                    e.currentTarget.textContent = 'GitHub ↗'
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)'
+                    e.currentTarget.style.background = `linear-gradient(135deg, ${theme.accent1}15, ${theme.accent2}15)`
                     e.currentTarget.style.color = theme.textMain
                     e.currentTarget.style.borderColor = theme.cardBorder
                     e.currentTarget.style.transform = 'scale(1)'
-                    e.currentTarget.textContent = 'View Code'
                   }}
                 >
                   View Code
@@ -190,29 +311,27 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                     onClick={(e) => e.stopPropagation()}
                     style={{
                       display: 'inline-block',
-                      padding: '0.5rem 1.4rem',
-                      borderRadius: '25px',
+                      padding: '0.55rem 1.4rem',
+                      borderRadius: '999px',
                       border: `1px solid ${theme.cardBorder}`,
-                      backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)',
+                      background: `linear-gradient(135deg, ${theme.accent3}15, ${theme.accent4}15)`,
                       color: theme.textMain,
                       fontSize: '0.85rem',
                       fontWeight: 600,
                       textDecoration: 'none',
-                      transition: 'all 0.25s ease'
+                      transition: 'all 0.25s ease',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#38bdf8'
-                      e.currentTarget.style.color = '#ffffff'
-                      e.currentTarget.style.borderColor = '#38bdf8'
+                      e.currentTarget.style.background = `linear-gradient(135deg, ${theme.accent3}, ${theme.accent4})`
+                      e.currentTarget.style.color = '#fff'
+                      e.currentTarget.style.borderColor = 'transparent'
                       e.currentTarget.style.transform = 'scale(1.05)'
-                      e.currentTarget.textContent = 'Tableau ↗'
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.04)'
+                      e.currentTarget.style.background = `linear-gradient(135deg, ${theme.accent3}15, ${theme.accent4}15)`
                       e.currentTarget.style.color = theme.textMain
                       e.currentTarget.style.borderColor = theme.cardBorder
                       e.currentTarget.style.transform = 'scale(1)'
-                      e.currentTarget.textContent = 'View Dashboard'
                     }}
                   >
                     View Dashboard

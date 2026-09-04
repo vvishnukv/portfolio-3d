@@ -4,10 +4,32 @@ import { experienceData } from '../data/portfolioData'
 
 export default function ExperienceSection({ theme, isDarkMode }) {
   return (
-    <section id="experience" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '8vh 8vw' }}>
-      <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, marginBottom: '3rem', color: '#ef4444' }}>
+    <section
+      id="experience"
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '8vh 8vw',
+      }}
+    >
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="gradient-text"
+        style={{
+          fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+          fontWeight: 800,
+          marginBottom: '3rem',
+          letterSpacing: '-0.01em',
+        }}
+      >
         Work Experience
       </motion.h2>
+
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', maxWidth: '1000px' }}>
         {experienceData.map((exp, idx) => (
           <motion.div
@@ -16,30 +38,89 @@ export default function ExperienceSection({ theme, isDarkMode }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: idx * 0.15 }}
-            className="interactive-card"
-            style={{ background: theme.cardBg, border: `1px solid ${theme.cardBorder}`, padding: 'clamp(1.5rem, 4vw, 2.5rem)', borderRadius: '1.2rem', backdropFilter: 'blur(12px)', boxShadow: theme.cardShadow, transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease' }}
+            className="glass-card"
+            style={{
+              padding: 'clamp(1.5rem, 4vw, 2.5rem)',
+              position: 'relative',
+              overflow: 'hidden',
+            }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-6px) scale(1.005)'
-              e.currentTarget.style.borderColor = '#ef4444'
-              e.currentTarget.style.boxShadow = isDarkMode ? '0 20px 40px rgba(239, 68, 68, 0.12)' : '0 20px 40px rgba(239, 68, 68, 0.08)'
+              e.currentTarget.style.transform = 'translateY(-4px) scale(1.005)'
+              e.currentTarget.style.borderColor = theme.cardBorderFocus
+              e.currentTarget.style.boxShadow = `${theme.cardGlow}, 0 12px 40px rgba(0,0,0,0.4)`
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0) scale(1)'
               e.currentTarget.style.borderColor = theme.cardBorder
-              e.currentTarget.style.boxShadow = theme.cardShadow
+              e.currentTarget.style.boxShadow = 'var(--shadow-card)'
             }}
           >
-            <h3 style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)', marginBottom: '0.4rem', color: theme.textMain, fontWeight: 700 }}>
-              {exp.title}
-            </h3>
-            <h4 style={{ color: exp.color, fontSize: '1.05rem', fontWeight: 600, marginBottom: '1.5rem' }}>
-              {exp.company}
-            </h4>
-            <ul style={{ color: theme.textMuted, lineHeight: 1.7, paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.8rem', fontSize: 'clamp(0.9rem, 1.5vw, 1rem)', margin: 0 }}>
-              {exp.bullets.map((bullet, bIdx) => (
-                <li key={bIdx}>{bullet}</li>
-              ))}
-            </ul>
+            {/* Left accent bar */}
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '4px',
+                height: '100%',
+                background: `linear-gradient(180deg, ${theme.accent1}, ${theme.accent2})`,
+                borderRadius: '0 2px 2px 0',
+              }}
+            />
+
+            <div style={{ paddingLeft: '1.2rem' }}>
+              <h3
+                style={{
+                  fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
+                  marginBottom: '0.3rem',
+                  color: theme.textMain,
+                  fontWeight: 700,
+                }}
+              >
+                {exp.title}
+              </h3>
+
+              <h4
+                style={{
+                  color: theme.accent1,
+                  fontSize: '1.05rem',
+                  fontWeight: 600,
+                  marginBottom: '1.5rem',
+                }}
+              >
+                {exp.company}
+              </h4>
+
+              <ul
+                style={{
+                  color: theme.textMuted,
+                  lineHeight: 1.7,
+                  paddingLeft: '1.2rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.7rem',
+                  fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
+                  margin: 0,
+                }}
+              >
+                {exp.bullets.map((bullet, bIdx) => (
+                  <li key={bIdx} style={{ position: 'relative' }}>
+                    <span
+                      style={{
+                        position: 'absolute',
+                        left: '-1.2rem',
+                        top: '0.6rem',
+                        width: '5px',
+                        height: '5px',
+                        borderRadius: '50%',
+                        background: theme.accent2,
+                      }}
+                    />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
         ))}
       </div>

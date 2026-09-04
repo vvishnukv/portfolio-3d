@@ -25,18 +25,29 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('home')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const [scrollProgress, setScrollProgress] = useState(0)
 
+  // New futuristic theme palette
   const theme = {
-    bg: isDarkMode ? '#030712' : '#eef2f6',
-    textMain: isDarkMode ? '#f9fafb' : '#1e293b',
-    textMuted: isDarkMode ? '#9ca3af' : '#64748b',
-    cardBg: isDarkMode ? 'rgba(15, 23, 42, 0.85)' : 'rgba(255, 255, 255, 0.92)',
-    cardBorder: isDarkMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(148, 163, 184, 0.25)',
-    cardShadow: isDarkMode ? 'none' : '0 12px 32px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.04)',
-    navBg: isDarkMode ? 'rgba(3, 7, 18, 0.9)' : 'rgba(238, 242, 246, 0.92)',
+    bg: isDarkMode ? '#0a0e17' : '#f1f5f9',
+    bgSubtle: isDarkMode ? '#111827' : '#e2e8f0',
+    textMain: isDarkMode ? '#f8fafc' : '#0f172a',
+    textMuted: isDarkMode ? '#a3a8b8' : '#64748b',
+    textAccent: isDarkMode ? '#e6fffa' : '#0d9488',
+    cardBg: isDarkMode ? 'rgba(10, 14, 23, 0.7)' : 'rgba(255, 255, 255, 0.85)',
+    cardBgHover: isDarkMode ? 'rgba(15, 19, 28, 0.8)' : 'rgba(255, 255, 255, 0.95)',
+    cardBorder: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(15, 23, 42, 0.1)',
+    cardBorderFocus: isDarkMode ? 'rgba(0, 212, 170, 0.4)' : 'rgba(13, 148, 136, 0.4)',
+    cardShadow: isDarkMode ? '0 8px 32px rgba(0, 0, 0, 0.3)' : '0 12px 32px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.04)',
+    cardGlow: isDarkMode ? '0 0 30px rgba(0, 212, 170, 0.3)' : '0 0 30px rgba(13, 148, 136, 0.2)',
+    navBg: isDarkMode ? 'rgba(10, 14, 23, 0.8)' : 'rgba(241, 245, 249, 0.85)',
+    accent1: isDarkMode ? '#00d4aa' : '#0d9488',
+    accent2: isDarkMode ? '#0066ff' : '#1e40af',
+    accent3: isDarkMode ? '#ff00a8' : '#be185d',
+    accent4: isDarkMode ? '#7928ca' : '#7e22ce',
   }
 
-  // Active section scroll watcher
+  // Active section scroll watcher + scroll progress
   useEffect(() => {
     if (currentPage !== 'portfolio') return
     const sections = ['home', 'about', 'experience', 'projects', 'skills', 'education', 'contact']
@@ -52,6 +63,10 @@ export default function App() {
           }
         }
       }
+      // Update scroll progress bar
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const progress = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0
+      setScrollProgress(progress)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -60,6 +75,10 @@ export default function App() {
 
   return (
     <div style={{ width: '100vw', maxWidth: '100%', overflowX: 'hidden', backgroundColor: theme.bg, color: theme.textMain, position: 'relative', transition: 'background-color 0.4s ease, color 0.4s ease' }}>
+
+      {/* Scroll progress bar */}
+      <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
+
       
       {/* Mobile Dropdown Style Override when opened */}
       <style>{`
@@ -101,7 +120,7 @@ export default function App() {
         <Canvas camera={{ position: [0, 5, 8], fov: 60 }}>
           <ambientLight intensity={isDarkMode ? 0.6 : 1.4} />
           <directionalLight position={[10, 20, 10]} intensity={1.5} color="#ffffff" />
-          <pointLight position={[-10, -20, -10]} intensity={1} color="#ef4444" />
+          <pointLight position={[-10, -20, -10]} intensity={1} color="#00d4aa" />
           <HyperComplexBackground isDarkMode={isDarkMode} />
         </Canvas>
       </div>

@@ -12,110 +12,183 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
   }
 
   return (
-    <section id="contact" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: '0 8vw' }}>
+    <section
+      id="contact"
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: '0 8vw',
+        position: 'relative',
+      }}
+    >
+      {/* Background glow */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '500px',
+          height: '500px',
+          borderRadius: '50%',
+          background: `radial-gradient(circle, ${theme.accent1}15, transparent 70%)`,
+          filter: 'blur(80px)',
+          pointerEvents: 'none',
+        }}
+      />
+
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          width: '100%',
+          position: 'relative',
+          zIndex: 1,
+        }}
       >
-        <h2 style={{ fontSize: 'clamp(2.8rem, 7vw, 4rem)', fontWeight: 900, marginBottom: '1rem', color: theme.textMain }}>
+        <h2
+          className="gradient-text"
+          style={{
+            fontSize: 'clamp(2.8rem, 7vw, 4.5rem)',
+            fontWeight: 800,
+            marginBottom: '1.2rem',
+            letterSpacing: '-0.02em',
+          }}
+        >
           Let's Connect
         </h2>
-        <p style={{ color: theme.textMuted, fontSize: 'clamp(1rem, 2vw, 1.2rem)', marginBottom: '3rem', maxWidth: '600px' }}>
-          Poughkeepsie, New York • (551) 297-5781 • vishnukaushikvarma@gmail.com
+
+        <p
+          style={{
+            color: theme.textMuted,
+            fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+            marginBottom: '3rem',
+            maxWidth: '600px',
+            lineHeight: 1.6,
+          }}
+        >
+          Poughkeepsie, New York &bull; (551) 297-5781 &bull; vishnukaushikvarma@gmail.com
         </p>
-        <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
-          <a
+
+        <div
+          style={{
+            display: 'flex',
+            gap: '1.5rem',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <motion.a
             href="mailto:vishnukaushikvarma@gmail.com"
             onClick={playClickSound}
+            whileHover={{ scale: 1.05, y: -3 }}
+            whileTap={{ scale: 0.98 }}
             style={{
-              background: '#ef4444',
+              background: `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`,
               color: '#fff',
               padding: '1rem 2.8rem',
-              borderRadius: '50px',
+              borderRadius: '999px',
               textDecoration: 'none',
               fontWeight: 700,
               fontSize: '1rem',
-              boxShadow: '0 4px 20px rgba(239, 68, 68, 0.35)',
-              transition: 'all 0.25s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)'
-              e.currentTarget.style.boxShadow = '0 8px 25px rgba(239, 68, 68, 0.5)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0) scale(1)'
-              e.currentTarget.style.boxShadow = '0 4px 20px rgba(239, 68, 68, 0.35)'
+              boxShadow: `0 4px 20px ${theme.accent1}50`,
+              transition: 'box-shadow 0.25s ease',
             }}
           >
             Email Me
-          </a>
+          </motion.a>
 
-          <button
+          <motion.button
             onClick={handleCopyEmail}
+            whileHover={{ scale: 1.05, y: -3 }}
+            whileTap={{ scale: 0.98 }}
             style={{
-              background: copied ? '#22c55e' : 'transparent',
-              border: `2px solid ${copied ? '#22c55e' : '#38bdf8'}`,
-              color: copied ? '#ffffff' : '#38bdf8',
+              background: copied
+                ? `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`
+                : 'transparent',
+              border: `2px solid ${copied ? 'transparent' : theme.accent1}`,
+              color: copied ? '#fff' : theme.accent1,
               padding: '1rem 2.2rem',
-              borderRadius: '50px',
+              borderRadius: '999px',
               cursor: 'pointer',
               fontWeight: 700,
               fontSize: '1rem',
-              transition: 'all 0.25s ease'
-            }}
-            onMouseEnter={(e) => {
-              if (!copied) {
-                e.currentTarget.style.backgroundColor = '#38bdf8'
-                e.currentTarget.style.color = '#ffffff'
-                e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)'
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!copied) {
-                e.currentTarget.style.backgroundColor = 'transparent'
-                e.currentTarget.style.color = '#38bdf8'
-                e.currentTarget.style.transform = 'translateY(0) scale(1)'
-              }
+              transition: 'all 0.25s ease',
             }}
           >
-            {copied ? '✓ Email Copied!' : '📋 Copy Email'}
-          </button>
+            {copied ? '✓ Copied!' : '📋 Copy Email'}
+          </motion.button>
 
-          <a
+          <motion.a
             href="https://linkedin.com/in/vishnukaushikvarma"
             target="_blank"
             rel="noreferrer"
             onClick={playClickSound}
+            whileHover={{ scale: 1.05, y: -3 }}
+            whileTap={{ scale: 0.98 }}
             style={{
               background: 'transparent',
-              border: '2px solid #0284c7',
-              color: '#0284c7',
+              border: `2px solid ${theme.accent2}`,
+              color: theme.accent2,
               padding: '1rem 2.8rem',
-              borderRadius: '50px',
+              borderRadius: '999px',
               textDecoration: 'none',
               fontWeight: 700,
               fontSize: '1rem',
-              transition: 'all 0.25s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#0284c7'
-              e.currentTarget.style.color = '#ffffff'
-              e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)'
-              e.currentTarget.style.boxShadow = '0 8px 25px rgba(2, 132, 199, 0.35)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent'
-              e.currentTarget.style.color = '#0284c7'
-              e.currentTarget.style.transform = 'translateY(0) scale(1)'
-              e.currentTarget.style.boxShadow = 'none'
+              transition: 'all 0.25s ease',
             }}
           >
             LinkedIn ↗
-          </a>
+          </motion.a>
+
+          <motion.a
+            href="https://github.com/vvishnukv"
+            target="_blank"
+            rel="noreferrer"
+            onClick={playClickSound}
+            whileHover={{ scale: 1.05, y: -3 }}
+            whileTap={{ scale: 0.98 }}
+            style={{
+              background: 'transparent',
+              border: `2px solid ${theme.accent4}`,
+              color: theme.accent4,
+              padding: '1rem 2.8rem',
+              borderRadius: '999px',
+              textDecoration: 'none',
+              fontWeight: 700,
+              fontSize: '1rem',
+              transition: 'all 0.25s ease',
+            }}
+          >
+            GitHub ↗
+          </motion.a>
         </div>
+
+        {/* Footer note */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          style={{
+            marginTop: '4rem',
+            color: theme.textMuted,
+            fontSize: '0.85rem',
+            opacity: 0.6,
+          }}
+        >
+          Built with React + Three.js + Framer Motion &bull; 2024
+        </motion.p>
       </motion.div>
     </section>
   )
