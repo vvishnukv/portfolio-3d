@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { skillsData } from '../data/portfolioData'
+import { TiltCard, reveal3D } from '../utils/microInteractions'
 
 export default function SkillsSection({ theme, isDarkMode, searchQuery }) {
   return (
@@ -49,30 +50,24 @@ export default function SkillsSection({ theme, isDarkMode, searchQuery }) {
           return (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="glass-card"
-              style={{
-                padding: '2.2rem',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                position: 'relative',
-                overflow: 'hidden',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px) scale(1.01)'
-                e.currentTarget.style.borderColor = theme.cardBorderFocus
-                e.currentTarget.style.boxShadow = `${theme.cardGlow}, 0 12px 40px rgba(0,0,0,0.4)`
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0) scale(1)'
-                e.currentTarget.style.borderColor = theme.cardBorder
-                e.currentTarget.style.boxShadow = 'var(--shadow-card)'
-              }}
+              variants={reveal3D}
+              custom={idx}
             >
+              <TiltCard
+                theme={theme}
+                style={{
+                  padding: '2.2rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  minHeight: '100%',
+                }}
+              >
               {/* Category icon area */}
               <div
                 style={{
@@ -124,25 +119,33 @@ export default function SkillsSection({ theme, isDarkMode, searchQuery }) {
                         fontWeight: 600,
                         background: isHighlighted
                           ? `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`
-                          : `linear-gradient(135deg, ${theme.accent1}12, ${theme.accent2}12)`,
+                          : isDarkMode
+                            ? `linear-gradient(135deg, ${theme.accent1}12, ${theme.accent2}12)`
+                            : 'rgba(13,148,136,0.1)',
                         color: isHighlighted ? '#fff' : theme.accent1,
-                        border: `1px solid ${isHighlighted ? 'transparent' : theme.accent1 + '30'}`,
+                        border: `1px solid ${isHighlighted ? 'transparent' : isDarkMode ? theme.accent1 + '30' : 'rgba(13,148,136,0.25)'}`,
                         transition: 'all 0.25s ease',
                         cursor: 'pointer',
                         fontFamily: 'var(--font-display)',
                       }}
                       onMouseEnter={(e) => {
                         if (!isHighlighted) {
-                          e.currentTarget.style.background = `linear-gradient(135deg, ${theme.accent1}30, ${theme.accent2}30)`
+                          e.currentTarget.style.background = isDarkMode
+                            ? `linear-gradient(135deg, ${theme.accent1}30, ${theme.accent2}30)`
+                            : 'rgba(13,148,136,0.2)'
                           e.currentTarget.style.borderColor = theme.accent1
                           e.currentTarget.style.transform = 'translateY(-2px) scale(1.05)'
-                          e.currentTarget.style.boxShadow = `0 4px 12px ${theme.accent1}30`
+                          e.currentTarget.style.boxShadow = isDarkMode
+                            ? `0 4px 12px ${theme.accent1}30`
+                            : '0 4px 12px rgba(13,148,136,0.15)'
                         }
                       }}
                       onMouseLeave={(e) => {
                         if (!isHighlighted) {
-                          e.currentTarget.style.background = `linear-gradient(135deg, ${theme.accent1}12, ${theme.accent2}12)`
-                          e.currentTarget.style.borderColor = theme.accent1 + '30'
+                          e.currentTarget.style.background = isDarkMode
+                            ? `linear-gradient(135deg, ${theme.accent1}12, ${theme.accent2}12)`
+                            : 'rgba(13,148,136,0.1)'
+                          e.currentTarget.style.borderColor = isDarkMode ? theme.accent1 + '30' : 'rgba(13,148,136,0.25)'
                           e.currentTarget.style.transform = 'translateY(0) scale(1)'
                           e.currentTarget.style.boxShadow = 'none'
                         }
@@ -153,6 +156,7 @@ export default function SkillsSection({ theme, isDarkMode, searchQuery }) {
                   )
                 })}
               </div>
+              </TiltCard>
             </motion.div>
           )
         })}

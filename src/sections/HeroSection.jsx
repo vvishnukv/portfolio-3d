@@ -1,7 +1,13 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { CountUp } from '../utils/microInteractions'
 
 export default function HeroSection({ theme }) {
+  const { scrollY } = useScroll()
+  const y1 = useTransform(scrollY, [0, 800], [0, 60])
+  const y2 = useTransform(scrollY, [0, 800], [0, -45])
+  const y3 = useTransform(scrollY, [0, 800], [0, 30])
+
   return (
     <section
       id="home"
@@ -15,10 +21,19 @@ export default function HeroSection({ theme }) {
         overflow: 'hidden',
       }}
     >
-      {/* Floating atmospheric orbs */}
-      <div className="floating-orb orb-1" />
-      <div className="floating-orb orb-2" />
-      <div className="floating-orb orb-3" />
+      {/* Parallax floating atmospheric orbs */}
+      <motion.div
+        className="floating-orb orb-1"
+        style={{ y: y1 }}
+      />
+      <motion.div
+        className="floating-orb orb-2"
+        style={{ y: y2 }}
+      />
+      <motion.div
+        className="floating-orb orb-3"
+        style={{ y: y3 }}
+      />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -119,8 +134,9 @@ export default function HeroSection({ theme }) {
           }}
         />
 
-        {/* Stats row */}
+        {/* Stats row with CountUp */}
         <motion.div
+          className="hero-stats"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
@@ -131,13 +147,17 @@ export default function HeroSection({ theme }) {
           }}
         >
           {[
-            { label: 'GPA', value: '3.845', accent: theme.accent1 },
-            { label: 'Projects', value: '15+', accent: theme.accent2 },
-            { label: 'Experience', value: '2+ yrs', accent: theme.accent3 },
-            { label: 'Users Served', value: '10K+', accent: theme.accent4 },
+            { label: 'GPA', value: '3.845', accent: theme.accent1, decimals: 3 },
+            { label: 'Projects', value: '15', accent: theme.accent2, suffix: '+' },
+            { label: 'Experience', value: '2', accent: theme.accent3, suffix: '+ yrs' },
+            { label: 'Users Served', value: '10', accent: theme.accent4, suffix: 'K+' },
           ].map((stat, i) => (
-            <div
+            <motion.div
               key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.8 + i * 0.1 }}
               style={{
                 padding: '0.8rem 1.4rem',
                 borderRadius: '1rem',
@@ -150,7 +170,9 @@ export default function HeroSection({ theme }) {
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-3px)'
                 e.currentTarget.style.borderColor = stat.accent
-                e.currentTarget.style.boxShadow = `0 0 24px ${stat.accent}40`
+                e.currentTarget.style.boxShadow = isDarkMode
+                  ? `0 0 16px ${stat.accent}30`
+                  : `0 4px 16px rgba(0,0,0,0.1)`
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)'
@@ -167,7 +189,15 @@ export default function HeroSection({ theme }) {
                   letterSpacing: '-0.02em',
                 }}
               >
-                {stat.value}
+                {i === 0 ? (
+                  <CountUp value={3.845} decimals={3} suffix="" prefix="" />
+                ) : i === 2 ? (
+                  <><CountUp value={2} suffix="+" /><span style={{ fontSize: '1rem' }}> yrs</span></>
+                ) : i === 3 ? (
+                  <><CountUp value={10} suffix="K+" /><span style={{ fontSize: '1rem' }}></span></>
+                ) : (
+                  <CountUp value={15} suffix="+" />
+                )}
               </div>
               <div
                 style={{
@@ -180,7 +210,7 @@ export default function HeroSection({ theme }) {
               >
                 {stat.label}
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </motion.div>

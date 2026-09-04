@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import { MagneticButton, MagneticLink } from '../utils/microInteractions'
 
 export default function ContactSection({ theme, isDarkMode, playClickSound }) {
   const [copied, setCopied] = useState(false)
@@ -80,6 +81,7 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
         </p>
 
         <div
+          className="contact-buttons"
           style={{
             display: 'flex',
             gap: '1.5rem',
@@ -88,7 +90,7 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
             alignItems: 'center',
           }}
         >
-          <motion.a
+          <MagneticLink
             href="mailto:vishnukaushikvarma@gmail.com"
             onClick={playClickSound}
             whileHover={{ scale: 1.05, y: -3 }}
@@ -103,12 +105,13 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
               fontSize: '1rem',
               boxShadow: `0 4px 20px ${theme.accent1}50`,
               transition: 'box-shadow 0.25s ease',
+              display: 'inline-block',
             }}
           >
             Email Me
-          </motion.a>
+          </MagneticLink>
 
-          <motion.button
+          <MagneticButton
             onClick={handleCopyEmail}
             whileHover={{ scale: 1.05, y: -3 }}
             whileTap={{ scale: 0.98 }}
@@ -127,9 +130,9 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
             }}
           >
             {copied ? '✓ Copied!' : '📋 Copy Email'}
-          </motion.button>
+          </MagneticButton>
 
-          <motion.a
+          <MagneticLink
             href="https://linkedin.com/in/vishnukaushikvarma"
             target="_blank"
             rel="noreferrer"
@@ -146,12 +149,13 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
               fontWeight: 700,
               fontSize: '1rem',
               transition: 'all 0.25s ease',
+              display: 'inline-block',
             }}
           >
             LinkedIn ↗
-          </motion.a>
+          </MagneticLink>
 
-          <motion.a
+          <MagneticLink
             href="https://github.com/vvishnukv"
             target="_blank"
             rel="noreferrer"
@@ -168,10 +172,11 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
               fontWeight: 700,
               fontSize: '1rem',
               transition: 'all 0.25s ease',
+              display: 'inline-block',
             }}
           >
             GitHub ↗
-          </motion.a>
+          </MagneticLink>
         </div>
 
         {/* Footer note */}

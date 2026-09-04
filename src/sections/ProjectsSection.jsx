@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { projectsData } from '../data/portfolioData'
+import { TiltCard, reveal3D } from '../utils/microInteractions'
+import ProjectModal from '../components/ProjectModal'
 
 export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSearchQuery }) {
+  const [selectedProject, setSelectedProject] = useState(null)
+  const cardRefs = useRef({})
+
+  const handleOpenModal = (project, idx) => {
+    const rect = cardRefs.current[idx]?.getBoundingClientRect()
+    setSelectedProject({
+      project,
+      rect: rect ? { x: rect.x, y: rect.y, width: rect.width, height: rect.height } : null,
+    })
+  }
+  const handleCloseModal = () => setSelectedProject(null)
+
   const filteredProjects = projectsData.filter(proj =>
     proj.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     proj.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -74,7 +88,7 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
             background: theme.cardBg,
             padding: '0.5rem 1.2rem',
             backdropFilter: 'blur(16px)',
-            boxShadow: `0 0 20px ${theme.accent1}30`,
+            boxShadow: isDarkMode ? `0 0 20px ${theme.accent1}30` : '0 2px 12px rgba(0,0,0,0.06)',
           }}
         >
           <span style={{ fontSize: '1rem', marginRight: '8px' }}>⚡</span>
@@ -142,32 +156,27 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
           filteredProjects.map((project, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="glass-card"
-              onClick={() => window.open(project.github, '_blank')}
-              style={{
-                padding: '2rem',
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                position: 'relative',
-                overflow: 'hidden',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-6px) scale(1.01)'
-                e.currentTarget.style.borderColor = theme.cardBorderFocus
-                e.currentTarget.style.boxShadow = `${theme.cardGlow}, 0 12px 40px rgba(0,0,0,0.4)`
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0) scale(1)'
-                e.currentTarget.style.borderColor = theme.cardBorder
-                e.currentTarget.style.boxShadow = 'var(--shadow-card)'
-              }}
+              variants={reveal3D}
+              custom={idx}
+              ref={(el) => (cardRefs.current[idx] = el)}
             >
+              <TiltCard
+                theme={theme}
+                onClick={() => handleOpenModal(project, idx)}
+                style={{
+                  padding: '2rem',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  minHeight: '100%',
+                }}
+              >
               {/* Top gradient strip */}
               <div
                 style={{
@@ -279,9 +288,11 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                     display: 'inline-block',
                     padding: '0.55rem 1.4rem',
                     borderRadius: '999px',
-                    border: `1px solid ${theme.cardBorder}`,
-                    background: `linear-gradient(135deg, ${theme.accent1}15, ${theme.accent2}15)`,
-                    color: theme.textMain,
+                    border: `1px solid ${isDarkMode ? theme.cardBorder : 'rgba(13,148,136,0.3)'}`,
+                    background: isDarkMode
+                      ? `linear-gradient(135deg, ${theme.accent1}15, ${theme.accent2}15)`
+                      : 'rgba(13,148,136,0.08)',
+                    color: isDarkMode ? theme.textMain : '#0d9488',
                     fontSize: '0.85rem',
                     fontWeight: 600,
                     textDecoration: 'none',
@@ -294,9 +305,11 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                     e.currentTarget.style.transform = 'scale(1.05)'
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = `linear-gradient(135deg, ${theme.accent1}15, ${theme.accent2}15)`
-                    e.currentTarget.style.color = theme.textMain
-                    e.currentTarget.style.borderColor = theme.cardBorder
+                    e.currentTarget.style.background = isDarkMode
+                      ? `linear-gradient(135deg, ${theme.accent1}15, ${theme.accent2}15)`
+                      : 'rgba(13,148,136,0.08)'
+                    e.currentTarget.style.color = isDarkMode ? theme.textMain : '#0d9488'
+                    e.currentTarget.style.borderColor = isDarkMode ? theme.cardBorder : 'rgba(13,148,136,0.3)'
                     e.currentTarget.style.transform = 'scale(1)'
                   }}
                 >
@@ -313,9 +326,11 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                       display: 'inline-block',
                       padding: '0.55rem 1.4rem',
                       borderRadius: '999px',
-                      border: `1px solid ${theme.cardBorder}`,
-                      background: `linear-gradient(135deg, ${theme.accent3}15, ${theme.accent4}15)`,
-                      color: theme.textMain,
+                      border: `1px solid ${isDarkMode ? theme.cardBorder : 'rgba(190,24,93,0.3)'}`,
+                      background: isDarkMode
+                        ? `linear-gradient(135deg, ${theme.accent3}15, ${theme.accent4}15)`
+                        : 'rgba(190,24,93,0.08)',
+                      color: isDarkMode ? theme.textMain : '#be185d',
                       fontSize: '0.85rem',
                       fontWeight: 600,
                       textDecoration: 'none',
@@ -328,9 +343,11 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                       e.currentTarget.style.transform = 'scale(1.05)'
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = `linear-gradient(135deg, ${theme.accent3}15, ${theme.accent4}15)`
-                      e.currentTarget.style.color = theme.textMain
-                      e.currentTarget.style.borderColor = theme.cardBorder
+                      e.currentTarget.style.background = isDarkMode
+                        ? `linear-gradient(135deg, ${theme.accent3}15, ${theme.accent4}15)`
+                        : 'rgba(190,24,93,0.08)'
+                      e.currentTarget.style.color = isDarkMode ? theme.textMain : '#be185d'
+                      e.currentTarget.style.borderColor = isDarkMode ? theme.cardBorder : 'rgba(190,24,93,0.3)'
                       e.currentTarget.style.transform = 'scale(1)'
                     }}
                   >
@@ -338,10 +355,22 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                   </a>
                 )}
               </div>
+              </TiltCard>
             </motion.div>
           ))
         )}
       </div>
+
+      {/* Click-to-expand project modal */}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject.project}
+          theme={theme}
+          isDarkMode={isDarkMode}
+          onClose={handleCloseModal}
+          originRect={selectedProject.rect}
+        />
+      )}
     </section>
   )
 }

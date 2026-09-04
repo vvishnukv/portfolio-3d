@@ -29,23 +29,29 @@ export default function App() {
 
   // New futuristic theme palette
   const theme = {
-    bg: isDarkMode ? '#0a0e17' : '#f1f5f9',
-    bgSubtle: isDarkMode ? '#111827' : '#e2e8f0',
-    textMain: isDarkMode ? '#f8fafc' : '#0f172a',
-    textMuted: isDarkMode ? '#a3a8b8' : '#64748b',
+    bg: isDarkMode ? '#0a0e17' : '#f5f3ef',
+    bgSubtle: isDarkMode ? '#111827' : '#ede9e1',
+    textMain: isDarkMode ? '#f8fafc' : '#1c1917',
+    textMuted: isDarkMode ? '#a3a8b8' : '#44403c',
     textAccent: isDarkMode ? '#e6fffa' : '#0d9488',
-    cardBg: isDarkMode ? 'rgba(10, 14, 23, 0.7)' : 'rgba(255, 255, 255, 0.85)',
-    cardBgHover: isDarkMode ? 'rgba(15, 19, 28, 0.8)' : 'rgba(255, 255, 255, 0.95)',
-    cardBorder: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(15, 23, 42, 0.1)',
-    cardBorderFocus: isDarkMode ? 'rgba(0, 212, 170, 0.4)' : 'rgba(13, 148, 136, 0.4)',
-    cardShadow: isDarkMode ? '0 8px 32px rgba(0, 0, 0, 0.3)' : '0 12px 32px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.04)',
-    cardGlow: isDarkMode ? '0 0 30px rgba(0, 212, 170, 0.3)' : '0 0 30px rgba(13, 148, 136, 0.2)',
-    navBg: isDarkMode ? 'rgba(10, 14, 23, 0.8)' : 'rgba(241, 245, 249, 0.85)',
+    cardBg: isDarkMode ? 'rgba(10, 14, 23, 0.75)' : 'rgba(255, 253, 249, 0.96)',
+    cardBgHover: isDarkMode ? 'rgba(15, 19, 28, 0.8)' : 'rgba(255, 255, 255, 1)',
+    cardBorder: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(180, 168, 150, 0.45)',
+    cardBorderFocus: isDarkMode ? 'rgba(0, 212, 170, 0.35)' : 'rgba(13, 148, 136, 0.4)',
+    cardShadow: isDarkMode ? '0 8px 32px rgba(0, 0, 0, 0.3)' : '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
+    cardGlow: isDarkMode ? '0 0 30px rgba(0, 212, 170, 0.15)' : '0 0 30px rgba(13, 148, 136, 0.12)',
+    navBg: isDarkMode ? 'rgba(10, 14, 23, 0.8)' : 'rgba(245, 243, 239, 0.95)',
     accent1: isDarkMode ? '#00d4aa' : '#0d9488',
     accent2: isDarkMode ? '#0066ff' : '#1e40af',
     accent3: isDarkMode ? '#ff00a8' : '#be185d',
     accent4: isDarkMode ? '#7928ca' : '#7e22ce',
   }
+
+  // Sync body background color with theme (since index.css has hardcoded body bg)
+  useEffect(() => {
+    document.body.style.backgroundColor = theme.bg
+    document.body.style.color = theme.textMain
+  }, [theme.bg, theme.textMain])
 
   // Active section scroll watcher + scroll progress
   useEffect(() => {
@@ -74,7 +80,19 @@ export default function App() {
   }, [currentPage])
 
   return (
-    <div style={{ width: '100vw', maxWidth: '100%', overflowX: 'hidden', backgroundColor: theme.bg, color: theme.textMain, position: 'relative', transition: 'background-color 0.4s ease, color 0.4s ease' }}>
+    <div
+      className={isDarkMode ? '' : 'light-mode'}
+      style={{
+        width: '100vw',
+        maxWidth: '100%',
+        overflowX: 'hidden',
+        backgroundColor: theme.bg,
+        color: theme.textMain,
+        position: 'relative',
+        transition: 'background-color 0.4s ease, color 0.4s ease',
+        minHeight: '100vh',
+      }}
+    >
 
       {/* Scroll progress bar */}
       <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />

@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { experienceData } from '../data/portfolioData'
+import { TiltCard, reveal3D } from '../utils/microInteractions'
 
 export default function ExperienceSection({ theme, isDarkMode }) {
   return (
@@ -34,27 +35,20 @@ export default function ExperienceSection({ theme, isDarkMode }) {
         {experienceData.map((exp, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.15 }}
-            className="glass-card"
-            style={{
-              padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-              position: 'relative',
-              overflow: 'hidden',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-4px) scale(1.005)'
-              e.currentTarget.style.borderColor = theme.cardBorderFocus
-              e.currentTarget.style.boxShadow = `${theme.cardGlow}, 0 12px 40px rgba(0,0,0,0.4)`
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0) scale(1)'
-              e.currentTarget.style.borderColor = theme.cardBorder
-              e.currentTarget.style.boxShadow = 'var(--shadow-card)'
-            }}
+            variants={reveal3D}
+            custom={idx}
           >
+            <TiltCard
+              theme={theme}
+              style={{
+                padding: 'clamp(1.5rem, 4vw, 2.5rem)',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
             {/* Left accent bar */}
             <div
               style={{
@@ -121,6 +115,7 @@ export default function ExperienceSection({ theme, isDarkMode }) {
                 ))}
               </ul>
             </div>
+            </TiltCard>
           </motion.div>
         ))}
       </div>
