@@ -194,7 +194,7 @@ export default function TiltPhotoCard({ theme, isDarkMode }) {
                   color: '#fafafa',
                 }}
               >
-                Software Engineer
+                Vishnu Kaushik Varma Vuddaraju
               </div>
             </div>
 

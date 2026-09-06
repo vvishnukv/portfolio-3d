@@ -188,7 +188,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                       textTransform: 'uppercase',
                     }}
                   >
-                    Software Engineer
+                    Vishnu Kaushik Varma Vuddaraju
                   </div>
                 </div>
 
