@@ -28,28 +28,46 @@ export default function App() {
 
   // Premium "Liquid Glass" theme palette - Billion-dollar design system
   const theme = {
-    bg: isDarkMode ? '#09090b' : '#fafaf9',
-    bgSubtle: isDarkMode ? '#18181b' : '#f4f4f5',
-    textMain: isDarkMode ? '#fafafa' : '#09090b',
-    textMuted: isDarkMode ? '#71717a' : '#52525b',
-    textAccent: isDarkMode ? '#d4a853' : '#a16207',
-    cardBg: isDarkMode ? 'rgba(24, 24, 27, 0.85)' : 'rgba(255, 255, 255, 0.9)',
-    cardBgHover: isDarkMode ? 'rgba(39, 39, 42, 0.9)' : 'rgba(255, 255, 255, 1)',
-    cardBorder: isDarkMode ? 'rgba(212, 168, 83, 0.15)' : 'rgba(161, 98, 7, 0.2)',
-    cardBorderFocus: isDarkMode ? 'rgba(212, 168, 83, 0.4)' : 'rgba(161, 98, 7, 0.5)',
-    cardShadow: isDarkMode ? '0 8px 40px rgba(0, 0, 0, 0.5)' : '0 8px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
-    cardGlow: isDarkMode ? '0 0 40px rgba(212, 168, 83, 0.12)' : '0 0 40px rgba(161, 98, 7, 0.1)',
-    navBg: isDarkMode ? 'rgba(9, 9, 11, 0.85)' : 'rgba(250, 250, 249, 0.92)',
-    accent1: isDarkMode ? '#d4a853' : '#a16207',   // Gold - primary
-    accent2: isDarkMode ? '#2dd4bf' : '#0d9488',   // Teal - secondary
-    accent3: isDarkMode ? '#8b5cf6' : '#7c3aed',  // Violet - tertiary
-    accent4: isDarkMode ? '#f97316' : '#c2410c',   // Orange - quaternary
+    // Warm, eye-friendly backgrounds
+    bg: isDarkMode ? '#09090b' : '#fafaf8',
+    bgSubtle: isDarkMode ? '#18181b' : '#f3f2ee',
+    bgCard: isDarkMode ? '#111114' : '#ffffff',
+    bgCardAlt: isDarkMode ? '#18181b' : '#f8f7f4',
+
+    // Soft text colors (not pure black/white for eye comfort)
+    textMain: isDarkMode ? '#fafafa' : '#1c1917',
+    textMuted: isDarkMode ? '#71717a' : '#78716c',
+    textAccent: isDarkMode ? '#d4a853' : '#b45309',
+
+    // Warm card surfaces
+    cardBg: isDarkMode ? 'rgba(17, 17, 20, 0.88)' : 'rgba(255, 255, 255, 0.88)',
+    cardBgHover: isDarkMode ? 'rgba(28, 28, 31, 0.92)' : 'rgba(255, 255, 255, 0.98)',
+    cardBorder: isDarkMode ? 'rgba(212, 168, 83, 0.15)' : 'rgba(161, 98, 7, 0.15)',
+    cardBorderHover: isDarkMode ? 'rgba(212, 168, 83, 0.35)' : 'rgba(161, 98, 7, 0.35)',
+    cardShadow: isDarkMode ? '0 8px 40px rgba(0, 0, 0, 0.5)' : '0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04)',
+    cardGlow: isDarkMode ? '0 0 40px rgba(212, 168, 83, 0.12)' : '0 0 40px rgba(161, 98, 7, 0.08)',
+
+    // Navigation
+    navBg: isDarkMode ? 'rgba(9, 9, 11, 0.88)' : 'rgba(250, 250, 248, 0.92)',
+    navBorder: isDarkMode ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.06)',
+
+    // Accent colors — softer variants for light mode
+    accent1: isDarkMode ? '#d4a853' : '#b45309',   // Warm amber gold
+    accent1Light: isDarkMode ? '#d4a85320' : '#b4530915',
+    accent1Mid: isDarkMode ? '#d4a85340' : '#b4530930',
+    accent2: isDarkMode ? '#2dd4bf' : '#0f766e',   // Muted teal
+    accent2Light: isDarkMode ? '#2dd4bf15' : '#0f766e12',
+    accent3: isDarkMode ? '#8b5cf6' : '#6d28d9',   // Deep violet
+    accent3Light: isDarkMode ? '#8b5cf615' : '#6d28d912',
+    accent4: isDarkMode ? '#f97316' : '#c2410c',   // Warm orange
+    accent4Light: isDarkMode ? '#f9731615' : '#c2410c12',
   }
 
   // Sync body background color with theme (since index.css has hardcoded body bg)
   useEffect(() => {
     document.body.style.backgroundColor = theme.bg
     document.body.style.color = theme.textMain
+    document.body.style.transition = 'background-color 0.35s ease, color 0.35s ease'
   }, [theme.bg, theme.textMain])
 
   // Active section scroll watcher + scroll progress

@@ -74,7 +74,7 @@ export default function Navbar({
                 height: '100%',
                 borderRadius: '8px',
                 overflow: 'hidden',
-                background: isDarkMode ? '#18181b' : '#f4f4f5',
+                background: theme.bgCard,
               }}
             >
               <img
@@ -232,7 +232,7 @@ export default function Navbar({
             style={{
               background: 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')',
               border: 'none',
-              color: '#09090b',
+              color: isDarkMode ? '#09090b' : '#fafaf8',
               padding: '0.5rem 1.1rem',
               borderRadius: '999px',
               cursor: 'pointer',
@@ -340,7 +340,7 @@ export default function Navbar({
           }}
           style={{
             background: 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')',
-            color: '#09090b',
+            color: isDarkMode ? '#09090b' : '#fafaf8',
             border: 'none',
             padding: '0.8rem',
             borderRadius: '12px',

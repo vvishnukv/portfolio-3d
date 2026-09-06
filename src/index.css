@@ -16,6 +16,7 @@ body {
   color: #fafafa;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 a,
@@ -74,6 +75,9 @@ select {
   --teal: #0d9488;
   --violet: #7c3aed;
   --orange: #c2410c;
+  --zinc-900: #f4f4f5;
+  --zinc-100: #fafaf9;
+  --zinc-200: #f4f4f5;
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.12);
@@ -233,13 +237,13 @@ select {
    LIQUID GLASS CARD — Premium Glassmorphism
    ========================================= */
 .glass-card {
-  background: rgba(24, 24, 27, 0.7);
+  background: rgba(17, 17, 20, 0.7);
   border: 1px solid rgba(212, 168, 83, 0.12);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-radius: 1.5rem;
   box-shadow: var(--shadow-md);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.35s ease, border-color 0.35s ease;
   position: relative;
   overflow: hidden;
 }
@@ -252,7 +256,7 @@ select {
   border-radius: inherit;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.05) 0%,
     rgba(255, 255, 255, 0) 30%,
     rgba(255, 255, 255, 0) 70%,
     rgba(255, 255, 255, 0.02) 100%
@@ -270,14 +274,16 @@ select {
 }
 
 :root.light-mode .glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(161, 98, 7, 0.15);
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(161, 98, 7, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 :root.light-mode .glass-card:hover {
+  border-color: rgba(161, 98, 7, 0.3);
   box-shadow:
-    var(--shadow-lg),
-    0 0 30px rgba(161, 98, 7, 0.12);
+    0 8px 30px rgba(0, 0, 0, 0.08),
+    0 0 30px rgba(161, 98, 7, 0.1);
 }
 
 /* =========================================

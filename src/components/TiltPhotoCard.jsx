@@ -108,11 +108,11 @@ export default function TiltPhotoCard({ theme, isDarkMode }) {
             y: bgY,
             borderRadius: '24px',
             overflow: 'hidden',
-            background: isDarkMode ? '#0a0a0c' : '#f4f4f5',
+            background: theme.bgCard,
             boxShadow:
-              '0 30px 80px rgba(0,0,0,0.55), 0 0 80px ' +
+              '0 30px 80px rgba(0,0,0,0.5), 0 0 60px ' +
               theme.accent1 +
-              '20',
+              '15',
             zIndex: 2,
           }}
         >
@@ -155,7 +155,9 @@ export default function TiltPhotoCard({ theme, isDarkMode }) {
                 right: 0,
                 height: '40%',
                 background:
-                  'linear-gradient(to top, rgba(9,9,11,0.85) 0%, rgba(9,9,11,0.4) 40%, transparent 100%)',
+                  isDarkMode
+                    ? 'linear-gradient(to top, rgba(9,9,11,0.85) 0%, rgba(9,9,11,0.4) 40%, transparent 100%)'
+                    : 'linear-gradient(to top, rgba(28,25,23,0.85) 0%, rgba(28,25,23,0.4) 40%, transparent 100%)',
                 pointerEvents: 'none',
               }}
             />
@@ -167,7 +169,7 @@ export default function TiltPhotoCard({ theme, isDarkMode }) {
                 bottom: '20px',
                 left: '20px',
                 right: '20px',
-                color: '#fafafa',
+                color: theme.textMain,
                 zIndex: 2,
               }}
             >
@@ -182,7 +184,7 @@ export default function TiltPhotoCard({ theme, isDarkMode }) {
                   fontFamily: 'var(--font-mono)',
                 }}
               >
-                Vishnu Kaushik
+                
               </div>
               <div
                 style={{
@@ -191,7 +193,7 @@ export default function TiltPhotoCard({ theme, isDarkMode }) {
                   fontFamily: 'var(--font-display)',
                   letterSpacing: '-0.01em',
                   lineHeight: 1.2,
-                  color: '#fafafa',
+                  color: theme.textMain,
                 }}
               >
                 Vishnu Kaushik Varma Vuddaraju
@@ -209,9 +211,9 @@ export default function TiltPhotoCard({ theme, isDarkMode }) {
                 gap: '0.4rem',
                 padding: '0.35rem 0.7rem',
                 borderRadius: '999px',
-                background: 'rgba(9,9,11,0.7)',
+                background: theme.cardBg,
                 backdropFilter: 'blur(12px)',
-                border: '1px solid rgba(212,168,83,0.3)',
+                border: `1px solid ${theme.accent1}30`,
                 fontSize: '0.65rem',
                 fontWeight: 700,
                 color: theme.accent1,

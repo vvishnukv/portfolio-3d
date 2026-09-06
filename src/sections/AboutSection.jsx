@@ -177,7 +177,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                       letterSpacing: '-0.01em',
                     }}
                   >
-                    Vishnu Vuddaraju
+                    Vishnu Kaushik Varma Vuddaraju
                   </div>
                   <div
                     style={{
@@ -188,7 +188,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                       textTransform: 'uppercase',
                     }}
                   >
-                    Vishnu Kaushik Varma Vuddaraju
+                    Marist Univeristy
                   </div>
                 </div>
 

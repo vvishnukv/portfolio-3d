@@ -137,7 +137,7 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
             whileTap={{ scale: 0.98 }}
             style={{
               background: 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')',
-              color: '#09090b',
+              color: isDarkMode ? '#09090b' : '#fafaf8',
               padding: '1rem 2.5rem',
               borderRadius: '999px',
               textDecoration: 'none',
@@ -161,7 +161,7 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
                 ? 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')'
                 : 'transparent',
               border: '2px solid ' + (copied ? 'transparent' : theme.accent1),
-              color: copied ? '#09090b' : theme.accent1,
+              color: copied ? (isDarkMode ? '#09090b' : '#fafaf8') : theme.accent1,
               padding: '1rem 2rem',
               borderRadius: '999px',
               cursor: 'pointer',

@@ -19,7 +19,7 @@ export default function HeroSection({ theme, isDarkMode }) {
   const y2 = useTransform(scrollY, [0, 800], [0, -45])
   const y3 = useTransform(scrollY, [0, 800], [0, 30])
 
-  const headlineLetters = 'Vishnu Kaushik Varma'.split('')
+  const headlineLetters = 'Vishnu Kaushik Varma Vuddaraju'.split('')
 
   return (
     <section
@@ -302,7 +302,7 @@ export default function HeroSection({ theme, isDarkMode }) {
               padding: '0.85rem 2rem',
               borderRadius: '999px',
               background: `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`,
-              color: '#09090b',
+              color: isDarkMode ? '#09090b' : '#fafaf8',
               fontSize: '0.9rem',
               fontWeight: 700,
               textDecoration: 'none',
