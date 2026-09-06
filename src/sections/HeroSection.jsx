@@ -2,6 +2,7 @@ import React from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { CountUp } from '../utils/microInteractions'
 import TypingEffect from '../components/TypingEffect'
+import TiltPhotoCard from '../components/TiltPhotoCard'
 
 const ROLES = [
   'Software Engineer',
@@ -310,7 +311,7 @@ export default function HeroSection({ theme, isDarkMode }) {
         </motion.div>
         </div>
 
-        {/* RIGHT COLUMN: Professional photo */}
+        {/* RIGHT COLUMN: 3D Tilt Parallax Photo Card */}
         <motion.div
           initial={{ opacity: 0, scale: 0.85, x: 30 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
@@ -320,114 +321,10 @@ export default function HeroSection({ theme, isDarkMode }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            minWidth: '0',
           }}
         >
-          {/* Decorative gold ring rotating */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-            style={{
-              position: 'absolute',
-              width: '320px',
-              height: '320px',
-              borderRadius: '50%',
-              border: '1px dashed rgba(212, 168, 83, 0.25)',
-              pointerEvents: 'none',
-            }}
-          />
-          <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
-            style={{
-              position: 'absolute',
-              width: '380px',
-              height: '380px',
-              borderRadius: '50%',
-              border: '1px solid rgba(212, 168, 83, 0.1)',
-              pointerEvents: 'none',
-            }}
-          />
-
-          {/* Floating accent dots */}
-          <motion.div
-            animate={{ y: [-10, 10, -10] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            style={{
-              position: 'absolute',
-              top: '5%',
-              right: '0%',
-              width: '14px',
-              height: '14px',
-              borderRadius: '50%',
-              background: theme.accent1,
-              boxShadow: '0 0 16px ' + theme.accent1,
-            }}
-          />
-          <motion.div
-            animate={{ y: [10, -10, 10] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-            style={{
-              position: 'absolute',
-              bottom: '10%',
-              left: '5%',
-              width: '10px',
-              height: '10px',
-              borderRadius: '50%',
-              background: theme.accent2,
-              boxShadow: '0 0 14px ' + theme.accent2,
-            }}
-          />
-          <motion.div
-            animate={{ y: [-8, 8, -8] }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            style={{
-              position: 'absolute',
-              bottom: '30%',
-              right: '-3%',
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              background: theme.accent3,
-              boxShadow: '0 0 12px ' + theme.accent3,
-            }}
-          />
-
-          {/* Photo with gold gradient ring */}
-          <div
-            style={{
-              position: 'relative',
-              width: '280px',
-              height: '280px',
-              borderRadius: '50%',
-              padding: '4px',
-              background: 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')',
-              boxShadow:
-                '0 20px 60px rgba(0,0,0,0.5), 0 0 60px ' + theme.accent1 + '40',
-            }}
-          >
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                borderRadius: '50%',
-                overflow: 'hidden',
-                background: isDarkMode ? '#18181b' : '#f4f4f5',
-                position: 'relative',
-              }}
-            >
-              <img
-                src="/vishnu-photo.png"
-                alt="Vishnu Kaushik Varma Vuddaraju — Software Engineer"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center 18%',
-                  display: 'block',
-                }}
-              />
-            </div>
-          </div>
+          <TiltPhotoCard theme={theme} isDarkMode={isDarkMode} />
         </motion.div>
       </motion.div>
 
