@@ -74,79 +74,54 @@ export default function TiltPhotoCard({ theme, isDarkMode }) {
             width: '120%',
             height: '120%',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, ' + theme.accent1 + '25, transparent 70%)',
-            filter: 'blur(40px)',
+            background: 'radial-gradient(circle, ' + theme.accent1 + '15, transparent 70%)',
+            filter: 'blur(50px)',
             zIndex: -1,
             pointerEvents: 'none',
-            opacity: hovered ? 0.9 : 0.6,
-            transition: 'opacity 0.4s ease',
+            opacity: hovered ? 0.7 : 0.4,
+            transition: 'opacity 0.5s ease',
           }}
         />
 
-        {/* Rotating dashed ring (decoration) */}
+        {/* Subtle ambient ring (very soft, no harsh border) */}
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+          transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
           style={{
             position: 'absolute',
-            top: '-8%',
-            left: '-8%',
-            right: '-8%',
-            bottom: '-8%',
-            borderRadius: '50%',
-            border: '1.5px dashed ' + theme.accent1 + '30',
-            pointerEvents: 'none',
-            zIndex: 0,
-          }}
-        />
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-          style={{
-            position: 'absolute',
-            top: '-15%',
-            left: '-15%',
-            right: '-15%',
-            bottom: '-15%',
-            borderRadius: '50%',
-            border: '1px solid ' + theme.accent1 + '15',
+            top: '-10%',
+            left: '-10%',
+            right: '-10%',
+            bottom: '-10%',
+            borderRadius: '24px',
+            border: '1px solid ' + theme.accent1 + '12',
             pointerEvents: 'none',
             zIndex: 0,
           }}
         />
 
-        {/* Gold frame card with parallax bg layer */}
+        {/* Smooth card with parallax bg layer - NO BORDER */}
         <motion.div
           style={{
             position: 'relative',
             x: bgX,
             y: bgY,
             borderRadius: '24px',
-            padding: '4px',
-            background:
-              'linear-gradient(135deg, ' +
-              theme.accent1 +
-              ' 0%, ' +
-              theme.accent2 +
-              ' 50%, ' +
-              theme.accent1 +
-              ' 100%)',
-            backgroundSize: '200% 200%',
+            overflow: 'hidden',
+            background: isDarkMode ? '#0a0a0c' : '#f4f4f5',
             boxShadow:
-              '0 25px 80px rgba(0,0,0,0.6), 0 0 60px ' +
+              '0 30px 80px rgba(0,0,0,0.55), 0 0 80px ' +
               theme.accent1 +
-              '30, inset 0 0 0 1px rgba(255,255,255,0.08)',
+              '20',
             zIndex: 2,
-            animation: 'gradientShift 8s ease infinite',
           }}
         >
           {/* Inner card body */}
           <div
             style={{
               position: 'relative',
-              borderRadius: '21px',
+              borderRadius: '24px',
               overflow: 'hidden',
-              background: isDarkMode ? '#0a0a0c' : '#f4f4f5',
               width: '300px',
               height: '420px',
             }}
@@ -181,22 +156,6 @@ export default function TiltPhotoCard({ theme, isDarkMode }) {
                 height: '40%',
                 background:
                   'linear-gradient(to top, rgba(9,9,11,0.85) 0%, rgba(9,9,11,0.4) 40%, transparent 100%)',
-                pointerEvents: 'none',
-              }}
-            />
-
-            {/* Gold rim shine (top edge) */}
-            <motion.div
-              animate={{ x: ['-100%', '200%'] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', repeatDelay: 3 }}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '50%',
-                height: '100%',
-                background:
-                  'linear-gradient(120deg, transparent 30%, rgba(212,168,83,0.15) 50%, transparent 70%)',
                 pointerEvents: 'none',
               }}
             />
@@ -277,12 +236,12 @@ export default function TiltPhotoCard({ theme, isDarkMode }) {
           </div>
         </motion.div>
 
-        {/* Floating particles */}
+        {/* Floating particles — soft, subtle glow */}
         {[
-          { top: '5%', right: '-10%', size: 12, color: theme.accent1, delay: 0 },
-          { bottom: '15%', left: '-12%', size: 10, color: theme.accent2, delay: 1 },
-          { top: '40%', right: '-15%', size: 8, color: theme.accent3, delay: 2 },
-          { bottom: '5%', right: '5%', size: 6, color: theme.accent1, delay: 0.5 },
+          { top: '5%', right: '-8%', size: 8, color: theme.accent1, delay: 0 },
+          { bottom: '15%', left: '-10%', size: 6, color: theme.accent2, delay: 1 },
+          { top: '45%', right: '-12%', size: 5, color: theme.accent3, delay: 2 },
+          { bottom: '8%', right: '8%', size: 4, color: theme.accent1, delay: 0.5 },
         ].map((p, i) => (
           <motion.div
             key={i}
@@ -313,35 +272,6 @@ export default function TiltPhotoCard({ theme, isDarkMode }) {
           />
         ))}
 
-        {/* Corner accent brackets (top-left) */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '-4px',
-            left: '-4px',
-            width: '24px',
-            height: '24px',
-            borderTop: '2px solid ' + theme.accent1,
-            borderLeft: '2px solid ' + theme.accent1,
-            borderTopLeftRadius: '6px',
-            pointerEvents: 'none',
-            zIndex: 4,
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '-4px',
-            right: '-4px',
-            width: '24px',
-            height: '24px',
-            borderBottom: '2px solid ' + theme.accent1,
-            borderRight: '2px solid ' + theme.accent1,
-            borderBottomRightRadius: '6px',
-            pointerEvents: 'none',
-            zIndex: 4,
-          }}
-        />
       </motion.div>
     </motion.div>
   )
