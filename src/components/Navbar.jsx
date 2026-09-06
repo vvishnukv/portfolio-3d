@@ -59,20 +59,36 @@ export default function Navbar({
         >
           <div
             style={{
-              width: '38px',
-              height: '38px',
+              width: '40px',
+              height: '40px',
               borderRadius: '10px',
+              padding: '2px',
               background: 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '0.85rem',
-              fontWeight: 800,
-              color: '#09090b',
               boxShadow: '0 4px 12px ' + theme.accent1 + '40',
+              flexShrink: 0,
             }}
           >
-            VK
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '8px',
+                overflow: 'hidden',
+                background: isDarkMode ? '#18181b' : '#f4f4f5',
+              }}
+            >
+              <img
+                src="/vishnu-photo.png"
+                alt="VK"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center 18%',
+                  display: 'block',
+                }}
+              />
+            </div>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>

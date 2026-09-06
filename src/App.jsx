@@ -155,7 +155,7 @@ export default function App() {
         </div>
       ) : (
         <div style={{ position: 'relative', zIndex: 1, paddingTop: '70px' }}>
-          <HeroSection theme={theme} />
+          <HeroSection theme={theme} isDarkMode={isDarkMode} />
           <AboutSection theme={theme} isDarkMode={isDarkMode} />
           <ExperienceSection theme={theme} isDarkMode={isDarkMode} />
           <ProjectsSection

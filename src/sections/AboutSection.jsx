@@ -126,25 +126,40 @@ export default function AboutSection({ theme, isDarkMode }) {
                 }}
               />
 
-              {/* Avatar with gold ring */}
+              {/* Professional photo with gold ring */}
               <div
                 style={{
-                  width: '100px',
-                  height: '100px',
+                  width: '120px',
+                  height: '120px',
                   borderRadius: '50%',
                   background: `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.9rem',
-                  fontWeight: 800,
-                  color: isDarkMode ? '#09090b' : '#fff',
-                  letterSpacing: '-0.02em',
-                  boxShadow: `0 0 24px ${theme.accent1}50, 0 0 0 4px rgba(212,168,83,0.15)`,
+                  padding: '3px',
+                  boxShadow: `0 0 28px ${theme.accent1}50, 0 8px 20px rgba(0,0,0,0.4)`,
                   flexShrink: 0,
                 }}
               >
-                VK
+                <div
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '50%',
+                    overflow: 'hidden',
+                    background: isDarkMode ? '#18181b' : '#f4f4f5',
+                    position: 'relative',
+                  }}
+                >
+                  <img
+                    src="/vishnu-photo.png"
+                    alt="Vishnu Kaushik Varma Vuddaraju"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'center top',
+                      display: 'block',
+                    }}
+                  />
+                </div>
               </div>
 
               {/* Name + role */}

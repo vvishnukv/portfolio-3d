@@ -671,9 +671,25 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
               >
                 {/* Header */}
                 <div style={{ textAlign: 'center', marginBottom: '16px', paddingBottom: '4px' }}>
-                  <h1 style={{ fontSize: '18pt', fontWeight: 700, letterSpacing: '0.5px', margin: '0 0 4px 0', color: '#000' }}>
-                    Vishnu Kaushik Varma Vuddaraju
-                  </h1>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
+                    <img
+                      src="/vishnu-photo.png"
+                      alt="Vishnu Vuddaraju"
+                      style={{
+                        width: '52px',
+                        height: '52px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        objectPosition: 'center top',
+                        border: '2px solid #d4a853',
+                        boxShadow: '0 0 12px rgba(212,168,83,0.3)',
+                        flexShrink: 0,
+                      }}
+                    />
+                    <h1 style={{ fontSize: '18pt', fontWeight: 700, letterSpacing: '0.5px', margin: 0, color: '#000', textAlign: 'left' }}>
+                      Vishnu Kaushik Varma Vuddaraju
+                    </h1>
+                  </div>
                   <p style={{ margin: '0 0 3px 0', fontSize: '9pt', color: '#222' }}>
                     Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781 |
                     <a href="https://linkedin.com/in/vishnukaushikvarma" target="_blank" rel="noreferrer" style={{ color: '#000', textDecoration: 'none' }}> linkedin.com/in/vishnukaushikvarma</a>
