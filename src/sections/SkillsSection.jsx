@@ -103,19 +103,6 @@ export default function SkillsSection({ theme, isDarkMode, searchQuery }) {
                   minHeight: '100%',
                 }}
               >
-                {/* Top accent bar */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: '2px',
-                    background:
-                      'linear-gradient(90deg, ' + accentColor + ', ' + CATEGORY_COLORS[(idx + 1) % 4] + ')',
-                  }}
-                />
-
                 {/* Category header */}
                 <div
                   style={{

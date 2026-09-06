@@ -88,18 +88,6 @@ export default function EducationSection({ theme, isDarkMode }) {
                 minHeight: '200px',
               }}
             >
-              {/* Top gold accent bar */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: '2px',
-                  background: 'linear-gradient(90deg, ' + theme.accent1 + ', ' + theme.accent2 + ')',
-                }}
-              />
-
               <div
                 style={{
                   display: 'flex',

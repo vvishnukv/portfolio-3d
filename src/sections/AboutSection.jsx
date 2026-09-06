@@ -109,7 +109,7 @@ export default function AboutSection({ theme, isDarkMode }) {
             <TiltCard
               theme={theme}
               style={{
-                padding: '1rem',
+                padding: '2.rem',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -120,18 +120,6 @@ export default function AboutSection({ theme, isDarkMode }) {
                 boxSizing: 'border-box',
               }}
             >
-              {/* Gold accent top bar */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: '2px',
-                  background: `linear-gradient(90deg, ${theme.accent1}, ${theme.accent2})`,
-                  zIndex: 2,
-                }}
-              />
 
               {/* Top section: photo + name + role */}
               <div

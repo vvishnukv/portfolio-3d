@@ -300,25 +300,6 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                   minHeight: '100%',
                 }}
               >
-                {/* Top gradient strip */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: '3px',
-                    background:
-                      'linear-gradient(90deg, ' +
-                      theme.accent1 +
-                      ', ' +
-                      theme.accent2 +
-                      ', ' +
-                      theme.accent3 +
-                      ')',
-                  }}
-                />
-
                 <div>
                   <div
                     style={{
