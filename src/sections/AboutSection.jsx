@@ -91,6 +91,13 @@ export default function AboutSection({ theme, isDarkMode }) {
             alignItems: 'stretch',
           }}
         >
+          <style>{`
+            @media (max-width: 768px) {
+              .about-grid {
+                grid-template-columns: 1fr !important;
+              }
+            }
+          `}</style>
           {/* Left: Identity card */}
           <motion.div
             initial="hidden"
@@ -106,7 +113,6 @@ export default function AboutSection({ theme, isDarkMode }) {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: '1.2rem',
                 position: 'relative',
                 overflow: 'hidden',
                 height: '100%',
@@ -126,7 +132,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                 }}
               />
 
-              {/* Professional photo with gold ring */}
+              {/* Professional photo with gold ring — top section */}
               <div
                 style={{
                   width: '120px',
@@ -136,6 +142,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                   padding: '3px',
                   boxShadow: `0 0 28px ${theme.accent1}50, 0 8px 20px rgba(0,0,0,0.4)`,
                   flexShrink: 0,
+                  marginTop: '1.5rem',
                 }}
               >
                 <div
@@ -163,13 +170,13 @@ export default function AboutSection({ theme, isDarkMode }) {
               </div>
 
               {/* Name + role */}
-              <div style={{ textAlign: 'center' }}>
+              <div style={{ textAlign: 'center', marginTop: '1.2rem' }}>
                 <div
                   style={{
-                    fontSize: '1rem',
+                    fontSize: '1.05rem',
                     fontWeight: 700,
                     color: theme.textMain,
-                    marginBottom: '0.2rem',
+                    marginBottom: '0.3rem',
                     letterSpacing: '-0.01em',
                   }}
                 >
@@ -177,7 +184,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                 </div>
                 <div
                   style={{
-                    fontSize: '0.7rem',
+                    fontSize: '0.72rem',
                     color: theme.accent1,
                     fontWeight: 600,
                     letterSpacing: '0.06em',
@@ -194,18 +201,21 @@ export default function AboutSection({ theme, isDarkMode }) {
                   width: '48px',
                   height: '1px',
                   background: `linear-gradient(90deg, transparent, ${theme.accent1}60, transparent)`,
+                  marginTop: '1.2rem',
                 }}
               />
 
-              {/* Quick stats */}
+              {/* Quick stats — pushed to bottom with flex-grow spacer */}
+              <div style={{ flexGrow: 1 }} />
               <div
                 style={{
                   display: 'flex',
                   gap: '0.5rem',
                   flexWrap: 'wrap',
                   justifyContent: 'center',
-                  marginTop: 'auto',
                   width: '100%',
+                  marginTop: '1.2rem',
+                  marginBottom: '0.5rem',
                 }}
               >
                 {[
@@ -218,7 +228,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                     style={{
                       flex: 1,
                       minWidth: '60px',
-                      padding: '0.5rem 0.3rem',
+                      padding: '0.55rem 0.3rem',
                       borderRadius: '0.6rem',
                       background: `${accent}10`,
                       border: `1px solid ${accent}25`,
@@ -243,7 +253,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                         textTransform: 'uppercase',
                         letterSpacing: '0.08em',
                         fontWeight: 600,
-                        marginTop: '0.1rem',
+                        marginTop: '0.15rem',
                       }}
                     >
                       {l}
