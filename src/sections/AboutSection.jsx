@@ -142,7 +142,6 @@ export default function AboutSection({ theme, isDarkMode }) {
                   padding: '3px',
                   boxShadow: `0 0 28px ${theme.accent1}50, 0 8px 20px rgba(0,0,0,0.4)`,
                   flexShrink: 0,
-                  marginTop: '1.5rem',
                 }}
               >
                 <div
