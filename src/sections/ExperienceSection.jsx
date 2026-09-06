@@ -1,9 +1,10 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { experienceData } from '../data/portfolioData'
-import { TiltCard, reveal3D } from '../utils/microInteractions'
 
 export default function ExperienceSection({ theme, isDarkMode }) {
+  const [expandedIdx, setExpandedIdx] = useState(0)
+
   return (
     <section
       id="experience"
@@ -15,109 +16,207 @@ export default function ExperienceSection({ theme, isDarkMode }) {
         padding: '8vh 8vw',
       }}
     >
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="gradient-text"
-        style={{
-          fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-          fontWeight: 800,
-          marginBottom: '3rem',
-          letterSpacing: '-0.01em',
-        }}
-      >
-        Work Experience
-      </motion.h2>
+      <div style={{ marginBottom: '3rem' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            fontSize: '0.78rem',
+            fontWeight: 600,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            color: theme.accent1,
+            marginBottom: '0.75rem',
+          }}
+        >
+          <span
+            style={{
+              width: '24px',
+              height: '1.5px',
+              background: 'linear-gradient(90deg, var(--gold), var(--teal))',
+              borderRadius: '2px',
+            }}
+          />
+          Career Journey
+        </motion.div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', maxWidth: '1000px' }}>
-        {experienceData.map((exp, idx) => (
-          <motion.div
-            key={idx}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={reveal3D}
-            custom={idx}
-          >
-            <TiltCard
-              theme={theme}
-              style={{
-                padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-                position: 'relative',
-                overflow: 'hidden',
-              }}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="display-heading shimmer-text"
+          style={{
+            fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+            fontWeight: 700,
+            margin: 0,
+            letterSpacing: '-0.02em',
+            lineHeight: 1.1,
+          }}
+        >
+          Where I have made an impact
+        </motion.h2>
+      </div>
+
+      <div className="timeline">
+        {experienceData.map((exp, idx) => {
+          const isExpanded = expandedIdx === idx
+          return (
+            <motion.div
+              key={idx}
+              className="timeline-item"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
             >
-            {/* Left accent bar */}
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '4px',
-                height: '100%',
-                background: `linear-gradient(180deg, ${theme.accent1}, ${theme.accent2})`,
-                borderRadius: '0 2px 2px 0',
-              }}
-            />
-
-            <div style={{ paddingLeft: '1.2rem' }}>
-              <h3
+              <motion.div
+                className="glass-card"
+                onClick={() => setExpandedIdx(isExpanded ? -1 : idx)}
+                whileHover={{ x: 4 }}
                 style={{
-                  fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
-                  marginBottom: '0.3rem',
-                  color: theme.textMain,
-                  fontWeight: 700,
+                  padding: '1.8rem 2rem',
+                  cursor: 'pointer',
+                  background: theme.cardBg,
+                  border: '1px solid ' + (isExpanded ? theme.cardBorderFocus : theme.cardBorder),
+                  boxShadow: isExpanded
+                    ? '0 8px 32px rgba(0,0,0,0.4), 0 0 24px ' + theme.accent1 + '15'
+                    : theme.cardShadow,
                 }}
               >
-                {exp.title}
-              </h3>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    gap: '1rem',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <div style={{ flex: 1, minWidth: '240px' }}>
+                    <h3
+                      style={{
+                        fontSize: '1.25rem',
+                        fontWeight: 700,
+                        color: theme.textMain,
+                        margin: '0 0 0.3rem 0',
+                        letterSpacing: '-0.01em',
+                        lineHeight: 1.3,
+                      }}
+                    >
+                      {exp.title}
+                    </h3>
+                    <div
+                      style={{
+                        color: theme.accent1,
+                        fontSize: '0.9rem',
+                        fontWeight: 600,
+                      }}
+                    >
+                      {exp.company}
+                    </div>
+                  </div>
 
-              <h4
-                style={{
-                  color: theme.accent1,
-                  fontSize: '1.05rem',
-                  fontWeight: 600,
-                  marginBottom: '1.5rem',
-                }}
-              >
-                {exp.company}
-              </h4>
-
-              <ul
-                style={{
-                  color: theme.textMuted,
-                  lineHeight: 1.7,
-                  paddingLeft: '1.2rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.7rem',
-                  fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
-                  margin: 0,
-                }}
-              >
-                {exp.bullets.map((bullet, bIdx) => (
-                  <li key={bIdx} style={{ position: 'relative' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      padding: '0.4rem 0.9rem',
+                      borderRadius: '999px',
+                      background: idx === 0 ? theme.accent1 + '15' : theme.accent2 + '10',
+                      border: '1px solid ' + (idx === 0 ? theme.accent1 + '30' : theme.accent2 + '25'),
+                      fontSize: '0.72rem',
+                      fontWeight: 700,
+                      color: idx === 0 ? theme.accent1 : theme.accent2,
+                      letterSpacing: '0.05em',
+                    }}
+                  >
                     <span
                       style={{
-                        position: 'absolute',
-                        left: '-1.2rem',
-                        top: '0.6rem',
-                        width: '5px',
-                        height: '5px',
+                        width: '6px',
+                        height: '6px',
                         borderRadius: '50%',
-                        background: theme.accent2,
+                        background: idx === 0 ? theme.accent1 : theme.accent2,
+                        boxShadow: '0 0 8px ' + (idx === 0 ? theme.accent1 : theme.accent2),
                       }}
                     />
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            </TiltCard>
-          </motion.div>
-        ))}
+                    {idx === 0 ? 'CURRENT' : 'PREVIOUS'}
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '1rem', color: theme.textMuted, fontSize: '0.9rem', lineHeight: 1.75 }}>
+                  {exp.bullets.slice(0, 2).map((b, i) => (
+                    <div key={i} style={{ display: 'flex', gap: '0.6rem', marginBottom: '0.4rem' }}>
+                      <span style={{ color: theme.accent1, fontWeight: 700, flexShrink: 0 }}>→</span>
+                      <span>{b}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <AnimatePresence>
+                  {isExpanded && exp.bullets.length > 2 && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      style={{ overflow: 'hidden' }}
+                    >
+                      <div
+                        style={{
+                          marginTop: '0.8rem',
+                          paddingTop: '0.8rem',
+                          borderTop: '1px solid ' + theme.cardBorder,
+                          color: theme.textMuted,
+                          fontSize: '0.9rem',
+                          lineHeight: 1.75,
+                        }}
+                      >
+                        {exp.bullets.slice(2).map((b, i) => (
+                          <div key={i} style={{ display: 'flex', gap: '0.6rem', marginBottom: '0.4rem' }}>
+                            <span style={{ color: theme.accent2, fontWeight: 700, flexShrink: 0 }}>→</span>
+                            <span>{b}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {exp.bullets.length > 2 && (
+                  <div
+                    style={{
+                      marginTop: '0.8rem',
+                      fontSize: '0.72rem',
+                      color: theme.accent1,
+                      fontWeight: 700,
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.3rem',
+                    }}
+                  >
+                    {isExpanded ? 'Show less' : 'Show ' + (exp.bullets.length - 2) + ' more'}
+                    <motion.span
+                      animate={{ rotate: isExpanded ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      style={{ display: 'inline-block', fontSize: '0.6rem' }}
+                    >
+                      ▼
+                    </motion.span>
+                  </div>
+                )}
+              </motion.div>
+            </motion.div>
+          )
+        })}
       </div>
     </section>
   )

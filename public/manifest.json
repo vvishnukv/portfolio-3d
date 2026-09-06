@@ -1,0 +1,21 @@
+{
+  "name": "Vishnu Kaushik Varma - Portfolio",
+  "short_name": "Vishnu KV",
+  "description": "Software Engineer & IT Technical Specialist — Interactive 3D portfolio with AI Resume builder",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#d4a853",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "productivity"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

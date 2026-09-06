@@ -27,24 +27,24 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('')
   const [scrollProgress, setScrollProgress] = useState(0)
 
-  // New futuristic theme palette
+  // Premium "Liquid Glass" theme palette - Billion-dollar design system
   const theme = {
-    bg: isDarkMode ? '#0a0e17' : '#f5f3ef',
-    bgSubtle: isDarkMode ? '#111827' : '#ede9e1',
-    textMain: isDarkMode ? '#f8fafc' : '#1c1917',
-    textMuted: isDarkMode ? '#a3a8b8' : '#44403c',
-    textAccent: isDarkMode ? '#e6fffa' : '#0d9488',
-    cardBg: isDarkMode ? 'rgba(10, 14, 23, 0.75)' : 'rgba(255, 253, 249, 0.96)',
-    cardBgHover: isDarkMode ? 'rgba(15, 19, 28, 0.8)' : 'rgba(255, 255, 255, 1)',
-    cardBorder: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(180, 168, 150, 0.45)',
-    cardBorderFocus: isDarkMode ? 'rgba(0, 212, 170, 0.35)' : 'rgba(13, 148, 136, 0.4)',
-    cardShadow: isDarkMode ? '0 8px 32px rgba(0, 0, 0, 0.3)' : '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
-    cardGlow: isDarkMode ? '0 0 30px rgba(0, 212, 170, 0.15)' : '0 0 30px rgba(13, 148, 136, 0.12)',
-    navBg: isDarkMode ? 'rgba(10, 14, 23, 0.8)' : 'rgba(245, 243, 239, 0.95)',
-    accent1: isDarkMode ? '#00d4aa' : '#0d9488',
-    accent2: isDarkMode ? '#0066ff' : '#1e40af',
-    accent3: isDarkMode ? '#ff00a8' : '#be185d',
-    accent4: isDarkMode ? '#7928ca' : '#7e22ce',
+    bg: isDarkMode ? '#09090b' : '#fafaf9',
+    bgSubtle: isDarkMode ? '#18181b' : '#f4f4f5',
+    textMain: isDarkMode ? '#fafafa' : '#09090b',
+    textMuted: isDarkMode ? '#71717a' : '#52525b',
+    textAccent: isDarkMode ? '#d4a853' : '#a16207',
+    cardBg: isDarkMode ? 'rgba(24, 24, 27, 0.85)' : 'rgba(255, 255, 255, 0.9)',
+    cardBgHover: isDarkMode ? 'rgba(39, 39, 42, 0.9)' : 'rgba(255, 255, 255, 1)',
+    cardBorder: isDarkMode ? 'rgba(212, 168, 83, 0.15)' : 'rgba(161, 98, 7, 0.2)',
+    cardBorderFocus: isDarkMode ? 'rgba(212, 168, 83, 0.4)' : 'rgba(161, 98, 7, 0.5)',
+    cardShadow: isDarkMode ? '0 8px 40px rgba(0, 0, 0, 0.5)' : '0 8px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
+    cardGlow: isDarkMode ? '0 0 40px rgba(212, 168, 83, 0.12)' : '0 0 40px rgba(161, 98, 7, 0.1)',
+    navBg: isDarkMode ? 'rgba(9, 9, 11, 0.85)' : 'rgba(250, 250, 249, 0.92)',
+    accent1: isDarkMode ? '#d4a853' : '#a16207',   // Gold - primary
+    accent2: isDarkMode ? '#2dd4bf' : '#0d9488',   // Teal - secondary
+    accent3: isDarkMode ? '#8b5cf6' : '#7c3aed',  // Violet - tertiary
+    accent4: isDarkMode ? '#f97316' : '#c2410c',   // Orange - quaternary
   }
 
   // Sync body background color with theme (since index.css has hardcoded body bg)

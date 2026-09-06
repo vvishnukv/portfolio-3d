@@ -1,15 +1,33 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { projectsData } from '../data/portfolioData'
 import { TiltCard, reveal3D } from '../utils/microInteractions'
 import ProjectModal from '../components/ProjectModal'
 
+const FILTERS = [
+  { id: 'all', label: 'All Work' },
+  { id: 'data', label: 'Data & Analytics' },
+  { id: 'ai', label: 'AI & Cloud' },
+  { id: 'mobile', label: 'Mobile Apps' },
+  { id: 'fullstack', label: 'Full-Stack' },
+]
+
+function getCategory(project) {
+  const tech = project.tech.toLowerCase()
+  if (tech.includes('flutter') || tech.includes('dart')) return 'mobile'
+  if (tech.includes('python') || tech.includes('tableau') || tech.includes('pandas')) return 'data'
+  if (tech.includes('openai') || tech.includes('docker') || tech.includes('gcp')) return 'ai'
+  if (tech.includes('node') || tech.includes('mongodb') || tech.includes('express')) return 'fullstack'
+  return 'all'
+}
+
 export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSearchQuery }) {
   const [selectedProject, setSelectedProject] = useState(null)
+  const [activeFilter, setActiveFilter] = useState('all')
   const cardRefs = useRef({})
 
   const handleOpenModal = (project, idx) => {
-    const rect = cardRefs.current[idx]?.getBoundingClientRect()
+    const rect = cardRefs.current[idx] && cardRefs.current[idx].getBoundingClientRect()
     setSelectedProject({
       project,
       rect: rect ? { x: rect.x, y: rect.y, width: rect.width, height: rect.height } : null,
@@ -17,11 +35,17 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
   }
   const handleCloseModal = () => setSelectedProject(null)
 
-  const filteredProjects = projectsData.filter(proj =>
-    proj.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    proj.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    proj.tech.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  const filteredProjects = useMemo(() => {
+    return projectsData.filter((proj) => {
+      const matchesSearch =
+        !searchQuery ||
+        proj.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        proj.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        proj.tech.toLowerCase().includes(searchQuery.toLowerCase())
+      const matchesFilter = activeFilter === 'all' || getCategory(proj) === activeFilter
+      return matchesSearch && matchesFilter
+    })
+  }, [searchQuery, activeFilter])
 
   return (
     <section
@@ -34,10 +58,11 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
         padding: '8vh 5vw',
       }}
     >
+      {/* Header */}
       <div
         style={{
           padding: '0 3vw',
-          marginBottom: '2.5rem',
+          marginBottom: '2rem',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'flex-end',
@@ -45,34 +70,69 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
           gap: '1.5rem',
         }}
       >
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="gradient-text"
-          style={{
-            fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-            fontWeight: 800,
-            margin: 0,
-            letterSpacing: '-0.01em',
-          }}
-        >
-          Featured Projects{' '}
-          {searchQuery && (
+        <div>
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              fontSize: '0.78rem',
+              fontWeight: 600,
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+              color: theme.accent1,
+              marginBottom: '0.5rem',
+            }}
+          >
             <span
               style={{
-                fontSize: '1.2rem',
-                color: theme.textMuted,
-                fontWeight: 500,
-                fontStyle: 'italic',
+                width: '24px',
+                height: '1.5px',
+                background: 'linear-gradient(90deg, var(--gold), var(--teal))',
+                borderRadius: '2px',
               }}
-            >
-              (Filtered by "{searchQuery}")
-            </span>
-          )}
-        </motion.h2>
+            />
+            Selected Work
+          </motion.div>
 
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="display-heading shimmer-text"
+            style={{
+              fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+              fontWeight: 700,
+              margin: 0,
+              letterSpacing: '-0.02em',
+              lineHeight: 1.1,
+            }}
+          >
+            Featured Projects
+            {searchQuery && (
+              <span
+                style={{
+                  fontSize: '1.1rem',
+                  color: theme.textMuted,
+                  fontWeight: 500,
+                  fontStyle: 'italic',
+                  display: 'block',
+                  marginTop: '0.5rem',
+                  fontFamily: 'var(--font-body)',
+                }}
+              >
+                filtered by "{searchQuery}"
+              </span>
+            )}
+          </motion.h2>
+        </div>
+
+        {/* Search bar */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -84,28 +144,28 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
             display: 'flex',
             alignItems: 'center',
             borderRadius: '999px',
-            border: `1.5px solid ${theme.cardBorderFocus}`,
+            border: '1.5px solid ' + theme.cardBorderFocus,
             background: theme.cardBg,
             padding: '0.5rem 1.2rem',
             backdropFilter: 'blur(16px)',
-            boxShadow: isDarkMode ? `0 0 20px ${theme.accent1}30` : '0 2px 12px rgba(0,0,0,0.06)',
+            boxShadow: '0 0 20px ' + theme.accent1 + '20',
           }}
         >
-          <span style={{ fontSize: '1rem', marginRight: '8px' }}>⚡</span>
+          <span style={{ fontSize: '0.95rem', marginRight: '8px', opacity: 0.7 }}>⌘</span>
           <input
             type="text"
-            placeholder="Search projects or type 'SPIDER'..."
+            placeholder="Search projects..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
               background: 'transparent',
               border: 'none',
               color: theme.textMain,
-              fontSize: '0.95rem',
+              fontSize: '0.9rem',
               fontWeight: 500,
               outline: 'none',
-              width: '260px',
-              fontFamily: 'var(--font-display)',
+              width: '240px',
+              fontFamily: 'var(--font-body)',
             }}
           />
           {searchQuery && (
@@ -133,25 +193,88 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
         </motion.div>
       </div>
 
+      {/* Filter tabs */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '0.5rem',
+          padding: '0 3vw',
+          marginBottom: '2.5rem',
+          flexWrap: 'wrap',
+        }}
+      >
+        {FILTERS.map((f) => {
+          const isActive = activeFilter === f.id
+          return (
+            <motion.button
+              key={f.id}
+              onClick={() => setActiveFilter(f.id)}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              style={{
+                padding: '0.5rem 1.1rem',
+                borderRadius: '999px',
+                fontSize: '0.82rem',
+                fontWeight: 600,
+                background: isActive
+                  ? 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')'
+                  : theme.cardBg,
+                color: isActive ? '#09090b' : theme.textMuted,
+                border: '1px solid ' + (isActive ? 'transparent' : theme.cardBorder),
+                cursor: 'pointer',
+                letterSpacing: '0.02em',
+                transition: 'all 0.25s ease',
+                boxShadow: isActive ? '0 4px 16px ' + theme.accent1 + '30' : 'none',
+              }}
+            >
+              {f.label}
+            </motion.button>
+          )
+        })}
+      </div>
+
+      {/* Project grid */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '2rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '1.5rem',
           padding: '0 3vw',
         }}
       >
         {filteredProjects.length === 0 ? (
-          <p
+          <div
             style={{
-              color: theme.textMuted,
               gridColumn: '1 / -1',
               textAlign: 'center',
-              fontSize: '1.2rem',
+              padding: '4rem 2rem',
+              color: theme.textMuted,
             }}
           >
-            No projects found matching "{searchQuery}"
-          </p>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔍</div>
+            <div style={{ fontSize: '1.1rem', fontWeight: 500 }}>
+              No projects found matching your criteria
+            </div>
+            <button
+              onClick={() => {
+                setSearchQuery('')
+                setActiveFilter('all')
+              }}
+              style={{
+                marginTop: '1.5rem',
+                padding: '0.6rem 1.5rem',
+                background: 'transparent',
+                border: '1.5px solid ' + theme.accent1,
+                borderRadius: '999px',
+                color: theme.accent1,
+                fontSize: '0.85rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+              }}
+            >
+              Clear filters
+            </button>
+          </div>
         ) : (
           filteredProjects.map((project, idx) => (
             <motion.div
@@ -167,7 +290,7 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                 theme={theme}
                 onClick={() => handleOpenModal(project, idx)}
                 style={{
-                  padding: '2rem',
+                  padding: '1.8rem',
                   cursor: 'pointer',
                   display: 'flex',
                   flexDirection: 'column',
@@ -177,191 +300,177 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                   minHeight: '100%',
                 }}
               >
-              {/* Top gradient strip */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: '3px',
-                  background: `linear-gradient(90deg, ${theme.accent1}, ${theme.accent2}, ${theme.accent3})`,
-                }}
-              />
+                {/* Top gradient strip */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: '3px',
+                    background:
+                      'linear-gradient(90deg, ' +
+                      theme.accent1 +
+                      ', ' +
+                      theme.accent2 +
+                      ', ' +
+                      theme.accent3 +
+                      ')',
+                  }}
+                />
 
-              <div>
+                <div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-start',
+                      marginBottom: '0.7rem',
+                      marginTop: '0.4rem',
+                    }}
+                  >
+                    <h3
+                      style={{
+                        fontSize: '1.2rem',
+                        color: theme.textMain,
+                        margin: 0,
+                        fontWeight: 700,
+                        lineHeight: 1.3,
+                        letterSpacing: '-0.01em',
+                      }}
+                    >
+                      {project.title}
+                    </h3>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      style={{
+                        color: theme.accent1,
+                        textDecoration: 'none',
+                        fontWeight: 600,
+                        fontSize: '0.82rem',
+                        transition: 'transform 0.2s',
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                    >
+                      ↗
+                    </a>
+                  </div>
+
+                  <p
+                    style={{
+                      color: theme.textMuted,
+                      fontSize: '0.92rem',
+                      lineHeight: 1.6,
+                      marginBottom: '1.3rem',
+                    }}
+                  >
+                    {project.desc}
+                  </p>
+
+                  <div style={{ marginBottom: '1.3rem' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+                      {project.tech.split('•').map((t, i) => (
+                        <span
+                          key={i}
+                          className="skill-badge"
+                          style={{
+                            fontSize: '0.68rem',
+                            padding: '0.2rem 0.6rem',
+                            fontWeight: 600,
+                            letterSpacing: '0.03em',
+                          }}
+                        >
+                          {t.trim()}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
                 <div
                   style={{
                     display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'flex-start',
-                    marginBottom: '0.8rem',
-                    marginTop: '0.5rem',
+                    justifyContent: 'flex-start',
+                    gap: '0.6rem',
+                    width: '100%',
+                    marginTop: 'auto',
+                    flexWrap: 'wrap',
                   }}
                 >
-                  <h3
-                    style={{
-                      fontSize: '1.3rem',
-                      color: theme.textMain,
-                      margin: 0,
-                      fontWeight: 700,
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {project.title}
-                  </h3>
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noreferrer"
                     onClick={(e) => e.stopPropagation()}
                     style={{
-                      color: theme.accent1,
-                      textDecoration: 'none',
-                      fontWeight: 600,
-                      fontSize: '0.85rem',
-                      transition: 'transform 0.2s',
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-                  >
-                    GitHub ↗
-                  </a>
-                </div>
-
-                <p
-                  style={{
-                    color: theme.textMuted,
-                    fontSize: '0.95rem',
-                    lineHeight: 1.6,
-                    marginBottom: '1.5rem',
-                  }}
-                >
-                  {project.desc}
-                </p>
-
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexWrap: 'wrap',
-                      gap: '0.4rem',
-                    }}
-                  >
-                    {project.tech.split('•').map((t, i) => (
-                      <span
-                        key={i}
-                        style={{
-                          fontSize: '0.7rem',
-                          fontWeight: 700,
-                          letterSpacing: '0.04em',
-                          padding: '0.25rem 0.65rem',
-                          borderRadius: '999px',
-                          background: `linear-gradient(135deg, ${theme.accent1}18, ${theme.accent2}18)`,
-                          color: theme.accent1,
-                          border: `1px solid ${theme.accent1}30`,
-                        }}
-                      >
-                        {t.trim()}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  gap: '0.8rem',
-                  width: '100%',
-                  marginTop: 'auto',
-                  flexWrap: 'wrap',
-                }}
-              >
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    display: 'inline-block',
-                    padding: '0.55rem 1.4rem',
-                    borderRadius: '999px',
-                    border: `1px solid ${isDarkMode ? theme.cardBorder : 'rgba(13,148,136,0.3)'}`,
-                    background: isDarkMode
-                      ? `linear-gradient(135deg, ${theme.accent1}15, ${theme.accent2}15)`
-                      : 'rgba(13,148,136,0.08)',
-                    color: isDarkMode ? theme.textMain : '#0d9488',
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    textDecoration: 'none',
-                    transition: 'all 0.25s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`
-                    e.currentTarget.style.color = '#fff'
-                    e.currentTarget.style.borderColor = 'transparent'
-                    e.currentTarget.style.transform = 'scale(1.05)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = isDarkMode
-                      ? `linear-gradient(135deg, ${theme.accent1}15, ${theme.accent2}15)`
-                      : 'rgba(13,148,136,0.08)'
-                    e.currentTarget.style.color = isDarkMode ? theme.textMain : '#0d9488'
-                    e.currentTarget.style.borderColor = isDarkMode ? theme.cardBorder : 'rgba(13,148,136,0.3)'
-                    e.currentTarget.style.transform = 'scale(1)'
-                  }}
-                >
-                  View Code
-                </a>
-
-                {project.tableau && (
-                  <a
-                    href={project.tableau}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    style={{
                       display: 'inline-block',
-                      padding: '0.55rem 1.4rem',
+                      padding: '0.5rem 1.2rem',
                       borderRadius: '999px',
-                      border: `1px solid ${isDarkMode ? theme.cardBorder : 'rgba(190,24,93,0.3)'}`,
-                      background: isDarkMode
-                        ? `linear-gradient(135deg, ${theme.accent3}15, ${theme.accent4}15)`
-                        : 'rgba(190,24,93,0.08)',
-                      color: isDarkMode ? theme.textMain : '#be185d',
-                      fontSize: '0.85rem',
+                      border: '1px solid ' + theme.cardBorder,
+                      background: theme.accent1 + '10',
+                      color: theme.accent1,
+                      fontSize: '0.8rem',
                       fontWeight: 600,
                       textDecoration: 'none',
                       transition: 'all 0.25s ease',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.background = `linear-gradient(135deg, ${theme.accent3}, ${theme.accent4})`
-                      e.currentTarget.style.color = '#fff'
-                      e.currentTarget.style.borderColor = 'transparent'
+                      e.currentTarget.style.background = theme.accent1
+                      e.currentTarget.style.color = '#09090b'
                       e.currentTarget.style.transform = 'scale(1.05)'
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = isDarkMode
-                        ? `linear-gradient(135deg, ${theme.accent3}15, ${theme.accent4}15)`
-                        : 'rgba(190,24,93,0.08)'
-                      e.currentTarget.style.color = isDarkMode ? theme.textMain : '#be185d'
-                      e.currentTarget.style.borderColor = isDarkMode ? theme.cardBorder : 'rgba(190,24,93,0.3)'
+                      e.currentTarget.style.background = theme.accent1 + '10'
+                      e.currentTarget.style.color = theme.accent1
                       e.currentTarget.style.transform = 'scale(1)'
                     }}
                   >
-                    View Dashboard
+                    View Code
                   </a>
-                )}
-              </div>
+
+                  {project.tableau && (
+                    <a
+                      href={project.tableau}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      style={{
+                        display: 'inline-block',
+                        padding: '0.5rem 1.2rem',
+                        borderRadius: '999px',
+                        border: '1px solid ' + theme.accent2 + '40',
+                        background: theme.accent2 + '10',
+                        color: theme.accent2,
+                        fontSize: '0.8rem',
+                        fontWeight: 600,
+                        textDecoration: 'none',
+                        transition: 'all 0.25s ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = theme.accent2
+                        e.currentTarget.style.color = '#09090b'
+                        e.currentTarget.style.transform = 'scale(1.05)'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = theme.accent2 + '10'
+                        e.currentTarget.style.color = theme.accent2
+                        e.currentTarget.style.transform = 'scale(1)'
+                      }}
+                    >
+                      Dashboard
+                    </a>
+                  )}
+                </div>
               </TiltCard>
             </motion.div>
           ))
         )}
       </div>
 
-      {/* Click-to-expand project modal */}
       {selectedProject && (
         <ProjectModal
           project={selectedProject.project}

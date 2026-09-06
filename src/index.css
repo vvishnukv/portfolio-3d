@@ -10,75 +10,117 @@ html {
 
 body {
   cursor: none !important;
-  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
-  /* Defaults — overridden by CSS custom properties set by App.jsx */
-  background-color: #0a0e17;
-  color: #f8fafc;
+  background-color: #09090b;
+  color: #fafafa;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a,
 button,
 input,
-textarea {
+textarea,
+select {
   cursor: none !important;
 }
 
 /* =========================================
    DESIGN SYSTEM — CSS VARIABLES
-   Default: dark mode (overridden by App.jsx inline styles on root)
+   Premium "Liquid Glass" — Billion-dollar design
    ========================================= */
 :root {
-  /* Neon gradient accents (shared, not theming) */
-  --accent-primary: linear-gradient(135deg, #00d4aa, #0066ff);
-  --accent-secondary: linear-gradient(135deg, #ff00a8, #7928ca);
-  --accent-tertiary: linear-gradient(135deg, #00ff88, #0066ff);
+  /* Premium color palette */
+  --gold: #d4a853;
+  --gold-light: #e5c478;
+  --gold-dark: #a17c32;
+  --teal: #2dd4bf;
+  --violet: #8b5cf6;
+  --orange: #f97316;
+  --zinc-900: #18181b;
+  --zinc-800: #27272a;
+  --zinc-700: #3f3f46;
+  --zinc-400: #a1a1aa;
+  --zinc-300: #d4d4d8;
+  --zinc-200: #e4e4e7;
+  --zinc-100: #f4f4f5;
+
+  /* Accent gradients */
+  --accent-primary: linear-gradient(135deg, #d4a853, #e5c478);
+  --accent-secondary: linear-gradient(135deg, #2dd4bf, #14b8a6);
+  --accent-tertiary: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  --accent-gold-teal: linear-gradient(135deg, #d4a853, #2dd4bf);
+  --accent-gold-violet: linear-gradient(135deg, #d4a853, #8b5cf6);
+
+  /* Typography */
+  --font-display: 'Cormorant', Georgia, 'Times New Roman', serif;
+  --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 8px 32px rgba(212, 168, 83, 0.2);
+  --shadow-gold-lg: 0 16px 48px rgba(212, 168, 83, 0.25);
 }
 
-/* Dark mode defaults (CSS defaults — no class needed) */
-:root {
-  --bg: #0a0e17;
-  --bg-subtle: #111827;
-  --bg-card: rgba(10, 14, 23, 0.75);
-  --bg-card-hover: rgba(15, 19, 28, 0.88);
-  --text-main: #f8fafc;
-  --text-muted: #a3a8b8;
-  --text-accent: #e6fffa;
-  --card-border: rgba(255, 255, 255, 0.1);
-  --card-border-focus: rgba(0, 212, 170, 0.35);
-  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 24px rgba(0, 212, 170, 0.2);
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.35);
-  --gradient-hero: radial-gradient(ellipse at 30% 20%, rgba(0, 212, 170, 0.15), transparent 60%),
-                   radial-gradient(ellipse at 70% 80%, rgba(0, 102, 255, 0.12), transparent 60%);
-  --gradient-nav: rgba(10, 14, 23, 0.82);
-  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
-
-/* Light mode — App.jsx adds class="light-mode" to root, toggling these */
+/* Light mode variables */
 :root.light-mode {
-  --bg: #f5f3ef;
-  --bg-subtle: #ede9e1;
-  /* Cards: solid warm white with frosted blur — clearly distinct from background */
-  --bg-card: rgba(255, 253, 249, 0.96);
-  --bg-card-hover: #ffffff;
-  /* Text: WCAG AA compliant contrast on warm cream background */
-  /* Main: #1c1917 = 18.3:1 contrast on #f5f3ef ✅ */
-  /* Muted: #44403c = 11.2:1 contrast on #f5f3ef ✅ (replaces the old #78716c at ~5:1) */
-  --text-main: #1c1917;
-  --text-muted: #44403c;
-  --text-accent: #0d9488;
-  /* Card border: warm stone, clearly visible on white cards */
-  --card-border: rgba(180, 168, 150, 0.45);
-  --card-border-focus: rgba(13, 148, 136, 0.4);
-  /* Shadows: warm, soft — lift cards off the cream background */
-  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.06);
-  --shadow-glow: 0 0 24px rgba(13, 148, 136, 0.14);
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
-  --gradient-hero: radial-gradient(ellipse at 30% 20%, rgba(13, 148, 136, 0.12), transparent 60%),
-                   radial-gradient(ellipse at 70% 80%, rgba(30, 64, 175, 0.1), transparent 60%);
-  --gradient-nav: rgba(245, 243, 239, 0.95);
+  --gold: #a16207;
+  --gold-light: #ca8a04;
+  --gold-dark: #854d0e;
+  --teal: #0d9488;
+  --violet: #7c3aed;
+  --orange: #c2410c;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.12);
+  --shadow-gold: 0 8px 32px rgba(161, 98, 7, 0.15);
+  --shadow-gold-lg: 0 16px 48px rgba(161, 98, 7, 0.2);
+}
+
+/* =========================================
+   CUSTOM SCROLLBAR — Premium Gold Style
+   ========================================= */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--zinc-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 999px;
+  border: 2px solid var(--zinc-900);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-light);
+}
+
+:root.light-mode ::-webkit-scrollbar-track {
+  background: var(--zinc-100);
+}
+
+:root.light-mode ::-webkit-scrollbar-thumb {
+  border-color: var(--zinc-100);
+}
+
+/* =========================================
+   TEXT SELECTION — Gold Accent
+   ========================================= */
+::selection {
+  background: rgba(212, 168, 83, 0.35);
+  color: inherit;
+}
+
+:root.light-mode ::selection {
+  background: rgba(161, 98, 7, 0.2);
 }
 
 /* =========================================
@@ -90,36 +132,36 @@ textarea {
   left: 0;
   height: 3px;
   width: 0%;
-  background: var(--accent-primary);
+  background: var(--accent-gold-teal);
   background-size: 200% 100%;
-  background-position: 0% 0%;
   z-index: 9999;
   transition: width 0.1s linear;
-  box-shadow: 0 0 12px rgba(0, 212, 170, 0.5);
+  box-shadow: 0 0 12px rgba(212, 168, 83, 0.6);
 }
 
 :root.light-mode .scroll-progress {
-  box-shadow: 0 0 12px rgba(13, 148, 136, 0.4);
+  box-shadow: 0 0 12px rgba(161, 98, 7, 0.5);
 }
 
 /* =========================================
-   FOCUS STATES
+   FOCUS STATES — Premium Gold Ring
    ========================================= */
 :focus-visible {
-  outline: 2px solid var(--card-border-focus);
-  outline-offset: 2px;
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* =========================================
    ANIMATED GRADIENT TEXT
    ========================================= */
 .gradient-text {
-  background: var(--accent-primary);
+  background: var(--accent-gold-teal);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   background-size: 200% 200%;
-  animation: gradientShift 6s ease infinite;
+  animation: gradientShift 8s ease infinite;
 }
 
 @keyframes gradientShift {
@@ -129,95 +171,118 @@ textarea {
 }
 
 /* =========================================
-   FLOATING ORBS
+   FLOATING ORBS — Ambient Background
    ========================================= */
 .floating-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.5;
+  filter: blur(80px);
+  opacity: 0.4;
   pointer-events: none;
-  animation: floatOrb 12s ease-in-out infinite;
+  animation: floatOrb 18s ease-in-out infinite;
 }
 
 .floating-orb.orb-1 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle at 30% 30%, rgba(0, 212, 170, 0.55), transparent 70%);
-  top: 10%;
-  left: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at 30% 30%, rgba(212, 168, 83, 0.3), transparent 70%);
+  top: 5%;
+  left: 5%;
   animation-delay: 0s;
 }
 
 .floating-orb.orb-2 {
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle at 70% 30%, rgba(0, 102, 255, 0.45), transparent 70%);
-  top: 50%;
-  right: 15%;
-  animation-delay: -4s;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle at 70% 30%, rgba(45, 212, 191, 0.25), transparent 70%);
+  top: 40%;
+  right: 10%;
+  animation-delay: -6s;
 }
 
 .floating-orb.orb-3 {
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle at 50% 50%, rgba(121, 40, 202, 0.35), transparent 70%);
-  bottom: 20%;
-  left: 30%;
-  animation-delay: -8s;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.2), transparent 70%);
+  bottom: 15%;
+  left: 25%;
+  animation-delay: -12s;
 }
 
-/* Light mode: softer, warmer orb tints */
+/* Light mode: softer orb tints */
 :root.light-mode .floating-orb.orb-1 {
-  background: radial-gradient(circle at 30% 30%, rgba(13, 148, 136, 0.22), transparent 70%);
-  opacity: 0.6;
-}
-:root.light-mode .floating-orb.orb-2 {
-  background: radial-gradient(circle at 70% 30%, rgba(30, 64, 175, 0.18), transparent 70%);
+  background: radial-gradient(circle at 30% 30%, rgba(161, 98, 7, 0.15), transparent 70%);
   opacity: 0.5;
 }
-:root.light-mode .floating-orb.orb-3 {
-  background: radial-gradient(circle at 50% 50%, rgba(190, 24, 93, 0.12), transparent 70%);
+:root.light-mode .floating-orb.orb-2 {
+  background: radial-gradient(circle at 70% 30%, rgba(13, 148, 136, 0.12), transparent 70%);
   opacity: 0.4;
+}
+:root.light-mode .floating-orb.orb-3 {
+  background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.08), transparent 70%);
+  opacity: 0.3;
 }
 
 @keyframes floatOrb {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -20px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.95); }
+  33% { transform: translate(40px, -25px) scale(1.08); }
+  66% { transform: translate(-25px, 30px) scale(0.95); }
 }
 
 /* =========================================
-   GLASS CARD
+   LIQUID GLASS CARD — Premium Glassmorphism
    ========================================= */
 .glass-card {
-  background: var(--bg-card);
-  border: 1px solid var(--card-border);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(24, 24, 27, 0.7);
+  border: 1px solid rgba(212, 168, 83, 0.12);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-radius: 1.5rem;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-md);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glass shimmer overlay */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0) 70%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .glass-card:hover {
-  transform: translateY(-4px) scale(1.01);
-  border-color: var(--card-border-focus);
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(212, 168, 83, 0.3);
   box-shadow:
-    var(--shadow-card),
-    0 0 20px rgba(0, 212, 170, 0.08);
+    var(--shadow-lg),
+    0 0 30px rgba(212, 168, 83, 0.1);
+}
+
+:root.light-mode .glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(161, 98, 7, 0.15);
 }
 
 :root.light-mode .glass-card:hover {
   box-shadow:
-    var(--shadow-card),
-    0 0 24px rgba(13, 148, 136, 0.1);
+    var(--shadow-lg),
+    0 0 30px rgba(161, 98, 7, 0.12);
 }
 
 /* =========================================
-   NAVIGATION BAR & RESPONSIVE BEHAVIOR
+   NAVIGATION — Refined Links
    ========================================= */
-
 .desktop-nav-links {
   display: flex !important;
   align-items: center;
@@ -245,42 +310,26 @@ textarea {
    RESPONSIVE — Mobile Layout Fixes
    ========================================= */
 @media (max-width: 720px) {
-  /* About section: stack cards vertically on mobile */
   .about-grid {
     grid-template-columns: 1fr !important;
   }
 
-  /* Hero section: tighter stats row on mobile */
   .hero-stats {
     gap: 0.6rem !important;
   }
 
-  /* Contact section: tighter button spacing on mobile */
   .contact-buttons {
     gap: 0.8rem !important;
   }
 
-  /* Project cards: full width on mobile */
   .project-card {
     min-width: 100% !important;
   }
 }
 
 /* =========================================
-   NAV LOGO — CLEAN WORDMARK
+   PROJECT SEARCH BAR — Shine Effect
    ========================================= */
-.nav-logo-wrapper {
-  width: 200px;
-  overflow: hidden;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-}
-
-/* =========================================
-   PROJECT SEARCH BAR & SHINE ANIMATION
-   ========================================= */
-
 @keyframes shineAnimation {
   0% { transform: translateX(-100%); }
   50% { transform: translateX(100%); }
@@ -295,7 +344,7 @@ textarea {
 
 .project-search-container:hover {
   transform: scale(1.03);
-  box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+  box-shadow: var(--shadow-gold);
 }
 
 .shine-effect::after {
@@ -308,16 +357,15 @@ textarea {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.2),
+    rgba(212, 168, 83, 0.15),
     transparent
   );
-  animation: shineAnimation 3s infinite;
+  animation: shineAnimation 4s ease-in-out infinite;
 }
 
 /* =========================================
-   HORIZONTAL PROJECTS SCROLL (IF USED)
+   HORIZONTAL SCROLL SECTION
    ========================================= */
-
 .horizontal-scroll-section {
   display: flex;
   gap: 2rem;
@@ -356,16 +404,10 @@ textarea {
 }
 
 /* =========================================
-   MICRO-INTERACTIONS — Awwwards Polish
+   MICRO-INTERACTIONS — Premium Polish
    ========================================= */
 
-/* Conic-gradient border sweep on hover */
-@keyframes conicSpin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-/* Holographic shimmer sweep across gradient text */
+/* Holographic shimmer sweep */
 @keyframes shimmerSweep {
   0%   { background-position: -200% 50%; }
   100% { background-position: 200% 50%; }
@@ -375,43 +417,226 @@ textarea {
   background-image:
     linear-gradient(120deg,
       rgba(255, 255, 255, 0) 30%,
-      rgba(255, 255, 255, 0.45) 50%,
+      rgba(212, 168, 83, 0.4) 50%,
       rgba(255, 255, 255, 0) 70%),
-    var(--accent-primary);
+    var(--accent-gold-teal);
   background-size: 200% 100%, 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   animation:
-    gradientShift 6s ease infinite,
-    shimmerSweep 5s ease-in-out infinite;
+    gradientShift 8s ease infinite,
+    shimmerSweep 6s ease-in-out infinite;
   -webkit-text-fill-color: transparent;
 }
 
-/* Glassmorphism depth on tilt cards (subtle) */
-.glass-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.04) 0%,
-    rgba(255, 255, 255, 0) 35%,
-    rgba(255, 255, 255, 0) 65%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
+/* =========================================
+   DISPLAY TYPOGRAPHY — Cormorant Headings
+   ========================================= */
+.display-heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
-:root.light-mode .glass-card::before {
+/* =========================================
+   COMMAND PALETTE
+   ========================================= */
+.command-palette-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+}
+
+.command-palette {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(24, 24, 27, 0.95);
+  border: 1px solid rgba(212, 168, 83, 0.2);
+  border-radius: 1.2rem;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(212, 168, 83, 0.08);
+  backdrop-filter: blur(32px);
+  overflow: hidden;
+}
+
+:root.light-mode .command-palette {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(161, 98, 7, 0.2);
+}
+
+.command-palette-input {
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(212, 168, 83, 0.12);
+  color: #fafafa;
+  font-size: 1.1rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  outline: none;
+}
+
+:root.light-mode .command-palette-input {
+  color: #09090b;
+}
+
+.command-palette-results {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.command-palette-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  transition: all 0.15s ease;
+  color: #a1a1aa;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.command-palette-item:hover,
+.command-palette-item.selected {
+  background: rgba(212, 168, 83, 0.1);
+  color: #fafafa;
+}
+
+:root.light-mode .command-palette-item:hover,
+:root.light-mode .command-palette-item.selected {
+  background: rgba(161, 98, 7, 0.08);
+  color: #09090b;
+}
+
+/* =========================================
+   PAGE TRANSITIONS
+   ========================================= */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: pageEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* =========================================
+   ATS SCORE CIRCULAR PROGRESS
+   ========================================= */
+.ats-circle {
+  transform: rotate(-90deg);
+}
+
+.ats-circle-bg {
+  stroke: rgba(212, 168, 83, 0.1);
+}
+
+.ats-circle-progress {
+  stroke: var(--gold);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =========================================
+   TIMELINE — Premium Vertical Timeline
+   ========================================= */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
   background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0) 35%,
-    rgba(255, 255, 255, 0) 65%,
-    rgba(255, 255, 255, 0.2) 100%
+    180deg,
+    var(--gold) 0%,
+    rgba(212, 168, 83, 0.2) 100%
   );
-  opacity: 0.5;
+  border-radius: 999px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.15rem;
+  top: 0.4rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 3px solid var(--zinc-900);
+  box-shadow: 0 0 12px rgba(212, 168, 83, 0.4);
+}
+
+:root.light-mode .timeline::before {
+  background: linear-gradient(
+    180deg,
+    var(--gold) 0%,
+    rgba(161, 98, 7, 0.2) 100%
+  );
+}
+
+:root.light-mode .timeline-item::before {
+  border-color: var(--zinc-100);
+  box-shadow: 0 0 12px rgba(161, 98, 7, 0.3);
+}
+
+/* =========================================
+   SKILL BADGE — Premium Pill
+   ========================================= */
+.skill-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(212, 168, 83, 0.2);
+  background: rgba(212, 168, 83, 0.08);
+  color: var(--gold);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.skill-badge:hover {
+  background: rgba(212, 168, 83, 0.15);
+  border-color: rgba(212, 168, 83, 0.35);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(212, 168, 83, 0.2);
+}
+
+:root.light-mode .skill-badge {
+  border-color: rgba(161, 98, 7, 0.25);
+  background: rgba(161, 98, 7, 0.08);
+  color: var(--gold);
+}
+
+:root.light-mode .skill-badge:hover {
+  background: rgba(161, 98, 7, 0.14);
+  border-color: rgba(161, 98, 7, 0.4);
 }

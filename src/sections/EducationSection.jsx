@@ -15,28 +15,59 @@ export default function EducationSection({ theme, isDarkMode }) {
         padding: '8vh 8vw',
       }}
     >
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="gradient-text"
-        style={{
-          fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-          fontWeight: 800,
-          marginBottom: '2.5rem',
-          letterSpacing: '-0.01em',
-        }}
-      >
-        Education
-      </motion.h2>
+      <div style={{ marginBottom: '3rem' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            fontSize: '0.78rem',
+            fontWeight: 600,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            color: theme.accent1,
+            marginBottom: '0.75rem',
+          }}
+        >
+          <span
+            style={{
+              width: '24px',
+              height: '1.5px',
+              background: 'linear-gradient(90deg, var(--gold), var(--teal))',
+              borderRadius: '2px',
+            }}
+          />
+          Academic Background
+        </motion.div>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="display-heading shimmer-text"
+          style={{
+            fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+            fontWeight: 700,
+            margin: 0,
+            letterSpacing: '-0.02em',
+            lineHeight: 1.1,
+          }}
+        >
+          Education
+        </motion.h2>
+      </div>
 
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '2rem',
-          maxWidth: '900px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+          gap: '1.5rem',
+          maxWidth: '1000px',
         }}
       >
         {educationData.map((edu, idx) => (
@@ -51,80 +82,106 @@ export default function EducationSection({ theme, isDarkMode }) {
             <TiltCard
               theme={theme}
               style={{
-                padding: '2.2rem',
+                padding: '2rem 2.2rem',
                 position: 'relative',
                 overflow: 'hidden',
+                minHeight: '200px',
               }}
             >
-              {/* Left accent bar */}
+              {/* Top gold accent bar */}
               <div
                 style={{
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  width: '4px',
-                  height: '100%',
-                  background: `linear-gradient(180deg, ${theme.accent3}, ${theme.accent4})`,
-                  borderRadius: '0 2px 2px 0',
+                  right: 0,
+                  height: '2px',
+                  background: 'linear-gradient(90deg, ' + theme.accent1 + ', ' + theme.accent2 + ')',
                 }}
               />
 
-              <div style={{ paddingLeft: '1.2rem' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '1.2rem',
+                }}
+              >
+                {/* Icon block */}
                 <div
                   style={{
+                    width: '52px',
+                    height: '52px',
+                    flexShrink: 0,
+                    borderRadius: '0.8rem',
+                    background: 'linear-gradient(135deg, ' + theme.accent1 + '25, ' + theme.accent2 + '25)',
+                    border: '1px solid ' + theme.accent1 + '30',
                     display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'flex-start',
-                    flexWrap: 'wrap',
-                    gap: '0.5rem',
-                    marginBottom: '0.4rem',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '1.4rem',
                   }}
                 >
+                  🎓
+                </div>
+
+                <div style={{ flex: 1 }}>
                   <h3
                     style={{
-                      fontSize: '1.4rem',
+                      fontSize: '1.15rem',
                       color: theme.textMain,
                       fontWeight: 700,
-                      margin: 0,
+                      margin: '0 0 0.3rem 0',
+                      letterSpacing: '-0.01em',
+                      lineHeight: 1.3,
                     }}
                   >
                     {edu.institution}
                   </h3>
-                  <span
+                  <h4
                     style={{
-                      fontSize: '0.85rem',
-                      fontWeight: 700,
-                      color: theme.accent3,
-                      background: `linear-gradient(135deg, ${theme.accent3}15, ${theme.accent4}15)`,
-                      padding: '0.3rem 0.8rem',
-                      borderRadius: '999px',
-                      border: `1px solid ${theme.accent3}30`,
+                      color: theme.accent1,
+                      fontSize: '0.92rem',
+                      fontWeight: 600,
+                      marginBottom: '0.6rem',
+                      lineHeight: 1.4,
                     }}
                   >
-                    {edu.gpa}
-                  </span>
+                    {edu.degree}
+                  </h4>
+                  <div
+                    style={{
+                      display: 'flex',
+                      gap: '0.5rem',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: '0.8rem',
+                        fontWeight: 700,
+                        color: theme.accent2,
+                        background: theme.accent2 + '12',
+                        padding: '0.25rem 0.7rem',
+                        borderRadius: '999px',
+                        border: '1px solid ' + theme.accent2 + '30',
+                      }}
+                    >
+                      {edu.gpa}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: '0.78rem',
+                        color: theme.textMuted,
+                        fontFamily: 'var(--font-mono)',
+                        letterSpacing: '0.02em',
+                      }}
+                    >
+                      {edu.duration}
+                    </span>
+                  </div>
                 </div>
-                <h4
-                  style={{
-                    color: theme.accent1,
-                    fontSize: '1.05rem',
-                    fontWeight: 600,
-                    marginBottom: '0.4rem',
-                  }}
-                >
-                  {edu.degree}
-                </h4>
-                <p
-                  style={{
-                    color: theme.textMuted,
-                    fontSize: '0.9rem',
-                    margin: 0,
-                    fontFamily: 'var(--font-mono)',
-                    letterSpacing: '0.02em',
-                  }}
-                >
-                  {edu.duration}
-                </p>
               </div>
             </TiltCard>
           </motion.div>

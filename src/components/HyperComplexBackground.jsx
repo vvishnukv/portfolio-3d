@@ -11,12 +11,12 @@ const SHAPE_TYPES = [
   'octahedron',
 ]
 
-// Aurora colors that match our new palette
+// Premium "Liquid Glass" aurora colors - matches new gold/teal/violet palette
 const AURORA_COLORS = [
-  '#00d4aa', // cyan-green
-  '#0066ff', // blue
-  '#7928ca', // purple
-  '#00ff88', // neon green
+  '#d4a853', // gold
+  '#2dd4bf', // teal
+  '#8b5cf6', // violet
+  '#f97316', // orange
 ]
 
 export default function HyperComplexBackground({ isDarkMode }) {

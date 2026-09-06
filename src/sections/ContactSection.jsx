@@ -6,7 +6,7 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
   const [copied, setCopied] = useState(false)
 
   const handleCopyEmail = () => {
-    playClickSound()
+    playClickSound && playClickSound()
     navigator.clipboard.writeText('vishnukaushikvarma@gmail.com')
     setCopied(true)
     setTimeout(() => setCopied(false), 2500)
@@ -26,18 +26,18 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
         position: 'relative',
       }}
     >
-      {/* Background glow */}
+      {/* Ambient gold glow */}
       <div
         style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '500px',
-          height: '500px',
+          width: '600px',
+          height: '600px',
           borderRadius: '50%',
-          background: `radial-gradient(circle, ${theme.accent1}15, transparent 70%)`,
-          filter: 'blur(80px)',
+          background: 'radial-gradient(circle, ' + theme.accent1 + '18, transparent 70%)',
+          filter: 'blur(100px)',
           pointerEvents: 'none',
         }}
       />
@@ -56,35 +56,75 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
           zIndex: 1,
         }}
       >
-        <h2
-          className="gradient-text"
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
           style={{
-            fontSize: 'clamp(2.8rem, 7vw, 4.5rem)',
-            fontWeight: 800,
-            marginBottom: '1.2rem',
-            letterSpacing: '-0.02em',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            fontSize: '0.78rem',
+            fontWeight: 600,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            color: theme.accent1,
+            marginBottom: '1rem',
           }}
         >
-          Let's Connect
+          <span
+            style={{
+              width: '24px',
+              height: '1.5px',
+              background: 'linear-gradient(90deg, var(--gold), var(--teal))',
+              borderRadius: '2px',
+            }}
+          />
+          Get in Touch
+        </motion.div>
+
+        <h2
+          className="display-heading shimmer-text"
+          style={{
+            fontSize: 'clamp(2.8rem, 7vw, 4.8rem)',
+            fontWeight: 700,
+            marginBottom: '1.2rem',
+            letterSpacing: '-0.02em',
+            lineHeight: 1.1,
+          }}
+        >
+          Let&apos;s Build Something Great
         </h2>
 
         <p
           style={{
             color: theme.textMuted,
-            fontSize: 'clamp(1rem, 2vw, 1.2rem)',
-            marginBottom: '3rem',
+            fontSize: 'clamp(1rem, 1.6vw, 1.15rem)',
+            marginBottom: '0.6rem',
             maxWidth: '600px',
             lineHeight: 1.6,
           }}
         >
-          Poughkeepsie, New York &bull; (551) 297-5781 &bull; vishnukaushikvarma@gmail.com
+          Poughkeepsie, New York &nbsp;·&nbsp; (551) 297-5781
+        </p>
+        <p
+          style={{
+            color: theme.textMuted,
+            fontSize: 'clamp(0.9rem, 1.4vw, 1rem)',
+            marginBottom: '3rem',
+            fontFamily: 'var(--font-mono)',
+            letterSpacing: '0.02em',
+          }}
+        >
+          vishnukaushikvarma@gmail.com
         </p>
 
         <div
           className="contact-buttons"
           style={{
             display: 'flex',
-            gap: '1.5rem',
+            gap: '1rem',
             flexWrap: 'wrap',
             justifyContent: 'center',
             alignItems: 'center',
@@ -96,19 +136,20 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
             whileHover={{ scale: 1.05, y: -3 }}
             whileTap={{ scale: 0.98 }}
             style={{
-              background: `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`,
-              color: '#fff',
-              padding: '1rem 2.8rem',
+              background: 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')',
+              color: '#09090b',
+              padding: '1rem 2.5rem',
               borderRadius: '999px',
               textDecoration: 'none',
               fontWeight: 700,
-              fontSize: '1rem',
-              boxShadow: `0 4px 20px ${theme.accent1}50`,
+              fontSize: '0.95rem',
+              boxShadow: '0 8px 24px ' + theme.accent1 + '40',
               transition: 'box-shadow 0.25s ease',
               display: 'inline-block',
+              letterSpacing: '0.02em',
             }}
           >
-            Email Me
+            Send Email
           </MagneticLink>
 
           <MagneticButton
@@ -117,19 +158,20 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
             whileTap={{ scale: 0.98 }}
             style={{
               background: copied
-                ? `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`
+                ? 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')'
                 : 'transparent',
-              border: `2px solid ${copied ? 'transparent' : theme.accent1}`,
-              color: copied ? '#fff' : theme.accent1,
-              padding: '1rem 2.2rem',
+              border: '2px solid ' + (copied ? 'transparent' : theme.accent1),
+              color: copied ? '#09090b' : theme.accent1,
+              padding: '1rem 2rem',
               borderRadius: '999px',
               cursor: 'pointer',
               fontWeight: 700,
-              fontSize: '1rem',
+              fontSize: '0.95rem',
               transition: 'all 0.25s ease',
+              letterSpacing: '0.02em',
             }}
           >
-            {copied ? '✓ Copied!' : '📋 Copy Email'}
+            {copied ? '✓ Copied!' : 'Copy Email'}
           </MagneticButton>
 
           <MagneticLink
@@ -141,18 +183,19 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
             whileTap={{ scale: 0.98 }}
             style={{
               background: 'transparent',
-              border: `2px solid ${theme.accent2}`,
+              border: '2px solid ' + theme.accent2,
               color: theme.accent2,
-              padding: '1rem 2.8rem',
+              padding: '1rem 2.5rem',
               borderRadius: '999px',
               textDecoration: 'none',
               fontWeight: 700,
-              fontSize: '1rem',
+              fontSize: '0.95rem',
               transition: 'all 0.25s ease',
               display: 'inline-block',
+              letterSpacing: '0.02em',
             }}
           >
-            LinkedIn ↗
+            LinkedIn
           </MagneticLink>
 
           <MagneticLink
@@ -164,35 +207,53 @@ export default function ContactSection({ theme, isDarkMode, playClickSound }) {
             whileTap={{ scale: 0.98 }}
             style={{
               background: 'transparent',
-              border: `2px solid ${theme.accent4}`,
-              color: theme.accent4,
-              padding: '1rem 2.8rem',
+              border: '2px solid ' + theme.accent3,
+              color: theme.accent3,
+              padding: '1rem 2.5rem',
               borderRadius: '999px',
               textDecoration: 'none',
               fontWeight: 700,
-              fontSize: '1rem',
+              fontSize: '0.95rem',
               transition: 'all 0.25s ease',
               display: 'inline-block',
+              letterSpacing: '0.02em',
             }}
           >
-            GitHub ↗
+            GitHub
           </MagneticLink>
         </div>
 
-        {/* Footer note */}
+        {/* Footer */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
           style={{
-            marginTop: '4rem',
+            marginTop: '5rem',
             color: theme.textMuted,
-            fontSize: '0.85rem',
-            opacity: 0.6,
+            fontSize: '0.8rem',
+            opacity: 0.7,
+            letterSpacing: '0.05em',
+            fontFamily: 'var(--font-mono)',
           }}
         >
-          Built with React + Three.js + Framer Motion &bull; 2024
+          Designed &amp; built with React, Three.js &amp; Framer Motion
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+          style={{
+            marginTop: '0.5rem',
+            color: theme.textMuted,
+            fontSize: '0.75rem',
+            opacity: 0.5,
+            fontFamily: 'var(--font-mono)',
+          }}
+        >
+          © 2024 Vishnu Vuddaraju · All rights reserved
         </motion.p>
       </motion.div>
     </section>

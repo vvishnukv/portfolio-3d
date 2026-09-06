@@ -25,10 +25,10 @@ export default function AboutSection({ theme, isDarkMode }) {
           pointerEvents: 'none',
           zIndex: 0,
           background: isDarkMode
-            ? `radial-gradient(800px circle at 15% 30%, ${theme.accent1}10, transparent 50%),
-               radial-gradient(600px circle at 85% 70%, ${theme.accent2}08, transparent 50%)`
-            : `radial-gradient(700px circle at 10% 30%, ${theme.accent1}14, transparent 55%),
-               radial-gradient(600px circle at 90% 70%, ${theme.accent2}10, transparent 55%)`,
+            ? `radial-gradient(900px circle at 20% 30%, ${theme.accent1}08, transparent 55%),
+               radial-gradient(700px circle at 80% 70%, ${theme.accent2}05, transparent 50%)`
+            : `radial-gradient(800px circle at 15% 30%, ${theme.accent1}10, transparent 55%),
+               radial-gradient(600px circle at 85% 70%, ${theme.accent2}08, transparent 50%)`,
         }}
       />
 
@@ -46,21 +46,21 @@ export default function AboutSection({ theme, isDarkMode }) {
               gap: '0.5rem',
               fontSize: '0.78rem',
               fontWeight: 600,
-              letterSpacing: '0.12em',
+              letterSpacing: '0.15em',
               textTransform: 'uppercase',
-              color: theme.textMuted,
+              color: theme.accent1,
               marginBottom: '0.75rem',
             }}
           >
             <span
               style={{
-                width: '20px',
+                width: '24px',
                 height: '1.5px',
                 background: `linear-gradient(90deg, ${theme.accent1}, ${theme.accent2})`,
                 borderRadius: '2px',
               }}
             />
-            Get to know me
+            About Me
           </motion.div>
 
           <motion.h2
@@ -68,20 +68,20 @@ export default function AboutSection({ theme, isDarkMode }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="gradient-text"
+            className="display-heading shimmer-text"
             style={{
               fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-              fontWeight: 800,
+              fontWeight: 700,
               margin: 0,
               letterSpacing: '-0.02em',
               lineHeight: 1.1,
             }}
           >
-            About Me
+            The story behind the code
           </motion.h2>
         </div>
 
-        {/* Two-column grid: identity card on left, bio on right */}
+        {/* Two-column grid */}
         <div
           className="about-grid"
           style={{
@@ -91,7 +91,7 @@ export default function AboutSection({ theme, isDarkMode }) {
             alignItems: 'stretch',
           }}
         >
-          {/* Left: Identity card — clean, minimal, breathing room */}
+          {/* Left: Identity card */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -102,48 +102,56 @@ export default function AboutSection({ theme, isDarkMode }) {
             <TiltCard
               theme={theme}
               style={{
-                padding: '2.2rem 1.6rem',
+                padding: '2rem 1.5rem',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: '1.5rem',
+                gap: '1.2rem',
                 position: 'relative',
                 overflow: 'hidden',
                 height: '100%',
-                minHeight: '360px',
+                minHeight: '380px',
                 boxSizing: 'border-box',
               }}
             >
-              {/* Avatar — single focused element with subtle glow */}
+              {/* Gold accent top bar */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: '2px',
+                  background: `linear-gradient(90deg, ${theme.accent1}, ${theme.accent2})`,
+                }}
+              />
+
+              {/* Avatar with gold ring */}
               <div
                 style={{
                   width: '100px',
                   height: '100px',
                   borderRadius: '50%',
-                  background: isDarkMode
-                    ? `linear-gradient(135deg, ${theme.accent1}55, ${theme.accent2}55)`
-                    : `linear-gradient(135deg, ${theme.accent1}75, ${theme.accent2}75)`,
+                  background: `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '1.9rem',
                   fontWeight: 800,
-                  color: isDarkMode ? theme.textMain : '#fff',
+                  color: isDarkMode ? '#09090b' : '#fff',
                   letterSpacing: '-0.02em',
-                  boxShadow: isDarkMode
-                    ? `0 6px 20px ${theme.accent1}40, inset 0 0 0 2px ${theme.accent1}30`
-                    : `0 6px 20px ${theme.accent1}35, inset 0 0 0 2px rgba(255,255,255,0.5)`,
+                  boxShadow: `0 0 24px ${theme.accent1}50, 0 0 0 4px rgba(212,168,83,0.15)`,
                   flexShrink: 0,
                 }}
               >
                 VK
               </div>
 
-              {/* Name + role — clean typography stack */}
+              {/* Name + role */}
               <div style={{ textAlign: 'center' }}>
                 <div
                   style={{
-                    fontSize: '0.95rem',
+                    fontSize: '1rem',
                     fontWeight: 700,
                     color: theme.textMain,
                     marginBottom: '0.2rem',
@@ -155,9 +163,9 @@ export default function AboutSection({ theme, isDarkMode }) {
                 <div
                   style={{
                     fontSize: '0.7rem',
-                    color: theme.textMuted,
-                    fontWeight: 500,
-                    letterSpacing: '0.05em',
+                    color: theme.accent1,
+                    fontWeight: 600,
+                    letterSpacing: '0.06em',
                     textTransform: 'uppercase',
                   }}
                 >
@@ -165,7 +173,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                 </div>
               </div>
 
-              {/* Thin gradient divider */}
+              {/* Divider */}
               <div
                 style={{
                   width: '48px',
@@ -174,7 +182,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                 }}
               />
 
-              {/* Stats — pushed to bottom with margin-top: auto */}
+              {/* Quick stats */}
               <div
                 style={{
                   display: 'flex',
@@ -186,10 +194,10 @@ export default function AboutSection({ theme, isDarkMode }) {
                 }}
               >
                 {[
-                  { v: '3.84', l: 'GPA' },
-                  { v: '15+', l: 'Projects' },
-                  { v: '2+', l: 'Years' },
-                ].map(({ v, l }) => (
+                  { v: '3.84', l: 'GPA', accent: theme.accent1 },
+                  { v: '15+', l: 'Projects', accent: theme.accent2 },
+                  { v: '2+', l: 'Years', accent: theme.accent3 },
+                ].map(({ v, l, accent }) => (
                   <div
                     key={l}
                     style={{
@@ -197,18 +205,16 @@ export default function AboutSection({ theme, isDarkMode }) {
                       minWidth: '60px',
                       padding: '0.5rem 0.3rem',
                       borderRadius: '0.6rem',
-                      background: isDarkMode
-                        ? `${theme.accent1}10`
-                        : `${theme.accent1}14`,
-                      border: `1px solid ${isDarkMode ? theme.accent1 + '25' : theme.accent1 + '35'}`,
+                      background: `${accent}10`,
+                      border: `1px solid ${accent}25`,
                       textAlign: 'center',
                     }}
                   >
                     <div
                       style={{
-                        fontSize: '0.85rem',
+                        fontSize: '0.9rem',
                         fontWeight: 800,
-                        color: theme.accent1,
+                        color: accent,
                         letterSpacing: '-0.01em',
                         lineHeight: 1.2,
                       }}
@@ -217,10 +223,10 @@ export default function AboutSection({ theme, isDarkMode }) {
                     </div>
                     <div
                       style={{
-                        fontSize: '0.6rem',
+                        fontSize: '0.58rem',
                         color: theme.textMuted,
                         textTransform: 'uppercase',
-                        letterSpacing: '0.06em',
+                        letterSpacing: '0.08em',
                         fontWeight: 600,
                         marginTop: '0.1rem',
                       }}
@@ -233,7 +239,7 @@ export default function AboutSection({ theme, isDarkMode }) {
             </TiltCard>
           </motion.div>
 
-          {/* Right: Bio card — matches left card height exactly */}
+          {/* Right: Bio card */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -248,25 +254,25 @@ export default function AboutSection({ theme, isDarkMode }) {
                 position: 'relative',
                 overflow: 'hidden',
                 height: '100%',
-                minHeight: '360px',
+                minHeight: '380px',
                 boxSizing: 'border-box',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
               }}
             >
-              {/* Decorative quote mark */}
+              {/* Decorative Cormorant quote mark */}
               <div
                 aria-hidden="true"
                 style={{
                   position: 'absolute',
-                  top: '0.6rem',
+                  top: '0.4rem',
                   right: '1.4rem',
-                  fontSize: '5.5rem',
+                  fontSize: '6rem',
                   lineHeight: 1,
                   fontFamily: 'Georgia, serif',
                   color: theme.accent1,
-                  opacity: isDarkMode ? 0.08 : 0.12,
+                  opacity: isDarkMode ? 0.07 : 0.1,
                   fontWeight: 700,
                   userSelect: 'none',
                 }}
@@ -284,21 +290,18 @@ export default function AboutSection({ theme, isDarkMode }) {
                   zIndex: 1,
                 }}
               >
-                I live in{' '}
-                <span style={{ color: theme.textMain, fontWeight: 600 }}>New York</span>{' '}
-                and am pursuing my{' '}
+                Based in <span style={{ color: theme.textMain, fontWeight: 600 }}>Poughkeepsie, NY</span>, I'm
+                pursuing my{' '}
                 <span style={{ color: theme.accent1, fontWeight: 600 }}>
                   M.S. in Information Systems
                 </span>{' '}
-                at Marist University, expected graduation in{' '}
-                <span style={{ color: theme.textMain, fontWeight: 600 }}>December 2026</span>.
-                Currently working as a Web Developer and LMS QA tester at Marist University.
-                I build dynamic software applications, create robust Android and iOS mobile apps,
-                engineer responsive websites, and integrate machine learning into high-performance
-                backend architectures.
+                at <span style={{ color: theme.textMain, fontWeight: 600 }}>Marist University</span> (Dec 2026).
+                Currently working as a Web Developer & LMS QA Tester, where I build dynamic
+                software applications, engineer responsive websites, and integrate AI into
+                high-performance systems — while serving 6,000+ students and faculty.
               </p>
 
-              {/* Bottom tag row */}
+              {/* Expertise tags */}
               <div
                 style={{
                   marginTop: '1.6rem',
@@ -310,27 +313,26 @@ export default function AboutSection({ theme, isDarkMode }) {
                 }}
               >
                 {[
-                  'Full-Stack Dev',
-                  'LMS Admin',
-                  'AI Integration',
-                  'Mobile Apps',
-                  'Cloud & DevOps',
-                ].map((t) => (
+                  { label: 'Full-Stack Dev', color: theme.accent1 },
+                  { label: 'LMS Admin', color: theme.accent2 },
+                  { label: 'AI Integration', color: theme.accent3 },
+                  { label: 'Mobile Apps', color: theme.accent4 },
+                  { label: 'Cloud & DevOps', color: theme.accent1 },
+                ].map(({ label, color }) => (
                   <span
-                    key={t}
+                    key={label}
                     style={{
-                      padding: '0.3rem 0.7rem',
+                      padding: '0.3rem 0.75rem',
                       borderRadius: '999px',
-                      fontSize: '0.68rem',
+                      fontSize: '0.7rem',
                       fontWeight: 600,
-                      background: isDarkMode
-                        ? `${theme.accent1}14`
-                        : `${theme.accent1}16`,
-                      color: theme.accent1,
-                      border: `1px solid ${isDarkMode ? theme.accent1 + '28' : theme.accent1 + '40'}`,
+                      background: `${color}12`,
+                      color: color,
+                      border: `1px solid ${color}25`,
+                      letterSpacing: '0.02em',
                     }}
                   >
-                    {t}
+                    {label}
                   </span>
                 ))}
               </div>
