@@ -154,7 +154,7 @@ export default function SkillsSection({ theme, isDarkMode, searchQuery }) {
                           background: isHighlighted
                             ? 'linear-gradient(135deg, ' + accentColor + ', ' + CATEGORY_COLORS[(idx + 1) % 4] + ')'
                             : accentColor + '0C',
-                          color: isHighlighted ? '#09090b' : accentColor,
+                          color: isHighlighted ? (isDarkMode ? '#09090b' : '#ffffff') : accentColor,
                           border: '1px solid ' + (isHighlighted ? 'transparent' : accentColor + '30'),
                           fontWeight: 600,
                         }}

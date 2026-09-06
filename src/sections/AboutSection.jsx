@@ -148,7 +148,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                       height: '100%',
                       borderRadius: '50%',
                       overflow: 'hidden',
-                      background: isDarkMode ? '#18181b' : '#f4f4f5',
+                      background: theme.bgCard,
                       position: 'relative',
                     }}
                   >

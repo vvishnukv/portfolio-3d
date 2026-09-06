@@ -219,7 +219,7 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                 background: isActive
                   ? 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')'
                   : theme.cardBg,
-                color: isActive ? '#09090b' : theme.textMuted,
+                color: isActive ? (isDarkMode ? '#09090b' : '#ffffff') : theme.textMuted,
                 border: '1px solid ' + (isActive ? 'transparent' : theme.cardBorder),
                 cursor: 'pointer',
                 letterSpacing: '0.02em',
@@ -401,7 +401,7 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = theme.accent1
-                      e.currentTarget.style.color = '#09090b'
+                      e.currentTarget.style.color = isDarkMode ? '#09090b' : '#ffffff'
                       e.currentTarget.style.transform = 'scale(1.05)'
                     }}
                     onMouseLeave={(e) => {
@@ -433,7 +433,7 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.background = theme.accent2
-                        e.currentTarget.style.color = '#09090b'
+                        e.currentTarget.style.color = isDarkMode ? '#09090b' : '#ffffff'
                         e.currentTarget.style.transform = 'scale(1.05)'
                       }}
                       onMouseLeave={(e) => {
