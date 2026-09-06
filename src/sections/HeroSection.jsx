@@ -60,8 +60,7 @@ export default function HeroSection({ theme, isDarkMode }) {
               text-align: center;
             }
             .hero-photo-col {
-              display: flex !important;
-              justify-content: center !important;
+              display: none !important;
             }
             .hero-stats {
               justify-content: center !important;
@@ -74,11 +73,6 @@ export default function HeroSection({ theme, isDarkMode }) {
             }
             .hero-scroll-indicator {
               display: none !important;
-            }
-          }
-          @media (max-width: 480px) {
-            .hero-photo-card {
-              transform: scale(0.75) !important;
             }
           }
         `}</style>
