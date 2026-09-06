@@ -113,6 +113,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                justifyContent: 'center',
                 position: 'relative',
                 overflow: 'hidden',
                 height: '100%',
@@ -132,7 +133,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                 }}
               />
 
-              {/* Professional photo with gold ring — top section */}
+              {/* Professional photo with gold ring — CENTERED in card */}
               <div
                 style={{
                   width: '120px',
@@ -142,7 +143,6 @@ export default function AboutSection({ theme, isDarkMode }) {
                   padding: '3px',
                   boxShadow: `0 0 28px ${theme.accent1}50, 0 8px 20px rgba(0,0,0,0.4)`,
                   flexShrink: 0,
-                  marginTop: '1.5rem',
                 }}
               >
                 <div
@@ -169,97 +169,23 @@ export default function AboutSection({ theme, isDarkMode }) {
                 </div>
               </div>
 
-              {/* Name + role */}
-              <div style={{ textAlign: 'center', marginTop: '1.2rem' }}>
+              {/* Name only (no role) */}
+              <div
+                style={{
+                  textAlign: 'center',
+                  marginTop: '1.2rem',
+                }}
+              >
                 <div
                   style={{
                     fontSize: '1.05rem',
                     fontWeight: 700,
                     color: theme.textMain,
-                    marginBottom: '0.3rem',
                     letterSpacing: '-0.01em',
                   }}
                 >
                   Vishnu Vuddaraju
                 </div>
-                <div
-                  style={{
-                    fontSize: '0.72rem',
-                    color: theme.accent1,
-                    fontWeight: 600,
-                    letterSpacing: '0.06em',
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  Software Engineer
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div
-                style={{
-                  width: '48px',
-                  height: '1px',
-                  background: `linear-gradient(90deg, transparent, ${theme.accent1}60, transparent)`,
-                  marginTop: '1.2rem',
-                }}
-              />
-
-              {/* Quick stats — pushed to bottom with flex-grow spacer */}
-              <div style={{ flexGrow: 1 }} />
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '0.5rem',
-                  flexWrap: 'wrap',
-                  justifyContent: 'center',
-                  width: '100%',
-                  marginTop: '1.2rem',
-                  marginBottom: '0.5rem',
-                }}
-              >
-                {[
-                  { v: '3.84', l: 'GPA', accent: theme.accent1 },
-                  { v: '15+', l: 'Projects', accent: theme.accent2 },
-                  { v: '2+', l: 'Years', accent: theme.accent3 },
-                ].map(({ v, l, accent }) => (
-                  <div
-                    key={l}
-                    style={{
-                      flex: 1,
-                      minWidth: '60px',
-                      padding: '0.55rem 0.3rem',
-                      borderRadius: '0.6rem',
-                      background: `${accent}10`,
-                      border: `1px solid ${accent}25`,
-                      textAlign: 'center',
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontSize: '0.9rem',
-                        fontWeight: 800,
-                        color: accent,
-                        letterSpacing: '-0.01em',
-                        lineHeight: 1.2,
-                      }}
-                    >
-                      {v}
-                    </div>
-                    <div
-                      style={{
-                        fontSize: '0.58rem',
-                        color: theme.textMuted,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.08em',
-                        fontWeight: 600,
-                        marginTop: '0.15rem',
-                      }}
-                    >
-                      {l}
-                    </div>
-                  </div>
-                ))}
               </div>
             </TiltCard>
           </motion.div>
