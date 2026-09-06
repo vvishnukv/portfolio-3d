@@ -109,7 +109,7 @@ export default function AboutSection({ theme, isDarkMode }) {
             <TiltCard
               theme={theme}
               style={{
-                padding: '2.rem',
+                padding: '2.56rem',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',

@@ -3,8 +3,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { Canvas } from '@react-three/fiber'
 import './index.css'
 
-import SpidermanCursor from './components/SpidermanCursor'
-import SpidermanEasterEgg from './components/SpidermanEasterEgg'
+import PremiumCursor from './components/PremiumCursor'
 import HyperComplexBackground from './components/HyperComplexBackground'
 import Navbar from './components/Navbar'
 
@@ -118,8 +117,7 @@ export default function App() {
         }
       `}</style>
 
-      <SpidermanCursor />
-      <SpidermanEasterEgg />
+      <PremiumCursor theme={theme} />
 
       <Navbar
         theme={theme}
