@@ -52,9 +52,39 @@ export default function HeroSection({ theme, isDarkMode }) {
           alignItems: 'center',
         }}
       >
+        <style>{`
+          @media (max-width: 768px) {
+            .hero-grid {
+              grid-template-columns: 1fr !important;
+              gap: 2rem !important;
+              text-align: center;
+            }
+            .hero-photo-col {
+              display: flex !important;
+              justify-content: center !important;
+            }
+            .hero-stats {
+              justify-content: center !important;
+            }
+            .hero-cta {
+              justify-content: center !important;
+            }
+            .hero-subtitle {
+              justify-content: center !important;
+            }
+            .hero-scroll-indicator {
+              display: none !important;
+            }
+          }
+          @media (max-width: 480px) {
+            .hero-photo-card {
+              transform: scale(0.75) !important;
+            }
+          }
+        `}</style>
 
         {/* LEFT COLUMN: text content */}
-        <div>
+        <div className="hero-grid">
         {/* Greeting pill */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -116,6 +146,7 @@ export default function HeroSection({ theme, isDarkMode }) {
 
         {/* Subtitle with Typing Effect */}
         <div
+          className="hero-subtitle"
           style={{
             display: 'flex',
             alignItems: 'baseline',
@@ -255,6 +286,7 @@ export default function HeroSection({ theme, isDarkMode }) {
 
         {/* CTA Buttons */}
         <motion.div
+          className="hero-cta"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.2 }}
@@ -313,6 +345,7 @@ export default function HeroSection({ theme, isDarkMode }) {
 
         {/* RIGHT COLUMN: 3D Tilt Parallax Photo Card */}
         <motion.div
+          className="hero-photo-col"
           initial={{ opacity: 0, scale: 0.85, x: 30 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -324,12 +357,15 @@ export default function HeroSection({ theme, isDarkMode }) {
             minWidth: '0',
           }}
         >
-          <TiltPhotoCard theme={theme} isDarkMode={isDarkMode} />
+          <div className="hero-photo-card">
+            <TiltPhotoCard theme={theme} isDarkMode={isDarkMode} />
+          </div>
         </motion.div>
       </motion.div>
 
       {/* Scroll indicator */}
       <motion.div
+        className="hero-scroll-indicator"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}

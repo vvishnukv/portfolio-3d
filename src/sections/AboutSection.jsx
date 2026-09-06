@@ -129,84 +129,93 @@ export default function AboutSection({ theme, isDarkMode }) {
                   right: 0,
                   height: '2px',
                   background: `linear-gradient(90deg, ${theme.accent1}, ${theme.accent2})`,
+                  zIndex: 2,
                 }}
               />
 
-              {/* Professional photo with gold ring — top section */}
+              {/* Top section: photo + name + role */}
               <div
                 style={{
-                  width: '120px',
-                  height: '120px',
-                  borderRadius: '50%',
-                  background: `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`,
-                  padding: '3px',
-                  boxShadow: `0 0 28px ${theme.accent1}50, 0 8px 20px rgba(0,0,0,0.4)`,
-                  flexShrink: 0,
-                  marginTop: '1.5rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  flex: 1,
                 }}
               >
+                {/* Professional photo with gold ring — CENTERED */}
                 <div
                   style={{
-                    width: '100%',
-                    height: '100%',
+                    width: '120px',
+                    height: '120px',
                     borderRadius: '50%',
-                    overflow: 'hidden',
-                    background: isDarkMode ? '#18181b' : '#f4f4f5',
-                    position: 'relative',
+                    background: `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`,
+                    padding: '3px',
+                    boxShadow: `0 0 28px ${theme.accent1}50, 0 8px 20px rgba(0,0,0,0.4)`,
+                    flexShrink: 0,
                   }}
                 >
-                  <img
-                    src="/vishnu-photo.png"
-                    alt="Vishnu Kaushik Varma Vuddaraju"
+                  <div
                     style={{
                       width: '100%',
                       height: '100%',
-                      objectFit: 'cover',
-                      objectPosition: 'center top',
-                      display: 'block',
+                      borderRadius: '50%',
+                      overflow: 'hidden',
+                      background: isDarkMode ? '#18181b' : '#f4f4f5',
+                      position: 'relative',
                     }}
-                  />
+                  >
+                    <img
+                      src="/vishnu-photo.png"
+                      alt="Vishnu Kaushik Varma Vuddaraju"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'center top',
+                        display: 'block',
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {/* Name + role */}
-              <div style={{ textAlign: 'center', marginTop: '1.2rem' }}>
+                {/* Name + role */}
+                <div style={{ textAlign: 'center', marginTop: '1.2rem' }}>
+                  <div
+                    style={{
+                      fontSize: '1.05rem',
+                      fontWeight: 700,
+                      color: theme.textMain,
+                      marginBottom: '0.3rem',
+                      letterSpacing: '-0.01em',
+                    }}
+                  >
+                    Vishnu Vuddaraju
+                  </div>
+                  <div
+                    style={{
+                      fontSize: '0.72rem',
+                      color: theme.accent1,
+                      fontWeight: 600,
+                      letterSpacing: '0.06em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    Software Engineer
+                  </div>
+                </div>
+
+                {/* Divider */}
                 <div
                   style={{
-                    fontSize: '1.05rem',
-                    fontWeight: 700,
-                    color: theme.textMain,
-                    marginBottom: '0.3rem',
-                    letterSpacing: '-0.01em',
+                    width: '48px',
+                    height: '1px',
+                    background: `linear-gradient(90deg, transparent, ${theme.accent1}60, transparent)`,
+                    marginTop: '1.2rem',
                   }}
-                >
-                  Vishnu Vuddaraju
-                </div>
-                <div
-                  style={{
-                    fontSize: '0.72rem',
-                    color: theme.accent1,
-                    fontWeight: 600,
-                    letterSpacing: '0.06em',
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  Software Engineer
-                </div>
+                />
               </div>
 
-              {/* Divider */}
-              <div
-                style={{
-                  width: '48px',
-                  height: '1px',
-                  background: `linear-gradient(90deg, transparent, ${theme.accent1}60, transparent)`,
-                  marginTop: '1.2rem',
-                }}
-              />
-
-              {/* Quick stats — pushed to bottom with flex-grow spacer */}
-              <div style={{ flexGrow: 1 }} />
+              {/* Bottom section: stats */}
               <div
                 style={{
                   display: 'flex',
@@ -214,8 +223,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                   flexWrap: 'wrap',
                   justifyContent: 'center',
                   width: '100%',
-                  marginTop: '1.2rem',
-                  marginBottom: '0.5rem',
+                  paddingBottom: '0.5rem',
                 }}
               >
                 {[
