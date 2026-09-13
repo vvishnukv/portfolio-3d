@@ -147,19 +147,6 @@ export default function EducationSection({ theme, isDarkMode }) {
                   >
                     <span
                       style={{
-                        fontSize: '0.8rem',
-                        fontWeight: 700,
-                        color: theme.accent2,
-                        background: theme.accent2 + '12',
-                        padding: '0.25rem 0.7rem',
-                        borderRadius: '999px',
-                        border: '1px solid ' + theme.accent2 + '30',
-                      }}
-                    >
-                      {edu.gpa}
-                    </span>
-                    <span
-                      style={{
                         fontSize: '0.78rem',
                         color: theme.textMuted,
                         fontFamily: 'var(--font-mono)',

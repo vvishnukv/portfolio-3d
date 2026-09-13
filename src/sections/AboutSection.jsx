@@ -215,7 +215,6 @@ export default function AboutSection({ theme, isDarkMode }) {
                 }}
               >
                 {[
-                  { v: '3.84', l: 'GPA', accent: theme.accent1 },
                   { v: '15+', l: 'Projects', accent: theme.accent2 },
                   { v: '2+', l: 'Years', accent: theme.accent3 },
                 ].map(({ v, l, accent }) => (
@@ -335,9 +334,9 @@ export default function AboutSection({ theme, isDarkMode }) {
               >
                 {[
                   { label: 'Full-Stack Dev', color: theme.accent1 },
-                  { label: 'LMS Admin', color: theme.accent2 },
                   { label: 'AI Integration', color: theme.accent3 },
                   { label: 'Mobile Apps', color: theme.accent4 },
+                  { label: 'Brightspace', color: theme.accent3 },
                   { label: 'Cloud & DevOps', color: theme.accent1 },
                 ].map(({ label, color }) => (
                   <span

@@ -11,36 +11,35 @@ const SHAPE_TYPES = [
   'octahedron',
 ]
 
-// Premium "Liquid Glass" aurora colors - matches new gold/teal/violet palette
+// Subtle cool palette for the ambient background (no gold)
 const AURORA_COLORS = [
-  '#d4a853', // gold
   '#2dd4bf', // teal
   '#8b5cf6', // violet
-  '#f97316', // orange
+  '#38bdf8', // sky
+  '#2dd4bf', // teal (repeat)
 ]
 
 export default function HyperComplexBackground({ isDarkMode }) {
   const groupRef = useRef()
   const innerGroupRef = useRef()
-  const auroraRef = useRef()
 
-  // Reduced to 20 curated shapes
+  // Expanded to 36 small curated shapes
   const shapesArray = useMemo(() => {
-    return [...Array(20)].map((_, i) => ({
+    return [...Array(36)].map((_, i) => ({
       position: [
         (Math.random() - 0.5) * 30,
         (Math.random() - 0.5) * 80,
         (Math.random() - 0.5) * 20 - 5
       ],
       rotation: [Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI],
-      scale: Math.random() * 1.2 + 0.6,
-      speed: Math.random() * 1.5 + 0.3,
+      scale: Math.random() * 0.3 + 0.1,
+      speed: Math.random() * 0.12 + 0.03,
       type: i % SHAPE_TYPES.length,
       color: AURORA_COLORS[i % AURORA_COLORS.length],
     }))
   }, [])
 
-  const dotsCount = 1200
+  const dotsCount = 1800
   const dotPositions = useMemo(() => {
     const pos = new Float32Array(dotsCount * 3)
     for (let i = 0; i < dotsCount; i++) {
@@ -53,54 +52,31 @@ export default function HyperComplexBackground({ isDarkMode }) {
 
   useFrame((state) => {
     const scrollY = window.scrollY || window.pageYOffset
-    state.camera.position.y = THREE.MathUtils.lerp(state.camera.position.y, 5 - (scrollY * 0.004), 0.08)
-    state.camera.position.z = THREE.MathUtils.lerp(state.camera.position.z, 10 + (scrollY * 0.002), 0.08)
+    state.camera.position.y = THREE.MathUtils.lerp(state.camera.position.y, 5 - (scrollY * 0.002), 0.03)
+    state.camera.position.z = THREE.MathUtils.lerp(state.camera.position.z, 10 + (scrollY * 0.001), 0.03)
 
     if (groupRef.current) {
-      groupRef.current.rotation.y = state.clock.getElapsedTime() * 0.015 + (state.pointer.x * 0.06)
-      groupRef.current.rotation.x = state.pointer.y * 0.04
-    }
-    if (auroraRef.current) {
-      auroraRef.current.rotation.z = state.clock.getElapsedTime() * 0.02
+      groupRef.current.rotation.y = state.clock.getElapsedTime() * 0.004 + (state.pointer.x * 0.012)
+      groupRef.current.rotation.x = state.pointer.y * 0.006
     }
   })
 
   return (
     <group ref={groupRef}>
-      {/* Aurora gradient plane — atmospheric backdrop */}
-      <mesh ref={auroraRef} position={[0, 0, -12]}>
-        <planeGeometry args={[50, 50]} />
+      {/* Small ambient depth plane */}
+      <mesh position={[0, 0, -14]}>
+        <planeGeometry args={[40, 40]} />
         <meshBasicMaterial
-          color={isDarkMode ? '#0a0e17' : '#f1f5f9'}
+          color={isDarkMode ? '#0b1224' : '#f0f4f8'}
           transparent
-          opacity={1}
+          opacity={0.3}
         />
       </mesh>
 
-      {/* Aurora glow layers */}
-      {[...Array(3)].map((_, i) => (
-        <mesh
-          key={`aurora-${i}`}
-          position={[
-            Math.sin(i * 2.1) * 5,
-            Math.cos(i * 1.7) * 3,
-            -8 - i * 2
-          ]}
-        >
-          <sphereGeometry args={[6 - i * 1.5, 16, 16]} />
-          <meshBasicMaterial
-            color={AURORA_COLORS[i]}
-            transparent
-            opacity={isDarkMode ? 0.04 - i * 0.01 : 0.03 - i * 0.005}
-            side={THREE.BackSide}
-          />
-        </mesh>
-      ))}
-
-      {/* Curated floating geometric shapes */}
+      {/* 36 small curated shapes */}
       <group ref={innerGroupRef}>
         {shapesArray.map((item, i) => (
-          <Float key={`shape-${i}`} speed={item.speed} rotationIntensity={1.5} floatIntensity={2.5}>
+          <Float key={`shape-${i}`} speed={item.speed} rotationIntensity={0.2} floatIntensity={0.8}>
             <group position={item.position} rotation={item.rotation} scale={item.scale}>
               {/* Wireframe geometric shape */}
               {item.type === 0 && (

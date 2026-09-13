@@ -53,7 +53,7 @@ export const skillsData = [
   },
   {
     title: 'Tools, AI & Platforms',
-    skills: ['Docker', 'Tableau', 'OpenAI API', 'Speech-to-Text', 'Power Apps', 'Liferay CMS', 'Brightspace', 'Sakai', 'Git', 'GitHub', 'Jira']
+    skills: ['Docker', 'Tableau', 'OpenAI API', 'Speech-to-Text', 'Power Apps', 'Liferay CMS', 'Brightspace', 'Sakai (open-source LMS)', 'Git', 'GitHub', 'Jira']
   }
 ]
 
@@ -63,13 +63,12 @@ export const experienceData = [
     company: "Marist University • Apr 2025 – Present",
     color: "#0284c7",
     bullets: [
-      "Developed 150+ academic and departmental web pages in Liferay CMS with responsive design, SEO optimization, and WCAG 2.2 accessibility compliance.",
+      "Redeveloped 150+ academic and departmental web pages in Liferay CMS with responsive design, SEO optimization, and WCAG 2.2 accessibility compliance.",
       "Resolved 100+ complex Jira tickets, cutting ticket resolution time by 50% and boosting response rates by 30%.",
       "Audited 5,000+ Brightspace courses for WCAG 2.2 compliance using Power Apps and Power Automate workflow, automating issue reporting to faculty.",
       "Assisted faculty across every department with Brightspace LMS and accessibility through hybrid/live sessions and resolved 200+ support requests through the Team Dynamix ticketing system.",
-      "Conducted workshops on integrating LTI tools and new LMS features, collaborating with the Center for Teaching and Learning to enhance faculty teaching.",
-      "Spearheaded full institutional migration of 500+ courses from Sakai to Brightspace for 6,000+ end-users.",
-      "Engineered tracking pipeline with Power Apps and Excel to parse system errors, eliminating 10+ hours of manual follow-up weekly.",
+      "Manually migrated 500+ courses from Sakai to Brightspace and helped instructors understand the Brightspace setup.",
+      "Partnered with other colleagues to build a tracking pipeline with Power Apps and Excel to parse system errors, eliminating 10+ hours of manual follow-up weekly.",
       "Co-led Bright Foxes outreach campaign delivering 15+ faculty support sessions and resolving 50+ system inquiries.",
       "Documented Minutes of Meetings (MoMs) for Digital Education projects, ensuring clear communication of action items among technical and academic stakeholders.",
       "Conducted functional, regression, and cross-browser QA testing to ensure LMS and CMS accessibility and quality compliance.",
@@ -95,12 +94,10 @@ export const educationData = [
     institution: "Marist University",
     degree: "Master of Science, Information Systems",
     duration: "Jan 2025 – Dec 2026",
-    gpa: "GPA: 3.845"
   },
   {
     institution: "Keshav Memorial Institute Of Technology",
     degree: "Bachelor of Technology, Computer Science & Machine Learning (CSM)",
     duration: "Aug 2020 – May 2024",
-    gpa: "GPA: 3.5"
   }
 ]

@@ -38,8 +38,8 @@ export default async function handler(req, res) {
       Contact: Poughkeepsie, New York, United States | vishnukaushikvarma@gmail.com | (551) 297-5781 | linkedin.com/in/vishnukaushikvarma | https://vishnukaushikvarma.vercel.app/[cite: 1]
 
       Education:
-      - Marist University | Master of Science, Information Systems | Jan 2025 – Dec 2026 | GPA: 3.845[cite: 1]
-      - Keshav Memorial Institute Of Technology | Bachelor of Technology, Computer Science & Machine Learning (CSM) | Aug 2020 – May 2024 | GPA: 3.5[cite: 1]
+      - Marist University | Master of Science, Information Systems | Jan 2025 – Dec 2026[cite: 1]
+      - Keshav Memorial Institute Of Technology | Bachelor of Technology, Computer Science & Machine Learning (CSM) | Aug 2020 – May 2024[cite: 1]
 
       Work Experience:
       - Marist University | Web Developer and LMS Quality Assurance Tester - Digital Education | Apr 2025 – Present[cite: 1]

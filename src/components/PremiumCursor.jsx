@@ -75,14 +75,14 @@ export default function PremiumCursor({ theme }) {
       <AnimatePresence>
         {trails.map((t, i) => {
           const age = Date.now() - t.time
-          const opacity = Math.max(0, 0.5 - (age / 400) * 0.5)
-          const size = Math.max(2, 6 - (age / 400) * 4)
+          const opacity = Math.max(0, 0.8 - (age / 500) * 0.4)
+          const size = Math.max(3, 10 - (age / 500) * 5)
           return (
             <motion.div
               key={t.id}
               initial={{ opacity, scale: 1 }}
               animate={{ opacity: 0, scale: 0.3 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
               style={{
                 position: 'fixed',
                 left: t.x - size / 2,
@@ -90,8 +90,8 @@ export default function PremiumCursor({ theme }) {
                 width: size,
                 height: size,
                 borderRadius: '50%',
-                background: theme.accent1,
-                boxShadow: `0 0 ${size * 2}px ${theme.accent1}60`,
+                background: theme.accent2,
+                boxShadow: `0 0 ${size * 2.5}px ${theme.accent2}80`,
                 pointerEvents: 'none',
                 zIndex: 9998,
               }}
@@ -116,27 +116,27 @@ export default function PremiumCursor({ theme }) {
       >
         <motion.div
           animate={{
-            width: isClicking ? 36 : isHovering ? 52 : 44,
-            height: isClicking ? 36 : isHovering ? 52 : 44,
+            width: isClicking ? 44 : isHovering ? 64 : 54,
+            height: isClicking ? 44 : isHovering ? 64 : 54,
             borderColor: isHovering
-              ? `${theme.accent1}`
+              ? `${theme.accent2}`
               : isClicking
               ? `${theme.accent2}`
-              : `${theme.accent1}50`,
+              : `${theme.accent2}50`,
             borderWidth: isHovering ? 2 : 1.5,
             opacity: isHovering ? 1 : 0.7,
             boxShadow: isHovering
-              ? `0 0 20px ${theme.accent1}40, 0 0 40px ${theme.accent1}20`
+              ? `0 0 20px ${theme.accent2}40, 0 0 40px ${theme.accent2}20`
               : isClicking
               ? `0 0 30px ${theme.accent2}50`
-              : `0 0 12px ${theme.accent1}20`,
+              : `0 0 12px ${theme.accent2}20`,
           }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
           style={{
-            width: 44,
-            height: 44,
+            width: 54,
+            height: 54,
             borderRadius: '50%',
-            border: `1.5px solid ${theme.accent1}50`,
+            border: 'none',
             background: 'transparent',
           }}
         />
@@ -158,22 +158,22 @@ export default function PremiumCursor({ theme }) {
       >
         <motion.div
           animate={{
-            width: isClicking ? 6 : isHovering ? 10 : 8,
-            height: isClicking ? 6 : isHovering ? 10 : 8,
-            background: isHovering ? theme.accent1 : isClicking ? theme.accent2 : theme.accent1,
+            width: isClicking ? 8 : isHovering ? 12 : 10,
+            height: isClicking ? 8 : isHovering ? 12 : 10,
+            background: isHovering ? theme.accent2 : isClicking ? theme.accent2 : theme.accent2,
             boxShadow: isHovering
-              ? `0 0 16px ${theme.accent1}, 0 0 32px ${theme.accent1}60`
+              ? `0 0 16px ${theme.accent2}, 0 0 32px ${theme.accent2}60`
               : isClicking
               ? `0 0 12px ${theme.accent2}`
-              : `0 0 8px ${theme.accent1}80`,
+              : `0 0 8px ${theme.accent2}80`,
           }}
           transition={{ duration: 0.15, ease: 'easeOut' }}
           style={{
-            width: 8,
-            height: 8,
+            width: 10,
+            height: 10,
             borderRadius: '50%',
-            background: theme.accent1,
-            boxShadow: `0 0 8px ${theme.accent1}80`,
+            background: theme.accent2,
+            boxShadow: `0 0 12px ${theme.accent2}80`,
           }}
         />
       </motion.div>

@@ -136,11 +136,11 @@ select {
   left: 0;
   height: 3px;
   width: 0%;
-  background: var(--accent-gold-teal);
+  background: var(--accent-secondary);
   background-size: 200% 100%;
   z-index: 9999;
   transition: width 0.1s linear;
-  box-shadow: 0 0 12px rgba(212, 168, 83, 0.6);
+  box-shadow: 0 0 12px rgba(45, 212, 191, 0.6);
 }
 
 :root.light-mode .scroll-progress {
@@ -189,7 +189,7 @@ select {
 .floating-orb.orb-1 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle at 30% 30%, rgba(212, 168, 83, 0.3), transparent 70%);
+  background: radial-gradient(circle at 30% 30%, rgba(45, 212, 191, 0.3), transparent 70%);
   top: 5%;
   left: 5%;
   animation-delay: 0s;
@@ -215,7 +215,7 @@ select {
 
 /* Light mode: softer orb tints */
 :root.light-mode .floating-orb.orb-1 {
-  background: radial-gradient(circle at 30% 30%, rgba(161, 98, 7, 0.15), transparent 70%);
+  background: radial-gradient(circle at 30% 30%, rgba(20, 184, 166, 0.15), transparent 70%);
   opacity: 0.5;
 }
 :root.light-mode .floating-orb.orb-2 {

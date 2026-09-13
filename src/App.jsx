@@ -3,8 +3,8 @@ import { Analytics } from '@vercel/analytics/react'
 import { Canvas } from '@react-three/fiber'
 import './index.css'
 
-import PremiumCursor from './components/PremiumCursor'
 import HyperComplexBackground from './components/HyperComplexBackground'
+import PremiumCursor from './components/PremiumCursor'
 import Navbar from './components/Navbar'
 
 import HeroSection from './sections/HeroSection'
@@ -114,7 +114,8 @@ export default function App() {
       {/* Scroll progress bar */}
       <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
 
-      
+      <PremiumCursor theme={theme} />
+
       {/* Mobile Dropdown Style Override when opened */}
       <style>{`
         @media (max-width: 950px) {
@@ -134,8 +135,6 @@ export default function App() {
           }
         }
       `}</style>
-
-      <PremiumCursor theme={theme} />
 
       <Navbar
         theme={theme}

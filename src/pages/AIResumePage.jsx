@@ -711,7 +711,6 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                       <span>Master of Science, Information Systems</span>
-                      <span style={{ fontWeight: 600 }}>GPA: 3.845</span>
                     </div>
                   </div>
                   <div>
@@ -721,7 +720,6 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                       <span>Bachelor of Technology, Computer Science & Machine Learning (CSM)</span>
-                      <span style={{ fontWeight: 600 }}>GPA: 3.5</span>
                     </div>
                   </div>
                 </div>

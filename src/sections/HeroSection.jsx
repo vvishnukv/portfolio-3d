@@ -184,7 +184,7 @@ export default function HeroSection({ theme, isDarkMode }) {
             fontWeight: 400,
           }}
         >
-          M.S. Information Systems at <span style={{ color: theme.textMain, fontWeight: 600 }}>Marist University</span> (GPA 3.84).
+          M.S. Information Systems at <span style={{ color: theme.textMain, fontWeight: 600 }}>Marist University</span>.
           I engineer <span style={{ color: theme.textMain, fontWeight: 600 }}>scalable software</span>, build institutional
           <span style={{ color: theme.textMain, fontWeight: 600 }}> LMS platforms</span>, deploy containerized cloud pipelines,
           ship <span style={{ color: theme.textMain, fontWeight: 600 }}>cross-platform mobile apps</span>, and integrate
@@ -220,7 +220,6 @@ export default function HeroSection({ theme, isDarkMode }) {
           }}
         >
           {[
-            { label: 'GPA', value: '3.84', accent: theme.accent1, decimals: 2, prefix: '' },
             { label: 'Projects Shipped', value: '15', accent: theme.accent2, suffix: '+' },
             { label: 'Years of XP', value: '2', accent: theme.accent3, suffix: '+' },
             { label: 'Users Served', value: '10', accent: theme.accent4, suffix: 'K+' },
@@ -253,13 +252,11 @@ export default function HeroSection({ theme, isDarkMode }) {
                 }}
               >
                 {i === 0 ? (
-                  <CountUp value={3.84} decimals={2} />
-                ) : i === 2 ? (
-                  <><CountUp value={2} suffix="+" /><span style={{ fontSize: '1.1rem' }}> yrs</span></>
-                ) : i === 3 ? (
-                  <><CountUp value={10} suffix="K+" /></>
-                ) : (
                   <CountUp value={15} suffix="+" />
+                ) : i === 1 ? (
+                  <><CountUp value={2} suffix="+" /><span style={{ fontSize: '1.1rem' }}> yrs</span></>
+                ) : (
+                  <><CountUp value={10} suffix="K+" /></>
                 )}
               </div>
               <div
