@@ -318,7 +318,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
                           ? theme.accent1
                           : 'transparent',
                       border: '2px solid ' + (isActive || isPast ? theme.accent1 : theme.cardBorder),
-                      color: (isActive || isPast) ? '#09090b' : theme.textMuted,
+                      color: (isActive || isPast) ? (isDarkMode ? '#09090b' : '#ffffff') : theme.textMuted,
                       fontSize: '0.8rem',
                       fontWeight: 700,
                       transition: 'all 0.3s ease',
@@ -449,7 +449,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
                       background: isGenerating || !jobDescription.trim()
                         ? 'rgba(212,168,83,0.2)'
                         : 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')',
-                      color: isGenerating || !jobDescription.trim() ? theme.textMuted : '#09090b',
+                      color: isGenerating || !jobDescription.trim() ? theme.textMuted : (isDarkMode ? '#09090b' : '#ffffff'),
                       border: 'none',
                       padding: '0.75rem 2rem',
                       borderRadius: '999px',
@@ -572,7 +572,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
                   onClick={handleViewResume}
                   style={{
                     background: 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')',
-                    color: '#09090b',
+                    color: '#ffffff',
                     border: 'none',
                     padding: '0.85rem 2.5rem',
                     borderRadius: '999px',
@@ -636,7 +636,7 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
                     onClick={handleDownloadPDF}
                     style={{
                       background: 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')',
-                      color: '#09090b',
+                      color: '#ffffff',
                       border: 'none',
                       padding: '0.6rem 1.5rem',
                       borderRadius: '999px',

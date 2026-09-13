@@ -85,7 +85,9 @@ export default function ExperienceSection({ theme, isDarkMode }) {
                   background: theme.cardBg,
                   border: '1px solid ' + (isExpanded ? theme.cardBorderFocus : theme.cardBorder),
                   boxShadow: isExpanded
-                    ? '0 8px 32px rgba(0,0,0,0.4), 0 0 24px ' + theme.accent1 + '15'
+                    ? isDarkMode
+                      ? '0 8px 32px rgba(0,0,0,0.4), 0 0 24px ' + theme.accent1 + '15'
+                      : '0 8px 24px rgba(0,0,0,0.08), 0 0 24px ' + theme.accent1 + '20'
                     : theme.cardShadow,
                 }}
               >

@@ -109,10 +109,9 @@ export default function TiltPhotoCard({ theme, isDarkMode }) {
             borderRadius: '24px',
             overflow: 'hidden',
             background: theme.bgCard,
-            boxShadow:
-              '0 30px 80px rgba(0,0,0,0.5), 0 0 60px ' +
-              theme.accent1 +
-              '15',
+            boxShadow: isDarkMode
+              ? '0 30px 80px rgba(0,0,0,0.5), 0 0 60px ' + theme.accent1 + '15'
+              : '0 30px 50px rgba(0,0,0,0.15), 0 0 40px ' + theme.accent1 + '25',
             zIndex: 2,
           }}
         >

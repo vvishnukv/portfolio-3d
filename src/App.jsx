@@ -12,6 +12,7 @@ import AboutSection from './sections/AboutSection'
 import ExperienceSection from './sections/ExperienceSection'
 import ProjectsSection from './sections/ProjectsSection'
 import SkillsSection from './sections/SkillsSection'
+import SoftSkillsSection from './sections/SoftSkillsSection'
 import EducationSection from './sections/EducationSection'
 import ContactSection from './sections/ContactSection'
 
@@ -63,12 +64,14 @@ export default function App() {
     accent4Light: isDarkMode ? '#f9731615' : '#c2410c12',
   }
 
-  // Sync body background color with theme (since index.css has hardcoded body bg)
+  // Sync body background color and class with theme
   useEffect(() => {
     document.body.style.backgroundColor = theme.bg
     document.body.style.color = theme.textMain
     document.body.style.transition = 'background-color 0.35s ease, color 0.35s ease'
-  }, [theme.bg, theme.textMain])
+    document.documentElement.classList.toggle('light-mode', !isDarkMode)
+    document.body.classList.toggle('light-mode', !isDarkMode)
+  }, [theme.bg, theme.textMain, isDarkMode])
 
   // Active section scroll watcher + scroll progress
   useEffect(() => {
@@ -131,7 +134,7 @@ export default function App() {
             border-bottom: 1px solid ${theme.cardBorder};
             padding: 1.5rem 2rem;
             gap: 1.2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: isDarkMode ? '0 10px 30px rgba(0,0,0,0.1)' : '0 10px 30px rgba(0,0,0,0.06)';
           }
         }
       `}</style>
@@ -184,6 +187,7 @@ export default function App() {
             isDarkMode={isDarkMode}
             searchQuery={searchQuery}
           />
+          <SoftSkillsSection theme={theme} />
           <EducationSection theme={theme} isDarkMode={isDarkMode} />
           <ContactSection
             theme={theme}

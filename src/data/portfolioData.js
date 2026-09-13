@@ -67,7 +67,7 @@ export const experienceData = [
       "Resolved 100+ complex Jira tickets, cutting ticket resolution time by 50% and boosting response rates by 30%.",
       "Audited 5,000+ Brightspace courses for WCAG 2.2 compliance using Power Apps and Power Automate workflow, automating issue reporting to faculty.",
       "Assisted faculty across every department with Brightspace LMS and accessibility through hybrid/live sessions and resolved 200+ support requests through the Team Dynamix ticketing system.",
-      "Manually migrated 500+ courses from Sakai to Brightspace and helped instructors understand the Brightspace setup.",
+      "Manually migrated 500+ courses from Sakai to Brightspace and helped lecturers understand everything about the Brightspace setup.",
       "Partnered with other colleagues to build a tracking pipeline with Power Apps and Excel to parse system errors, eliminating 10+ hours of manual follow-up weekly.",
       "Co-led Bright Foxes outreach campaign delivering 15+ faculty support sessions and resolving 50+ system inquiries.",
       "Documented Minutes of Meetings (MoMs) for Digital Education projects, ensuring clear communication of action items among technical and academic stakeholders.",
