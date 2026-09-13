@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 import { skillsData } from '../data/portfolioData'
 import { TiltCard, reveal3D } from '../utils/microInteractions'
 
-const CATEGORY_ICONS = ['💻', '⚛️', '☁️', '🛠️']
-const CATEGORY_COLORS = ['#d4a853', '#2dd4bf', '#8b5cf6', '#f97316']
+const CATEGORY_ICONS = ['💻', '⚛️', '☁️', '🛠️', '🎓']
+const CATEGORY_COLORS = ['#d4a853', '#2dd4bf', '#8b5cf6', '#f97316', '#22d3ee']
 
 export default function SkillsSection({ theme, isDarkMode, searchQuery }) {
   return (

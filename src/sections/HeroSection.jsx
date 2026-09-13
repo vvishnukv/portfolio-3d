@@ -5,12 +5,22 @@ import TypingEffect from '../components/TypingEffect'
 import TiltPhotoCard from '../components/TiltPhotoCard'
 
 const ROLES = [
+  'AI Literacy Specialist',
+  'EdTech Trainer',
+  'Brightspace Lumi Specialist',
+  'Responsible AI Advocate',
   'Software Engineer',
   'Full-Stack Developer',
   'Mobile App Builder',
-  'LMS Specialist',
   'Cloud Architect',
   'AI Integrator',
+]
+
+const STATS = [
+  { value: '500+', label: 'Courses Migrated', suffix: 'Sakai → Brightspace' },
+  { value: '15+', label: 'AI Workshops', suffix: 'Faculty, Staff & Students' },
+  { value: '150+', label: 'Web Pages', suffix: 'Liferay CMS + WCAG 2.2' },
+  { value: '6K+', label: 'Users Served', suffix: 'Students & Faculty' },
 ]
 
 export default function HeroSection({ theme, isDarkMode }) {
@@ -198,10 +208,11 @@ export default function HeroSection({ theme, isDarkMode }) {
           }}
         >
           M.S. Information Systems at <span style={{ color: theme.textMain, fontWeight: 600 }}>Marist University</span>.
-          I engineer <span style={{ color: theme.textMain, fontWeight: 600 }}>scalable software</span>, build institutional
-          <span style={{ color: theme.textMain, fontWeight: 600 }}> LMS platforms</span>, deploy containerized cloud pipelines,
-          ship <span style={{ color: theme.textMain, fontWeight: 600 }}>cross-platform mobile apps</span>, and integrate
-          <span style={{ color: theme.accent1, fontWeight: 600 }}> AI</span> into real products.
+          I specialize in <span style={{ color: theme.textMain, fontWeight: 600 }}>AI Literacy Training & EdTech</span>, having
+          delivered <span style={{ color: theme.textMain, fontWeight: 600 }}>150+ AI literacy workshops</span> for faculty,
+          staff, and students. I build <span style={{ color: theme.textMain, fontWeight: 600 }}> Brightspace Lumi-powered
+          resource hubs</span>, promote <span style={{ color: theme.accent1, fontWeight: 600 }}>responsible AI</span> practices,
+          and design <span style={{ color: theme.textMain, fontWeight: 600 }}>microcredential pathways</span> for AI fluency.
         </p>
 
         {/* Animated gradient divider */}
@@ -232,11 +243,7 @@ export default function HeroSection({ theme, isDarkMode }) {
             gap: '1rem',
           }}
         >
-          {[
-            { label: 'Projects Shipped', value: '15', accent: theme.accent2, suffix: '+' },
-            { label: 'Years of XP', value: '2', accent: theme.accent3, suffix: '+' },
-            { label: 'Users Served', value: '10', accent: theme.accent4, suffix: 'K+' },
-          ].map((stat, i) => (
+          {STATS.map((stat, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -264,13 +271,7 @@ export default function HeroSection({ theme, isDarkMode }) {
                   lineHeight: 1.2,
                 }}
               >
-                {i === 0 ? (
-                  <CountUp value={15} suffix="+" />
-                ) : i === 1 ? (
-                  <><CountUp value={2} suffix="+" /><span style={{ fontSize: '1.1rem' }}> yrs</span></>
-                ) : (
-                  <><CountUp value={10} suffix="K+" /></>
-                )}
+                <CountUp value={parseInt(stat.value, 10)} suffix={stat.suffix} />
               </div>
               <div
                 style={{
@@ -283,6 +284,9 @@ export default function HeroSection({ theme, isDarkMode }) {
                 }}
               >
                 {stat.label}
+                <div style={{ fontSize: '0.6rem', marginTop: '0.1rem', letterSpacing: '0.04em', textTransform: 'none' }}>
+                  {stat.suffix}
+                </div>
               </div>
             </motion.div>
           ))}

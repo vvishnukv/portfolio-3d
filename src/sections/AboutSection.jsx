@@ -188,7 +188,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                       textTransform: 'uppercase',
                     }}
                   >
-                    Marist Univeristy
+                    Marist University
                   </div>
                 </div>
 
@@ -316,9 +316,12 @@ export default function AboutSection({ theme, isDarkMode }) {
                   M.S. in Information Systems
                 </span>{' '}
                 at <span style={{ color: theme.textMain, fontWeight: 600 }}>Marist University</span> (Dec 2026).
-                Currently working as a Web Developer & LMS QA Tester, where I build dynamic
-                software applications, engineer responsive websites, and integrate AI into
-                high-performance systems — while serving 6,000+ students and faculty.
+                Currently working as an <span style={{ color: theme.accent1, fontWeight: 600 }}>AI Literacy Specialist & LMS QA Tester</span>,
+                where I design and deliver <span style={{ color: theme.textMain, fontWeight: 600 }}>AI literacy training</span> programs for
+                faculty, staff, and students; integrate <span style={{ color: theme.textMain, fontWeight: 600 }}>Brightspace Lumi</span> into course
+                workflows; and develop <span style={{ color: theme.textMain, fontWeight: 600 }}>microcredential pathways</span> for AI fluency.
+                I build dynamic software applications, engineer responsive websites, and integrate AI
+                into high-performance systems — while serving 6,000+ students and faculty.
               </p>
 
               {/* Expertise tags */}
@@ -340,6 +343,11 @@ export default function AboutSection({ theme, isDarkMode }) {
                   { label: 'Friendly & Helpful', color: theme.accent2 },
                   { label: 'Helping Lecturers Understand', color: theme.accent4 },
                   { label: 'Cloud & DevOps', color: theme.accent1 },
+                  { label: 'AI Literacy Training', color: '#2dd4bf' },
+                  { label: 'Brightspace Lumi', color: '#8b5cf6' },
+                  { label: 'EdTech & Faculty Dev', color: '#d4a853' },
+                  { label: 'Responsible AI', color: '#f97316' },
+                  { label: 'Microcredentials', color: '#2dd4bf' },
                 ].map(({ label, color }) => (
                   <span
                     key={label}

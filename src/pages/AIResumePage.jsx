@@ -180,6 +180,9 @@ export default function AIResumePage({ theme, isDarkMode, playClickSound, setCur
     'lms', 'cloud', 'gcp', 'git', 'tableau', 'rest', 'api',
     'flutter', 'testing', 'qa', 'automation', 'agile', 'database',
     'developer', 'nodejs', 'mongodb', 'firebase', 'html', 'css',
+    'ai literacy', 'faculty development', 'brightspace', 'copilot',
+    'instructional design', 'microcredential', 'academic integrity',
+    'responsible ai', 'edtech',
   ]
 
   return (

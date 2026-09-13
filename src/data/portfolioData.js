@@ -38,41 +38,23 @@ export const projectsData = [
   }
 ]
 
-export const skillsData = [
-  {
-    title: 'Programming Languages',
-    skills: ['Python', 'SQL', 'JavaScript', 'Dart', 'HTML']
-  },
-  {
-    title: 'Frameworks & Libraries',
-    skills: ['Flutter', 'Node.js', 'Express', 'Pandas', 'NumPy', 'Provider', 'GetX', 'REST APIs']
-  },
-  {
-    title: 'Databases & Cloud',
-    skills: ['PostgreSQL', 'MongoDB Atlas', 'SQLite', 'Google Cloud Platform (GCP)', 'Firebase', 'Firebase FCM']
-  },
-  {
-    title: 'Tools, AI & Platforms',
-    skills: ['Docker', 'Tableau', 'OpenAI API', 'Speech-to-Text', 'Power Apps', 'Liferay CMS', 'Brightspace', 'Sakai (open-source LMS)', 'Git', 'GitHub', 'Jira']
-  }
-]
 
 export const experienceData = [
   {
-    title: "Web Developer and LMS Quality Assurance Tester - Digital Education",
+    title: "AI Literacy Specialist & LMS Quality Assurance - Digital Education",
     company: "Marist University • Apr 2025 – Present",
     color: "#0284c7",
     bullets: [
       "Redeveloped 150+ academic and departmental web pages in Liferay CMS with responsive design, SEO optimization, and WCAG 2.2 accessibility compliance.",
       "Resolved 100+ complex Jira tickets, cutting ticket resolution time by 50% and boosting response rates by 30%.",
       "Audited 5,000+ Brightspace courses for WCAG 2.2 compliance using Power Apps and Power Automate workflow, automating issue reporting to faculty.",
-      "Assisted faculty across every department with Brightspace LMS and accessibility through hybrid/live sessions and resolved 200+ support requests through the Team Dynamix ticketing system.",
-      "Manually migrated 500+ courses from Sakai to Brightspace and helped lecturers understand everything about the Brightspace setup.",
-      "Partnered with other colleagues to build a tracking pipeline with Power Apps and Excel to parse system errors, eliminating 10+ hours of manual follow-up weekly.",
-      "Co-led Bright Foxes outreach campaign delivering 15+ faculty support sessions and resolving 50+ system inquiries.",
+      "Delivered targeted AI literacy workshops and office hours for faculty, staff, and students, promoting responsible use of Microsoft Copilot, ChatGPT, and Brightspace Lumi.",
+      "Manually migrated 500+ courses from Sakai to Brightspace and conducted hands-on sessions to help lecturers master the Brightspace Lumi AI integration.",
+      "Co-authored AI Governance guidelines with Digital Education leadership, aligning Marist's human-centered AI strategy with ethical frameworks and data-privacy standards.",
+      "Co-led Bright Foxes outreach campaign: 15+ workshops and 50+ system inquiries resolved—building AI fluency and change readiness across campus.",
+      "Developed centralized AI resource hub in Brightspace with microcredential pathways, sample prompts, and usage policies for faculty adoption.",
       "Documented Minutes of Meetings (MoMs) for Digital Education projects, ensuring clear communication of action items among technical and academic stakeholders.",
-      "Conducted functional, regression, and cross-browser QA testing to ensure LMS and CMS accessibility and quality compliance.",
-      "Tested Sakai tools rigorously, helping out with quality assurance testing and creating detailed tickets for the Sakai team to resolve bugs."
+      "Conducted functional, regression, and cross-browser QA testing to ensure LMS, CMS, and AI tool accessibility and quality compliance."
     ]
   },
   {
@@ -99,5 +81,55 @@ export const educationData = [
     institution: "Keshav Memorial Institute Of Technology",
     degree: "Bachelor of Technology, Computer Science & Machine Learning (CSM)",
     duration: "Aug 2020 – May 2024",
+  }
+]
+
+/* =========================================================
+   AI LITERACY & EDTECH CAPABILITIES
+   — Marist's AI tools, frameworks, and program pillars
+   ========================================================= */
+export const aiLiteracyData = {
+  supportedTools: [
+    { name: 'Microsoft Copilot', desc: 'Enterprise AI assistant for faculty, staff, and student workflows' },
+    { name: 'ChatGPT', desc: 'Generative AI for course design, research, and learning support' },
+    { name: 'Brightspace Lumi', desc: 'LMS-native AI for content creation, grading, and student guidance' },
+    { name: 'Zoom AI Companion', desc: 'Meeting transcription and summarization for teaching and operations' },
+  ],
+  frameworks: [
+    { name: 'Marist AI Ethics Statement', desc: 'Human-centered, responsible AI with dignity and agency' },
+    { name: 'AI Operational Guidelines', desc: 'Data privacy, human oversight, acceptable/unacceptable use' },
+    { name: 'Academic Integrity Framework', desc: 'AI-assisted vs AI-generated work, citation, and transparency' },
+    { name: 'Marist 100 Strategic Plan', desc: 'Academic Vibrancy, Student Centrality, Expansive Community' },
+  ],
+  programPillars: [
+    'AI Literacy Workshops & Office Hours',
+    'Faculty & Staff Training',
+    'Student AI Fluency Programs',
+    'Brightspace Resource Hub & Microcredentials',
+    'Departmental AI Consultation',
+    'Communities of Practice & Continuous Improvement',
+  ],
+}
+
+export const skillsData = [
+  {
+    title: 'Programming Languages',
+    skills: ['Python', 'SQL', 'JavaScript', 'Dart', 'HTML']
+  },
+  {
+    title: 'Frameworks & Libraries',
+    skills: ['Flutter', 'Node.js', 'Express', 'Pandas', 'NumPy', 'Provider', 'GetX', 'REST APIs']
+  },
+  {
+    title: 'Databases & Cloud',
+    skills: ['PostgreSQL', 'MongoDB Atlas', 'SQLite', 'Google Cloud Platform (GCP)', 'Firebase', 'Firebase FCM']
+  },
+  {
+    title: 'Tools, AI & Platforms',
+    skills: ['Docker', 'Tableau', 'OpenAI API', 'Speech-to-Text', 'Power Apps', 'Liferay CMS', 'Brightspace', 'Sakai (open-source LMS)', 'Git', 'GitHub', 'Jira']
+  },
+  {
+    title: 'AI Literacy & EdTech',
+    skills: ['AI Literacy Training', 'Faculty Development', 'Brightspace Lumi', 'Microsoft Copilot', 'AI Ethics & Governance', 'Microcredential Design', 'Instructional Design', 'Responsible AI', 'EdTech Consultation', 'Communities of Practice']
   }
 ]

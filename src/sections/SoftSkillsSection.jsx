@@ -39,6 +39,18 @@ const SOFT_SKILLS = [
     proof: 'Assisted faculty across every department with Brightspace LMS through hybrid/live sessions, resolving 200+ support requests.',
     accent: '#8b5cf6',
   },
+  {
+    icon: '🧠',
+    skill: 'AI Literacy Instruction',
+    proof: 'Delivered targeted AI literacy workshops and office hours for faculty, staff, and students, promoting responsible use of Microsoft Copilot, ChatGPT, and Brightspace Lumi.',
+    accent: '#22d3ee',
+  },
+  {
+    icon: '🎤',
+    skill: 'Adaptive Communication',
+    proof: 'Translated technical AI concepts into accessible guidance for diverse audiences — from C-suite leadership to first-year students.',
+    accent: '#f97316',
+  },
 ]
 
 const IMPACT_AREAS = [
