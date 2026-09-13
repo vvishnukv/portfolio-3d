@@ -19,7 +19,7 @@ export default function HeroSection({ theme, isDarkMode }) {
   const y2 = useTransform(scrollY, [0, 800], [0, -45])
   const y3 = useTransform(scrollY, [0, 800], [0, 30])
 
-  const headlineLetters = 'Vishnu Kaushik Varma Vuddaraju'.split('')
+  const headlineWords = ['Vishnu', 'Kaushik', 'Varma', 'Vuddaraju']
 
   return (
     <section
@@ -74,6 +74,7 @@ export default function HeroSection({ theme, isDarkMode }) {
             .hero-scroll-indicator {
               display: none !important;
             }
+            /* Custom hero-name styling removed - using default display-heading */
           }
         `}</style>
 
@@ -125,16 +126,28 @@ export default function HeroSection({ theme, isDarkMode }) {
             lineHeight: 1,
           }}
         >
-          {headlineLetters.map((char, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 + i * 0.025, ease: [0.16, 1, 0.3, 1] }}
-              style={{ display: 'inline-block', whiteSpace: 'pre' }}
-            >
-              {char}
-            </motion.span>
+          {headlineWords.map((word, wi) => (
+            <React.Fragment key={wi}>
+              <motion.span
+                style={{ display: 'inline-block', whiteSpace: 'nowrap' }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 + wi * 0.15 }}
+              >
+                {word.split('').map((char, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 + wi * 0.15 + i * 0.025, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ display: 'inline-block', whiteSpace: 'pre' }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </motion.span>
+              {wi < headlineWords.length - 1 && ' '}
+            </React.Fragment>
           ))}
         </h1>
 

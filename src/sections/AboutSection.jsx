@@ -138,7 +138,7 @@ export default function AboutSection({ theme, isDarkMode }) {
                     borderRadius: '50%',
                     background: `linear-gradient(135deg, ${theme.accent1}, ${theme.accent2})`,
                     padding: '3px',
-                    boxShadow: `0 0 28px ${theme.accent1}50, 0 8px 20px rgba(0,0,0,0.4)`,
+                    boxShadow: `0 0 28px ${theme.accent1}50, ${isDarkMode ? '0 8px 20px rgba(0,0,0,0.4)' : '0 8px 20px rgba(0,0,0,0.1)'}`,
                     flexShrink: 0,
                   }}
                 >
@@ -337,6 +337,8 @@ export default function AboutSection({ theme, isDarkMode }) {
                   { label: 'AI Integration', color: theme.accent3 },
                   { label: 'Mobile Apps', color: theme.accent4 },
                   { label: 'Brightspace', color: theme.accent3 },
+                  { label: 'Friendly & Helpful', color: theme.accent2 },
+                  { label: 'Helping Lecturers Understand', color: theme.accent4 },
                   { label: 'Cloud & DevOps', color: theme.accent1 },
                 ].map(({ label, color }) => (
                   <span

@@ -220,6 +220,7 @@ export default function ProjectsSection({ theme, isDarkMode, searchQuery, setSea
                   ? 'linear-gradient(135deg, ' + theme.accent1 + ', ' + theme.accent2 + ')'
                   : theme.cardBg,
                 color: isActive ? (isDarkMode ? '#09090b' : '#ffffff') : theme.textMuted,
+
                 border: '1px solid ' + (isActive ? 'transparent' : theme.cardBorder),
                 cursor: 'pointer',
                 letterSpacing: '0.02em',
