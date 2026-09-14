@@ -72,7 +72,9 @@ export const experienceData = [
       "Co-led Bright Foxes outreach campaign delivering 15+ faculty support sessions and resolving 50+ system inquiries.",
       "Documented Minutes of Meetings (MoMs) for Digital Education projects, ensuring clear communication of action items among technical and academic stakeholders.",
       "Conducted functional, regression, and cross-browser QA testing to ensure LMS and CMS accessibility and quality compliance.",
-      "Tested Sakai tools rigorously, helping out with quality assurance testing and creating detailed tickets for the Sakai team to resolve bugs."
+      "Tested Sakai tools rigorously, helping out with quality assurance testing and creating detailed tickets for the Sakai team to resolve bugs.",
+      "Volunteered and supported the Hudson Valley Artificial Intelligence & Cloud Summit hosted at Marist University, engaging with industry and academic leaders on responsible AI innovation.",
+      "Tested and evaluated generative AI tools (ChatGPT, Microsoft Copilot) regarding AI-generated content detectability against Copyleaks and Turnitin, co-authoring comprehensive institutional guidelines, optimal prompt engineering frameworks, and documentation deployed across Brightspace LMS."
     ]
   },
   {
